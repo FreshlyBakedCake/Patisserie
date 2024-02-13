@@ -1,0 +1,6 @@
+[gerrit]
+host=ssh.clicks.codes
+port=29418
+project=Chimera/NixFiles.git
+defaultbranch=main
+defaultremote=origin

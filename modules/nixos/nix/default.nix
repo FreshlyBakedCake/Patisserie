@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   system.stateVersion = "24.05";
   console.keyMap = "dvorak";
 
@@ -15,6 +16,9 @@
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
 
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 }

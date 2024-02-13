@@ -1,5 +1,4 @@
-{ inputs, system, ... }: {
-  environment.systemPackages = [
-    inputs.home-manager.defaultPackage.${system}
-  ];
+{ inputs, system, ... }:
+{
+  environment.systemPackages = [ inputs.home-manager.defaultPackage.${system} ];
 }

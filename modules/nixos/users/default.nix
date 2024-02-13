@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.minion = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -9,5 +10,5 @@
     initialPassword = "nixos";
   };
 
-  security.pam.services.waylock = {};
+  security.pam.services.waylock = { };
 }

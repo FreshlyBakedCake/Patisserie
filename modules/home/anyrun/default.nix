@@ -1,4 +1,10 @@
-{ inputs, pkgs, system, ...}: {
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
+{
   programs.anyrun = {
     enable = true;
     config = {

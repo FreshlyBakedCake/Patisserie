@@ -1,10 +1,29 @@
-{ lib, pkgs, inputs, system, target, format, virtual, systems, config, ... }: {
+{
+  lib,
+  pkgs,
+  inputs,
+  system,
+  target,
+  format,
+  virtual,
+  systems,
+  config,
+  ...
+}:
+{
   networking.hostName = "greylag";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "thunderbolt" "nvme" "uas" "usbhid" "sd_mod" "ext4" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "uas"
+    "usbhid"
+    "sd_mod"
+    "ext4"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -21,52 +40,72 @@
     keyFile = "/key:/dev/mapper/key";
   };
 
-  fileSystems = (lib.mapAttrs (_: share_name: {
-    device = "/dev/disk/by-label/BTRFS0";
-    fsType = "btrfs";
-    options = [ "subvol=shared/${share_name}" "compress=zstd:1" ];
-  }) {
-    "/home/minion/Code" = "@Code";
-    "/var/lib/containers" = "@containers";
-    "/etc/NetworkManager" = "@NetworkManager";
-    "/home/minion/.local/share/containers/storage" = "@personal-containers";
-    "/home/minion/.gtimelog" = "@gtimelog";
-    "/home/minion/Documents" = "@documents";
-  }) // {
-    "/mnt" = {
-      device = "/dev/mapper/key";
-      fsType = "ext4";
-    };
+  fileSystems =
+    (lib.mapAttrs
+      (_: share_name: {
+        device = "/dev/disk/by-label/BTRFS0";
+        fsType = "btrfs";
+        options = [
+          "subvol=shared/${share_name}"
+          "compress=zstd:1"
+        ];
+      })
+      {
+        "/home/minion/Code" = "@Code";
+        "/var/lib/containers" = "@containers";
+        "/etc/NetworkManager" = "@NetworkManager";
+        "/home/minion/.local/share/containers/storage" = "@personal-containers";
+        "/home/minion/.gtimelog" = "@gtimelog";
+        "/home/minion/Documents" = "@documents";
+      }
+    )
+    // {
+      "/mnt" = {
+        device = "/dev/mapper/key";
+        fsType = "ext4";
+      };
 
-    "/" = {
-      device = "/dev/disk/by-label/BTRFS0";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" "compress=zstd:1" ];
-    };
+      "/" = {
+        device = "/dev/disk/by-label/BTRFS0";
+        fsType = "btrfs";
+        options = [
+          "subvol=@nixos"
+          "compress=zstd:1"
+        ];
+      };
 
-    "/var" = {
-      device = "/dev/disk/by-label/BTRFS0";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos-var" "compress=zstd:1" ];
-    };
+      "/var" = {
+        device = "/dev/disk/by-label/BTRFS0";
+        fsType = "btrfs";
+        options = [
+          "subvol=@nixos-var"
+          "compress=zstd:1"
+        ];
+      };
 
-    "/home" = {
-      device = "/dev/disk/by-label/BTRFS0";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos-home" "compress=zstd:1" ];
-    };
+      "/home" = {
+        device = "/dev/disk/by-label/BTRFS0";
+        fsType = "btrfs";
+        options = [
+          "subvol=@nixos-home"
+          "compress=zstd:1"
+        ];
+      };
 
-    "/nix" = {
-      device = "/dev/disk/by-label/BTRFS0";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos-nix" "compress=zstd:1" ];
-    };
+      "/nix" = {
+        device = "/dev/disk/by-label/BTRFS0";
+        fsType = "btrfs";
+        options = [
+          "subvol=@nixos-nix"
+          "compress=zstd:1"
+        ];
+      };
 
-    "/boot" = {
-      device = "/dev/disk/by-label/ESP";
-      fsType = "vfat";
+      "/boot" = {
+        device = "/dev/disk/by-label/ESP";
+        fsType = "vfat";
+      };
     };
-  };
 
   swapDevices = [ ];
 
@@ -80,6 +119,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

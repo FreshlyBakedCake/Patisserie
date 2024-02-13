@@ -1,10 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = [
-      pkgs.vaapiVdpau
-    ];
+    extraPackages = [ pkgs.vaapiVdpau ];
   };
 }

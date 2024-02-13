@@ -30,9 +30,12 @@
       url = "github:saimoomedits/eww-widgets";
       flake = false;
     };
+
+    nur.url = "github:nix-community/nur";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs =
+    { self, nixpkgs, ... }@inputs:
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
@@ -44,21 +47,23 @@
       homes.users."minion@greylag".modules = [
         inputs.hyprland.homeManagerModules.default
         inputs.anyrun.homeManagerModules.default
+        inputs.nur.hmModules.nur
       ];
 
       system.modules.nixos = [
         inputs.hyprland.nixosModules.default
+        inputs.nur.nixosModules.nur  
       ];
 
       snowfall = {
-        namespace = "minion";
+        namespace = "chimera";
 
-        meta.name = "minion";
-        meta.title = "Minion's Nix Configurations";
+        meta.name = "chimera";
+        meta.title = "Coded and Minion's Nix Configurations";
       };
 
       outputs-builder = channels: {
-        formatter = nixpkgs.legacyPackages.${channels.nixpkgs.system}.nixfmt;
+        formatter = nixpkgs.legacyPackages.${channels.nixpkgs.system}.nixfmt-rfc-style;
       };
 
       channels-config = {
