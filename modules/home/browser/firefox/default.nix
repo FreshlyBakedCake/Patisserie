@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options.chimera.browser.firefox = {
     enable = lib.mkEnableOption "Use firefox browser";
     extensions = {
@@ -20,13 +21,49 @@
   config = lib.mkIf config.chimera.browser.firefox.enable ({
     programs.firefox = {
       enable = true;
-      profiles.chimera.extensions = (if config.chimera.browser.firefox.extensions.bitwarden.enable then [ config.nur.repos.rycee.firefox-addons.bitwarden ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.youtube.sponsorBlock.enable then [ config.nur.repos.rycee.firefox-addons.sponsorblock ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.youtube.returnDislike.enable then [ config.nur.repos.rycee.firefox-addons.return-youtube-dislikes ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.youtube.deArrow.enable then [ config.nur.repos.rycee.firefox-addons.dearrow ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.reactDevTools.enable then [ config.nur.repos.rycee.firefox-addons.react-devtools ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.ublockOrigin.enable then [ config.nur.repos.rycee.firefox-addons.ublock-origin ] else [])
-        ++ (if config.chimera.browser.firefox.extensions.adnauseam.enable then [ config.nur.repos.rycee.firefox-addons.adnauseam ] else [])
+      profiles.chimera.extensions =
+        (
+          if config.chimera.browser.firefox.extensions.bitwarden.enable then
+            [ config.nur.repos.rycee.firefox-addons.bitwarden ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.youtube.sponsorBlock.enable then
+            [ config.nur.repos.rycee.firefox-addons.sponsorblock ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.youtube.returnDislike.enable then
+            [ config.nur.repos.rycee.firefox-addons.return-youtube-dislikes ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.youtube.deArrow.enable then
+            [ config.nur.repos.rycee.firefox-addons.dearrow ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.reactDevTools.enable then
+            [ config.nur.repos.rycee.firefox-addons.react-devtools ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.ublockOrigin.enable then
+            [ config.nur.repos.rycee.firefox-addons.ublock-origin ]
+          else
+            [ ]
+        )
+        ++ (
+          if config.chimera.browser.firefox.extensions.adnauseam.enable then
+            [ config.nur.repos.rycee.firefox-addons.adnauseam ]
+          else
+            [ ]
+        )
         ++ config.chimera.browser.firefox.extraExtensions;
     };
   });

@@ -63,9 +63,18 @@
         reactDevTools.enable = true;
         adnauseam.enable = true;
       };
-      extraExtensions = [
-        config.nur.repos.rycee.firefox-addons.sidebery
-      ];
+      extraExtensions = [ config.nur.repos.rycee.firefox-addons.sidebery ];
     };
+
+    shell.bash.enable = true;
+    shell.defaultAliases.enable = true;
+
+    theme.font.nerdFontGlyphs.enable = true;
+
+    editor.ed.enable = true;
+    editor.neovim.enable = true;
+    editor.emacs.enable = true;
+    editor.neovim.defaultEditor = false;
+    editor.emacs.defaultEditor = false;
   };
 }

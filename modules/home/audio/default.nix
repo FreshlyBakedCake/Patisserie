@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = [
-    pkgs.helvum
-  ];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.helvum ];
 }

@@ -1,8 +1,4 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.emacs
-    pkgs.neovim
-    pkgs.vscode-fhs
-  ];
+  environment.systemPackages = [ pkgs.vscode-fhs ];
 }

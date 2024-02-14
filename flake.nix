@@ -1,5 +1,5 @@
 {
-  description = "All my Nix configurations";
+  description = "The Chimera nix configuration flake, a shared system configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -52,7 +52,7 @@
 
       system.modules.nixos = [
         inputs.hyprland.nixosModules.default
-        inputs.nur.nixosModules.nur  
+        inputs.nur.nixosModules.nur
       ];
 
       snowfall = {

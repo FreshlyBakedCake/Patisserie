@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   options.chimera.theme.catppuccin = {
     enable = lib.mkEnableOption "Whether to use Catppuccin themes";
@@ -1410,9 +1415,18 @@
       };
     in
     {
-      chimera.theme.colors = catppuccinColors.${config.chimera.theme.catppuccin.style} // {
-        Highlight =
-          catppuccinColors.${config.chimera.theme.catppuccin.style}.${config.chimera.theme.catppuccin.color};
+      chimera.theme = {
+        colors = catppuccinColors.${config.chimera.theme.catppuccin.style} // {
+          Accent =
+            catppuccinColors.${config.chimera.theme.catppuccin.style}.${config.chimera.theme.catppuccin.color};
+        };
+
+        cursor = {
+          package =
+            pkgs.catppuccin-cursors."${lib.strings.toLower config.chimera.theme.catppuccin.style}${config.chimera.theme.catppuccin.color}";
+          name = "Catppuccin-${config.chimera.theme.catppuccin.style}-${config.chimera.theme.catppuccin.color}-Cursors";
+          size = 32;
+        };
       };
     }
   );

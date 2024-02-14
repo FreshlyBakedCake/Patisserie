@@ -1,7 +1,6 @@
-{ ... }:
+{ system, ... }:
 {
   system.stateVersion = "24.05";
-  console.keyMap = "dvorak";
 
   nix.settings = {
     builders-use-substitutes = true;
@@ -21,4 +20,6 @@
       "flakes"
     ];
   };
+
+  nixpkgs.hostPlatform = system;
 }

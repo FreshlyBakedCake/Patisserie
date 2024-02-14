@@ -20,6 +20,10 @@
 }:
 {
   chimera = {
+    shell = {
+      rebuildFlakePath = "/home/coded/Documents/programming/nix/Personal";
+    };
+
     hyprland = {
       enable = true;
 
@@ -41,9 +45,7 @@
     browser = {
       firefox = {
         enable = true;
-        extraExtensions = [
-          config.nur.repos.rycee.firefox-addons.simple-tab-groups
-        ];
+        extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
       };
 
       chromium = {
@@ -59,9 +61,9 @@
           ublockOrigin.enable = true;
         };
         extraExtensions = [
-          { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } #Lofi Girl
-          { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } #PayPal Honey
-          { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } #MAL Sync
+          { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
+          { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
+          { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
         ];
       };
     };
