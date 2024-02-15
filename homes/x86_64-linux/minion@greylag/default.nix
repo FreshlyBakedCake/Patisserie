@@ -26,8 +26,6 @@
   home.packages = [ pkgs.stgit ];
 
   chimera = {
-    wallpaper = ./wallpaper.png;
-
     hyprland.enable = true;
     hyprland.hyprpaper.splash.enable = true;
 
@@ -39,6 +37,7 @@
       "desc:AOC 2460G5 0x00023C3F,preferred,336x-1080,1"
     ];
 
+    theme.wallpaper = ./wallpaper.png;
     theme.catppuccin = {
       enable = true;
       style = "Latte";

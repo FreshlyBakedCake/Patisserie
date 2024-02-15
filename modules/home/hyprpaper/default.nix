@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   options.chimera = {
-    wallpaper = lib.mkOption {
+    theme.wallpaper = lib.mkOption {
       type = lib.types.path;
       description = "Wallpaper of your choosing";
     };
@@ -18,9 +18,9 @@
   # TODO: wallpapers path[] -> gen wallpaper lines...
   config.xdg.configFile."hypr/hyprpaper.conf".source = lib.mkIf config.chimera.hyprland.enable (
     builtins.toFile "hyprpaper.conf" ''
-      preload = ${config.chimera.wallpaper}
+      preload = ${config.chimera.theme.wallpaper}
 
-      wallpaper=,${config.chimera.wallpaper}
+      wallpaper=,${config.chimera.theme.wallpaper}
 
       splash = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.enable}
       splash_offset = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.offset}
