@@ -23,8 +23,6 @@
     greylag
   '';
 
-  home.packages = [ pkgs.stgit ];
-
   chimera = {
     hyprland.enable = true;
     hyprland.hyprpaper.splash.enable = true;
@@ -94,6 +92,7 @@
 
     git = {
       delta.enable = true;
+      stgit.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "minion";
     };

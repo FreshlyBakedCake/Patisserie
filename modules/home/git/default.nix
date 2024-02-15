@@ -8,6 +8,7 @@
   options.chimera.git = {
     gitReview.enable = lib.mkEnableOption "Enable git review";
     delta.enable = lib.mkEnableOption "Enable delta, an alternative pager for git diffs that highlights syntax";
+		stgit.enable = lib.mkEnableOption "Install StGit, a tool that makes working with stacked patches easier";
     auth = {
       clicksUsername = lib.mkOption {
         type = lib.types.str;
@@ -18,7 +19,9 @@
 
   config = {
 
-    home.packages = (if config.chimera.git.gitReview.enable then [ pkgs.git-review ] else [ ]);
+    home.packages =
+			(if config.chimera.git.gitReview.enable then [ pkgs.git-review ] else [ ]) ++
+			(if config.chimera.git.stgit.enable then [ pkgs.stgit ] else [ ]);
 
     programs.zsh.shellAliases =
       if config.chimera.git.gitReview.enable then { "gr!" = "git review"; } else { };
