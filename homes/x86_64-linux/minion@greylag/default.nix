@@ -78,5 +78,10 @@
     editor.emacs.enable = true;
     editor.neovim.defaultEditor = false;
     editor.emacs.defaultEditor = false;
+
+    input.keyboard = {
+      layout = "us";
+      variant = "dvorak";
+    };
   };
 }

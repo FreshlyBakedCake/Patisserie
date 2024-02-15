@@ -10,46 +10,31 @@ let
   lock = "${pkgs.waylock}/bin/waylock";
 in
 {
-  options.chimera.hyprland = {
-    enable = lib.mkEnableOption "Use hyprland as your window manager";
+  options.chimera = {
+    input.keyboard = {
+      layout = lib.mkOption {
+        type = lib.types.str;
+        description = "Keyboard layouts, comma seperated";
+        example = "us,de";
+        default = "us";
+      };
+      variant = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        description = "Keyboard layout variants, comma seperated";
+        example = "dvorak";
+        default = null;
+      };
+    };
+    hyprland = {
+      enable = lib.mkEnableOption "Use hyprland as your window manager";
 
-    monitors = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "List of default monitors to set";
-      default = [ ];
+      monitors = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "List of default monitors to set";
+        default = [ ];
+      };
     };
   };
-
-  /* general = {
-       gaps_in = 5;
-       gaps_out = 20;
-
-       border_size = 1;
-       "col.active_border" = "rgba(71AEF5EE)";
-       "col.inactive_border" = "rgba(C4C4C4EE)";
-
-       layout = "dwindle";
-     };
-
-     dwindle = {
-       pseudotile = true;
-       smart_split = true;
-     };
-
-     master = {
-       allow_small_split = true;
-       new_is_master = true;
-     };
-
-     decoration = {
-       rounding = 7;
-
-       drop_shadow = true;
-       shadow_range = 4;
-       shadow_render_power = 3;
-       "col.shadow" = "rgba(1a1a1aee)";
-     };
-  */
 
   # TODO: Eww, SwayNC, hyprland-per-window-layout, waylock, hy3, anyrun, hypr-empty
 
@@ -98,8 +83,8 @@ in
           };
 
           input = {
-            kb_layout = "us";
-            kb_variant = "dvorak";
+            kb_layout = config.chimera.input.keyboard.layout;
+            kb_variant = lib.mkIf (config.chimera.input.keyboard.variant != null) config.chimera.input.keyboard.variant;
             natural_scroll = true;
 
             touchpad = {
