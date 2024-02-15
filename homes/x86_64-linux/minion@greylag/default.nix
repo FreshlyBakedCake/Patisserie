@@ -83,5 +83,7 @@
       layout = "us";
       variant = "dvorak";
     };
+
+    input.mouse.scrolling.natural = true;
   };
 }

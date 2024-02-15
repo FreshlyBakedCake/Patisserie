@@ -11,6 +11,12 @@ let
 in
 {
   options.chimera = {
+    input.mouse.scrolling.natural = lib.mkEnableOption "Enable natural scrolling";
+    input.touchpad.scrolling.natural = lib.mkOption {
+      type = lib.types.bool;
+      description = "Enable natural scrolling";
+      default = config.chimera.input.mouse.scrolling.natural;
+    };
     input.keyboard = {
       layout = lib.mkOption {
         type = lib.types.str;
@@ -85,10 +91,12 @@ in
           input = {
             kb_layout = config.chimera.input.keyboard.layout;
             kb_variant = lib.mkIf (config.chimera.input.keyboard.variant != null) config.chimera.input.keyboard.variant;
-            natural_scroll = true;
+            natural_scroll = config.chimera.input.mouse.scrolling.natural;
+
+            numlock_by_default = true;
 
             touchpad = {
-              natural_scroll = true;
+              natural_scroll = config.chimera.input.touchpad.scrolling.natural;
             };
           };
 
