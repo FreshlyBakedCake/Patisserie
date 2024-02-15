@@ -85,17 +85,33 @@
 
     colors =
       let
-        themeColor = {
-          hex = lib.types.str;
-          rgb = {
-            r = lib.types.numbers 0 255;
-            g = lib.types.numbers 0 255;
-            b = lib.types.numbers 0 255;
-          };
-          hsl = {
-            h = lib.types.numbers 0 360;
-            s = lib.types.numbers 0 100;
-            l = lib.types.numbers 0 100;
+        themeColor = lib.types.submodule {
+          options = {
+            hex = lib.mkOption {
+              type = lib.types.str;
+            };
+            rgb = {
+              r = lib.mkOption {
+                type = lib.types.numbers 0 255;
+              };
+              g = lib.mkOption {
+                type = lib.types.numbers 0 255;
+              };
+              b = lib.mkOption {
+                type = lib.types.numbers 0 255;
+              };
+            };
+            hsl = {
+              h = lib.mkOption {
+                type = lib.types.numbers 0 360;
+              };
+              s = lib.mkOption {
+                type = lib.types.numbers 0 100;
+              };
+              l = lib.mkOption {
+                type = lib.types.numbers 0 100;
+              };
+            };
           };
         };
       in
