@@ -73,6 +73,7 @@
     theme.font.nerdFontGlyphs.enable = true;
 
     editor.ed.enable = true;
+    editor.ed.prompt = ":";
     editor.neovim.enable = true;
     editor.emacs.enable = true;
     editor.neovim.defaultEditor = false;
