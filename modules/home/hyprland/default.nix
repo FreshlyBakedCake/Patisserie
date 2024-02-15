@@ -84,8 +84,15 @@ in
 
           monitor = config.chimera.hyprland.monitors ++ [ ",preferred,auto,1" ];
 
+          general = {
+            border_size = 1;
+            "col.active_border" = "rgba(${config.chimera.theme.colors.Surface0.hex}FF)";
+            "col.inactive_border" = "rgba(${config.chimera.theme.colors.Surface0.hex}FF)";
+          };
+
           decoration = {
             rounding = 7;
+            drop_shadow = false;
           };
 
           input = {
