@@ -21,7 +21,30 @@
 {
   chimera = {
     shell = {
+      zsh.enable = true;
+
+      starship.enable = true;
+
       rebuildFlakePath = "/home/coded/Documents/programming/nix/Personal";
+
+      defaultAliases.enable = true;
+      usefulPackages.enable = true;
+
+      replacements = {
+        eza.enable = true;
+        bfs.enable = true;
+        ripgrep.enable = true;
+        htop.enable = true;
+        erdtree.enable = true;
+        dust.enable = true;
+        bat.enable = true;
+      };
+    };
+
+    git = {
+      delta.enable = true;
+      gitReview.enable = true;
+      auth.clicksUsername = "coded";
     };
 
     hyprland = {
@@ -32,42 +55,53 @@
         "DP-2,1920x1080@165,1920x0,1"
         "HDMI-A-1,1920x1080@60,960x-1080,1"
       ];
-
-      hyprpaper = {
-        splash = {
-          enable = true;
-          offset = -0.6;
-        };
-      };
     };
-    wallpaper = ./wallpaper.png;
 
-    browser = {
-      firefox = {
+    hyprland.hyprpaper = {
+      splash = {
         enable = true;
-        extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
-      };
-
-      chromium = {
-        enable = true;
-        extensions = {
-          bitwarden.enable = true;
-          youtube = {
-            sponsorBlock.enable = true;
-            returnDislike.enable = true;
-            deArrow.enable = true;
-          };
-          reactdevtools.enable = true;
-          ublockOrigin.enable = true;
-        };
-        extraExtensions = [
-          { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
-          { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
-          { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
-        ];
+        offset = -0.6;
       };
     };
 
+    browser.firefox = {
+      enable = true;
+      extensions = {
+        bitwarden.enable = true;
+        youtube = {
+          sponsorBlock.enable = true;
+          returnDislike.enable = true;
+          deArrow.enable = true;
+        };
+        reactdevtools.enable = true;
+        ublockOrigin.enable = true;
+      };
+      extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
+    };
+
+    browser.chromium = {
+      enable = true;
+      extensions = {
+        bitwarden.enable = true;
+        youtube = {
+          sponsorBlock.enable = true;
+          returnDislike.enable = true;
+          deArrow.enable = true;
+        };
+        reactdevtools.enable = true;
+        ublockOrigin.enable = true;
+      };
+      extraExtensions = [
+        { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
+        { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
+        { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
+      ];
+    };
+
+    editor.neovim.enable = true;
+
+    theme.font.nerdFontGlyphs.enable = true;
+    theme.wallpaper = ./wallpaper.png;
     theme.catppuccin = {
       enable = true;
       style = "Macchiato";
