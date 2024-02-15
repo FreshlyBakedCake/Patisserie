@@ -72,12 +72,18 @@
 
     theme.font.nerdFontGlyphs.enable = true;
 
-    editor.ed.enable = true;
-    editor.ed.prompt = ":";
+    editor.ed = {
+      enable = true;
+      prompt = ":";
+      defaultEditor = false;
+    };
+
     editor.neovim.enable = true;
-    editor.emacs.enable = true;
-    editor.neovim.defaultEditor = false;
-    editor.emacs.defaultEditor = false;
+
+    editor.emacs ={
+      enable = true;
+      defaultEditor = false;
+    };
 
     input.keyboard = {
       layout = "us";
