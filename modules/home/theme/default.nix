@@ -87,30 +87,16 @@
       let
         themeColor = lib.types.submodule {
           options = {
-            hex = lib.mkOption {
-              type = lib.types.str;
-            };
+            hex = lib.mkOption { type = lib.types.str; };
             rgb = {
-              r = lib.mkOption {
-                type = lib.types.numbers 0 255;
-              };
-              g = lib.mkOption {
-                type = lib.types.numbers 0 255;
-              };
-              b = lib.mkOption {
-                type = lib.types.numbers 0 255;
-              };
+              r = lib.mkOption { type = lib.types.numbers 0 255; };
+              g = lib.mkOption { type = lib.types.numbers 0 255; };
+              b = lib.mkOption { type = lib.types.numbers 0 255; };
             };
             hsl = {
-              h = lib.mkOption {
-                type = lib.types.numbers 0 360;
-              };
-              s = lib.mkOption {
-                type = lib.types.numbers 0 100;
-              };
-              l = lib.mkOption {
-                type = lib.types.numbers 0 100;
-              };
+              h = lib.mkOption { type = lib.types.numbers 0 360; };
+              s = lib.mkOption { type = lib.types.numbers 0 100; };
+              l = lib.mkOption { type = lib.types.numbers 0 100; };
             };
           };
         };

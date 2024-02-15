@@ -97,7 +97,9 @@ in
 
           input = {
             kb_layout = config.chimera.input.keyboard.layout;
-            kb_variant = lib.mkIf (config.chimera.input.keyboard.variant != null) config.chimera.input.keyboard.variant;
+            kb_variant =
+              lib.mkIf (config.chimera.input.keyboard.variant != null)
+                config.chimera.input.keyboard.variant;
             natural_scroll = config.chimera.input.mouse.scrolling.natural;
 
             numlock_by_default = true;

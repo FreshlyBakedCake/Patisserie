@@ -24,7 +24,9 @@
     home.packages = [ pkgs.ed ];
 
     home.sessionVariables = lib.mkIf config.chimera.editor.ed.defaultEditor {
-      EDITOR = "${pkgs.ed}/bin/ed${if config.chimera.editor.ed.prompt != null then " -p '${config.chimera.editor.ed.prompt}'" else ""}";
+      EDITOR = "${pkgs.ed}/bin/ed${
+        if config.chimera.editor.ed.prompt != null then " -p '${config.chimera.editor.ed.prompt}'" else ""
+      }";
     };
   };
 }

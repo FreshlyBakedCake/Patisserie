@@ -78,7 +78,7 @@
 
     editor.neovim.enable = true;
 
-    editor.emacs ={
+    editor.emacs = {
       enable = true;
       defaultEditor = false;
     };
