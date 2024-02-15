@@ -23,6 +23,8 @@
     greylag
   '';
 
+  home.packages = [ pkgs.stgit ];
+
   chimera = {
     wallpaper = ./wallpaper.png;
 
