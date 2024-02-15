@@ -29,7 +29,10 @@
     programs.git = {
       enable = true;
 
-      delta.enable = config.chimera.git.delta.enable;
+      delta = {
+				enable = config.chimera.git.delta.enable;
+				options.light = lib.mkIf config.chimera.theme.catppuccin.enable (config.chimera.theme.catppuccin.style == "Latte");
+			};
 
       extraConfig = {
         init.defaultBranch = "main";
@@ -55,7 +58,7 @@
         };
         url = {
           "ssh://git@github.com/".pushInsteadOf = "https://github.com/";
-          "ssh://minion@ssh.clicks.codes:29418/".pushInsteadOf = "https://git.clicks.codes/";
+          "ssh://${config.chimera.git.auth.clicksUsername}@ssh.clicks.codes:29418/".pushInsteadOf = "https://git.clicks.codes/";
         };
         merge.conflictstyle = "diff3";
         trailer.ifexists = "addIfDifferent";

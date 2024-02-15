@@ -85,5 +85,11 @@
     };
 
     input.mouse.scrolling.natural = true;
+
+    git = {
+      delta.enable = true;
+      gitReview.enable = true;
+      auth.clicksUsername = "minion";
+    };
   };
 }
