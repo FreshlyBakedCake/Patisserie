@@ -6,5 +6,6 @@
     ./hardware/cpu
     ./console
     ./networking
+    ./openrgb
   ];
 }
