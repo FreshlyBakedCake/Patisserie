@@ -80,7 +80,10 @@ in
             disable_splash_rendering = true;
           };
 
-          exec-once = "${pkgs.hyprpaper}/bin/hyprpaper; hyprctl setcursor ${config.chimera.theme.cursor.name} ${builtins.toString config.chimera.theme.cursor.size}";
+          exec-once = [
+	    "${pkgs.hyprpaper}/bin/hyprpaper"
+	    "hyprctl setcursor ${config.chimera.theme.cursor.name} ${builtins.toString config.chimera.theme.cursor.size}"
+	  ];
 
           monitor = config.chimera.hyprland.monitors ++ [ ",preferred,auto,1" ];
 
