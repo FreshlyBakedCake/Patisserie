@@ -23,6 +23,24 @@
     greylag
   '';
 
+  programs.gpg.scdaemonSettings = {
+    reader-port = "Yubico Yubi";
+  };
+
+  programs.git.extraConfig.alias = {
+    recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
+  	graph = "log --graph --oneline --decorate";
+  	hash = "rev-parse HEAD";
+  	personal = "config user.email skyler3665@gmail.com";
+	  clicks = "config user.email minion@clicks.codes";
+	  collabora = "config user.email skyler.grey@collabora.com";
+  };
+
+  programs.git.extraConfig.user = {
+    name = "Skyler Grey";
+    signingkey = "7C868112B5390C5C";
+  };
+
   chimera = {
     hyprland.enable = true;
     hyprland.hyprpaper.splash.enable = true;
@@ -95,6 +113,7 @@
       stgit.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "minion";
+      gpg.enable = true;
     };
   };
 }

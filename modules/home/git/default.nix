@@ -15,9 +15,23 @@
         description = "Username for Clicks Gerrit";
       };
     };
+    gpg = {
+      enable = lib.mkEnableOption "Enable signing with gpg";
+      commit = lib.mkOption {
+        type = lib.types.bool;
+        description = "Enable gpg signing for commits by default";
+        default = true;
+      };
+      push = lib.mkOption {
+        type = lib.types.bool;
+        description = "Enable gpg signing for pushes by when asked by the server";
+        default = true;
+      };
+    };
   };
 
   config = {
+    chimera.gpg.enable = lib.mkIf config.chimera.git.gpg.enable true;
 
     home.packages =
       (if config.chimera.git.gitReview.enable then [ pkgs.git-review ] else [ ])
@@ -42,7 +56,7 @@
       extraConfig = {
         init.defaultBranch = "main";
         advice.skippedcherrypicks = false;
-        commit.gpgsign = true;
+        commit.gpgsign = lib.mkIf config.chimera.git.gpg.enable config.chimera.git.gpg.commit;
         credential.helper = "cache";
         core = {
           repositoryformatversion = 0;
@@ -59,7 +73,7 @@
         };
         push = {
           autoSetupRemote = true;
-          gpgSign = "if-asked";
+          gpgSign = lib.mkIf config.chimera.git.gpg.enable (if config.chimera.git.gpg.push then "if-asked" else false);
         };
         url = {
           "ssh://git@github.com/".pushInsteadOf = "https://github.com/";
