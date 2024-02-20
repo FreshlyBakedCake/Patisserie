@@ -9,5 +9,13 @@
     initialPassword = "nixos";
   };
 
+  users.users.coded = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+    ];
+    initialPassword = "nixos";
+  };
+
   security.pam.services.waylock = { };
 }
