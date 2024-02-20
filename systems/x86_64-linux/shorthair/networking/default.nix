@@ -2,7 +2,7 @@
 {
 
   networking = {
-    hostname = "shorthair";
+    hostName = "shorthair";
     useDHCP = lib.mkDefault true;
   };
 }

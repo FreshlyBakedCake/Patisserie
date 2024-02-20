@@ -1,4 +1,4 @@
 { ... }:
 {
-  console.keymap = "us";
+  console.keyMap = "us";
 }
