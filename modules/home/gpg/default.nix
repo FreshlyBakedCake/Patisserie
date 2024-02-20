@@ -13,7 +13,7 @@
     programs.gpg.enable = true;
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = "curses";
+      pinentryFlavor = "tty";
       enableZshIntegration = config.chimera.shell.zsh.enable;
       enableBashIntegration = config.chimera.shell.bash.enable;
     };
