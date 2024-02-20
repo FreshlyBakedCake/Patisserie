@@ -10,5 +10,6 @@
     ./openrgb
     ./users
     ./time
+    ./yubikey
   ];
 }

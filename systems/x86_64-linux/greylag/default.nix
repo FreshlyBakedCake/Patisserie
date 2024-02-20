@@ -12,5 +12,6 @@
     ./networking
     ./time
     ./users
+    ./yubikey
   ];
 }

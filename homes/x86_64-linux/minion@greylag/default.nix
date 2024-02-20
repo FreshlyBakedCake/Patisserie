@@ -23,10 +23,6 @@
     greylag
   '';
 
-  programs.gpg.scdaemonSettings = {
-    reader-port = "Yubico Yubi";
-  };
-
   programs.git.extraConfig.alias = {
     recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
     graph = "log --graph --oneline --decorate";
@@ -149,6 +145,8 @@
       minecraft.enable = true;
       itch.enable = true;
     };
+
+    yubikey.enable = true;
   };
 
   services.nextcloud-client = {

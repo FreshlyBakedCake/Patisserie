@@ -10,7 +10,15 @@
   };
 
   config = lib.mkIf config.chimera.gpg.enable {
-    programs.gpg.enable = true;
+    programs.gpg = {
+      enable = true;
+
+      scdaemonSettings = lib.mkIf config.chimera.yubikey.enable {
+        reader-port = "Yubico Yubi";
+        disable-ccid = true;
+      };
+    };
+
     services.gpg-agent = {
       enable = true;
       pinentryFlavor = "tty";
