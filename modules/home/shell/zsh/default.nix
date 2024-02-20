@@ -14,12 +14,12 @@
       default = true;
     };
     extraAliases = lib.mkOption {
-      type = lib.attrsOf lib.types.str;
+      type = lib.types.attrsOf lib.types.str;
       description = "Attrset of extra shell aliases";
       default = { };
     };
     dirHashes = lib.mkOption {
-      type = lib.attrsOf lib.types.str;
+      type = lib.types.attrsOf lib.types.str;
       description = "Attrset of ~DIR's";
       default = { };
     };
