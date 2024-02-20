@@ -45,6 +45,7 @@
       delta.enable = true;
       stgit.enable = true;
       gitReview.enable = true;
+      gitCrypt.enable = true;
       auth.clicksUsername = "coded";
     };
 
