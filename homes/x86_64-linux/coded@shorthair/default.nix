@@ -25,7 +25,7 @@
 
       starship.enable = true;
 
-      rebuildFlakePath = "/home/coded/Documents/programming/nix/Personal";
+      rebuildFlakePath = "/home/coded/programming/nix/personal";
 
       defaultAliases.enable = true;
       usefulPackages.enable = true;
@@ -43,6 +43,7 @@
 
     git = {
       delta.enable = true;
+      stgit.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "coded";
     };
@@ -73,30 +74,30 @@
           returnDislike.enable = true;
           deArrow.enable = true;
         };
-        reactdevtools.enable = true;
+        reactDevTools.enable = true;
         ublockOrigin.enable = true;
       };
       extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
     };
 
-    browser.chromium = {
-      enable = true;
-      extensions = {
-        bitwarden.enable = true;
-        youtube = {
-          sponsorBlock.enable = true;
-          returnDislike.enable = true;
-          deArrow.enable = true;
-        };
-        reactdevtools.enable = true;
-        ublockOrigin.enable = true;
-      };
-      extraExtensions = [
-        { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
-        { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
-        { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
-      ];
-    };
+    #browser.chromium = {
+    #  enable = true;
+    #  extensions = {
+    #    bitwarden.enable = true;
+    #    youtube = {
+    #      sponsorBlock.enable = true;
+    #      returnDislike.enable = true;
+    #      deArrow.enable = true;
+    #    };
+    #    reactDevTools.enable = true;
+    #    ublockOrigin.enable = true;
+    #  };
+    #  extraExtensions = [
+    #    { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
+    #    { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
+    #    { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
+    #  ];
+    #};
 
     editor.neovim.enable = true;
 
