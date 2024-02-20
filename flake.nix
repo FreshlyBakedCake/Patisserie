@@ -36,19 +36,24 @@
 
   outputs =
     { self, nixpkgs, ... }@inputs:
-    inputs.snowfall-lib.mkFlake {
+    let
+      extraHomeModules = [
+      	inputs.anyrun.homeManagerModules.default
+      	inputs.hyprland.homeManagerModules.default
+      	inputs.nur.hmModules.nur
+      ];
+    in inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
 
-      homes.modules = [
-        # TODO: inputs.nix-index-database.hmModules.nix-index
-      ];
+      # homes.modules = [
+      # TODO: inputs.nix-index-database.hmModules.nix-index
+      # ];
 
-      homes.users."minion@greylag".modules = [
-        inputs.hyprland.homeManagerModules.default
-        inputs.anyrun.homeManagerModules.default
-        inputs.nur.hmModules.nur
-      ];
+      homes.users."coded@shorthair".modules = extraHomeModules;
+
+      homes.users."minion@greylag".modules = extraHomeModules;
+
 
       system.modules.nixos = [
         inputs.hyprland.nixosModules.default
