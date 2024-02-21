@@ -2,25 +2,6 @@
   description = "The Chimera nix configuration flake, a shared system configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
     anyrun = {
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +12,28 @@
       flake = false;
     };
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nur.url = "github:nix-community/nur";
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -54,10 +56,10 @@
 
       homes.users."minion@greylag".modules = extraHomeModules;
 
-
-      system.modules.nixos = [
+      systems.modules.nixos = [
         inputs.hyprland.nixosModules.default
         inputs.nur.nixosModules.nur
+        inputs.sops-nix.nixosModules.sops
       ];
 
       snowfall = {
