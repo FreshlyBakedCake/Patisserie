@@ -1,5 +1,3 @@
 { inputs, ... }: {
-  nix.registry = inputs // {
-    templates = "https://git.clicks.codes"; # nix init -t templates#typescript
-  };
+  nix.registry = builtins.mapAttrs (_: flake: { inherit flake; }) inputs;
 }

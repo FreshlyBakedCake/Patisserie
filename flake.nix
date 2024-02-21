@@ -34,6 +34,8 @@
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    templates.url = "git+https://git.clicks.codes/Templates";
   };
 
   outputs =

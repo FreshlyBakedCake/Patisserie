@@ -308,7 +308,8 @@
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "snowfall-lib": "snowfall-lib",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "templates": "templates"
       }
     },
     "snowfall-lib": {
@@ -380,6 +381,21 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "templates": {
+      "locked": {
+        "lastModified": 1708553502,
+        "narHash": "sha256-WHLCwZD/zwyCdAjAuyWDDnrGCvH07ZqaNYTjgj/yKBU=",
+        "ref": "refs/heads/main",
+        "rev": "449f54b5fedd6de28b3a9abfe82ba78d6efcd4b3",
+        "revCount": 2,
+        "type": "git",
+        "url": "https://git.clicks.codes/Templates"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.clicks.codes/Templates"
       }
     },
     "wlroots": {
