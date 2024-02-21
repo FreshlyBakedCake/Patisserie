@@ -112,7 +112,6 @@
       delta.enable = true;
       stgit.enable = true;
       gitReview.enable = true;
-      gitCrypt.enable = true;
       auth.clicksUsername = "minion";
       gpg.enable = true;
     };
