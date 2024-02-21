@@ -1,1 +1,8 @@
 - [ ] Set default shell dynamically
+- [ ] Hyprland
+  - [ ] Eww
+  - [ ] SwayNC
+  - [ ] hyprland-per-window-layout
+  - [ ] hy3
+  - [ ] anyrun
+  - [ ] hypr-empty

@@ -42,8 +42,6 @@ in
     };
   };
 
-  # TODO: Eww, SwayNC, hyprland-per-window-layout, waylock, hy3, anyrun, hypr-empty
-
   config = lib.mkIf config.chimera.hyprland.enable {
     home.packages = [ pkgs.hyprpicker ];
 
