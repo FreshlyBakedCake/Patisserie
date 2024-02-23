@@ -45,14 +45,11 @@
       	inputs.anyrun.homeManagerModules.default
       	inputs.hyprland.homeManagerModules.default
       	inputs.nur.hmModules.nur
+        inputs.nix-index-database.hmModules.nix-index
       ];
     in inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
-
-      # homes.modules = [
-      # TODO: inputs.nix-index-database.hmModules.nix-index
-      # ];
 
       homes.users."coded@shorthair".modules = extraHomeModules;
 
