@@ -6,3 +6,4 @@
   - [ ] hy3
   - [ ] anyrun
   - [ ] hypr-empty
+- [ ] Yubikey Auth over SSH

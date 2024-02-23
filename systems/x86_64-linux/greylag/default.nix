@@ -6,5 +6,6 @@
     ./console
     ./cpu
     ./networking
+    ./users
   ];
 }

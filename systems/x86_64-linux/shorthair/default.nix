@@ -7,5 +7,6 @@
     ./console
     ./networking
     ./openrgb
+    ./users
   ];
 }
