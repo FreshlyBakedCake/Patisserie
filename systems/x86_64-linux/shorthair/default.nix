@@ -8,5 +8,6 @@
     ./networking
     ./openrgb
     ./users
+    ./time
   ];
 }
