@@ -7,6 +7,7 @@
       description = "Use neovim as the default editor";
       default = true;
     };
+    # https://github.com/mrcjkb/kickstart-nix.nvim
   };
 
   config = lib.mkIf config.chimera.editor.neovim.enable {

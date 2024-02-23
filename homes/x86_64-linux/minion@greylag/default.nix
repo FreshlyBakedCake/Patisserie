@@ -29,11 +29,11 @@
 
   programs.git.extraConfig.alias = {
     recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
-  	graph = "log --graph --oneline --decorate";
-  	hash = "rev-parse HEAD";
-  	personal = "config user.email skyler3665@gmail.com";
-	  clicks = "config user.email minion@clicks.codes";
-	  collabora = "config user.email skyler.grey@collabora.com";
+    graph = "log --graph --oneline --decorate";
+    hash = "rev-parse HEAD";
+    personal = "config user.email skyler3665@gmail.com";
+    clicks = "config user.email minion@clicks.codes";
+    collabora = "config user.email skyler.grey@collabora.com";
   };
 
   programs.git.extraConfig.user = {

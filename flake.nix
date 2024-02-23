@@ -42,12 +42,13 @@
     { self, nixpkgs, ... }@inputs:
     let
       extraHomeModules = [
-      	inputs.anyrun.homeManagerModules.default
-      	inputs.hyprland.homeManagerModules.default
-      	inputs.nur.hmModules.nur
+        inputs.anyrun.homeManagerModules.default
+        inputs.hyprland.homeManagerModules.default
+        inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
       ];
-    in inputs.snowfall-lib.mkFlake {
+    in
+    inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
 

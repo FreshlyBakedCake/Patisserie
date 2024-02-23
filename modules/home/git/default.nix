@@ -61,11 +61,13 @@
         core = {
           repositoryformatversion = 0;
           filemode = true;
- # TODO: from git docs, should we provide an option for this?: NOTE: this is a possibly dangerous operation; do not use it unless you understand the implications (see git-rebase[1] for details).
+          # TODO: from git docs, should we provide an option for this?: NOTE: this is a possibly dangerous operation; do not use it unless you understand the implications (see git-rebase[1] for details).
         };
         push = {
           autoSetupRemote = true;
-          gpgSign = lib.mkIf config.chimera.git.gpg.enable (if config.chimera.git.gpg.push then "if-asked" else false);
+          gpgSign = lib.mkIf config.chimera.git.gpg.enable (
+            if config.chimera.git.gpg.push then "if-asked" else false
+          );
         };
         url = {
           "ssh://git@github.com/".pushInsteadOf = "https://github.com/";

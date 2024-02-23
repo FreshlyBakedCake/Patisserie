@@ -1,5 +1,7 @@
-{ config, ... }: {
-  users.users.minion.hashedPasswordFile = config.sops.secrets."systems/x86_64-linux/greylag/users/passwords.sops.minion.json:minion".path;
+{ config, ... }:
+{
+  users.users.minion.hashedPasswordFile =
+    config.sops.secrets."systems/x86_64-linux/greylag/users/passwords.sops.minion.json:minion".path;
 
   sops.secrets."systems/x86_64-linux/greylag/users/passwords.sops.minion.json:minion" = {
     mode = "0400";

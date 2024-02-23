@@ -92,9 +92,7 @@
       arguments = [ "--smart-case" ];
     };
 
-    programs.htop = lib.mkIf config.chimera.shell.replacements.htop.enable {
-      enable = true;
-    };
+    programs.htop = lib.mkIf config.chimera.shell.replacements.htop.enable { enable = true; };
 
     programs.zoxide = lib.mkIf config.chimera.shell.replacements.zoxide.enable {
       enable = true;
@@ -104,12 +102,10 @@
     };
 
     programs.tealdeer = lib.mkIf config.chimera.shell.usefulPackages.enable {
-        enable = true;
-        settings.updates.autoupdate = true;
-    };
-    programs.jq = lib.mkIf config.chimera.shell.usefulPackages.enable {
       enable = true;
+      settings.updates.autoupdate = true;
     };
+    programs.jq = lib.mkIf config.chimera.shell.usefulPackages.enable { enable = true; };
 
     home.packages =
       (

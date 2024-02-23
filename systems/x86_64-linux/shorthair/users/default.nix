@@ -1,5 +1,7 @@
-{ config, ... }: {
-  users.users.coded.hashedPasswordFile = config.sops.secrets."systems/x86_64-linux/shorthair/users/passwords.sops.coded.json:coded".path;
+{ config, ... }:
+{
+  users.users.coded.hashedPasswordFile =
+    config.sops.secrets."systems/x86_64-linux/shorthair/users/passwords.sops.coded.json:coded".path;
 
   sops.secrets."systems/x86_64-linux/shorthair/users/passwords.sops.coded.json:coded" = {
     mode = "0400";
