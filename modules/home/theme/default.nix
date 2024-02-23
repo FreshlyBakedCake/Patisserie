@@ -155,7 +155,7 @@
       name = config.chimera.theme.cursor.name;
       package = config.chimera.theme.cursor.package;
       size = config.chimera.theme.cursor.size;
-      gtk.enable = true; # TODO: should we factor this out into a gtk module when we come to that?
+      gtk.enable = true;
       x11.enable = true;
     };
   };

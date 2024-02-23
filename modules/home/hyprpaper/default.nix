@@ -15,7 +15,6 @@
     };
   };
 
-  # TODO: wallpapers path[] -> gen wallpaper lines...
   config.xdg.configFile."hypr/hyprpaper.conf".source = lib.mkIf config.chimera.hyprland.enable (
     builtins.toFile "hyprpaper.conf" ''
       preload = ${config.chimera.theme.wallpaper}

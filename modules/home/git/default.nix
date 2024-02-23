@@ -61,15 +61,7 @@
         core = {
           repositoryformatversion = 0;
           filemode = true;
-          bare = false;
-          logallrefupdates = true;
-          fsmonitor = true;
-          autocrlf = "input";
-          splitIndex = true;
-          untrackedCache = true;
-        };
-        pull = {
-          rebase = "merges"; # TODO: from git docs, should we provide an option for this?: NOTE: this is a possibly dangerous operation; do not use it unless you understand the implications (see git-rebase[1] for details).
+ # TODO: from git docs, should we provide an option for this?: NOTE: this is a possibly dangerous operation; do not use it unless you understand the implications (see git-rebase[1] for details).
         };
         push = {
           autoSetupRemote = true;

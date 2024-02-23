@@ -7,3 +7,5 @@
   - [ ] anyrun
   - [ ] hypr-empty
 - [ ] Yubikey Auth over SSH
+- [ ] Nix-index Home Manager Module
+- [ ] Possible GTK refactor (move home.pointerCursor.gtk.enable)TODO
