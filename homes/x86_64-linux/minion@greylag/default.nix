@@ -113,6 +113,7 @@
     shell.bash.enable = true;
     shell.defaultAliases.enable = true;
     shell.replacements.defaultEnable = true;
+    shell.replacements.bat.enable = false;
 
     theme.font.nerdFontGlyphs.enable = true;
 
@@ -143,5 +144,10 @@
       auth.clicksUsername = "minion";
       gpg.enable = true;
     };
+  };
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
   };
 }
