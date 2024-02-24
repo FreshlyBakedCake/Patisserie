@@ -34,6 +34,11 @@
     personal = "config user.email skyler3665@gmail.com";
     clicks = "config user.email minion@clicks.codes";
     collabora = "config user.email skyler.grey@collabora.com";
+    stg-clean = ''!for PATCH in $(stg series -PU); do CHANGE_ID=$(git show -s --format="%(trailers:key=Change-Id,valueonly,separator=%x2C )" $(stg id $PATCH)); git log --format="%(trailers:key=Change-Id,valueonly,separator=%x2C )" | grep -qFx "$CHANGE_ID" && stg delete $PATCH; done'';
+  };
+
+  home.shellAliases = {
+    gpg-card-switch = ''for keygrip in $(gpg --with-keygrip --list-secret-keys 76E0B09A741C4089522111E5F27E3E5922772E7A | grep Keygrip | sed "1d" | sed "s/ *Keygrip = //"); do gpg-connect-agent "delete_key $keygrip" /bye > /dev/null; done; gpg --card-status;'';
   };
 
   programs.git.extraConfig.user = {
@@ -85,6 +90,7 @@
 
     shell.bash.enable = true;
     shell.defaultAliases.enable = true;
+    shell.replacements.defaultEnable = true;
 
     theme.font.nerdFontGlyphs.enable = true;
 
