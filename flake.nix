@@ -24,6 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/nur";
@@ -60,6 +62,10 @@
         inputs.hyprland.nixosModules.default
         inputs.nur.nixosModules.nur
         inputs.sops-nix.nixosModules.sops
+      ];
+
+      systems.hosts.greylag.modules = [
+        inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
       ];
 
       snowfall = {
