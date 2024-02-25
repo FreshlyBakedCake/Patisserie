@@ -14,6 +14,10 @@
     services.emacs = {
       enable = true;
       defaultEditor = config.chimera.editor.emacs.defaultEditor;
+      client = {
+        enable = true;
+        arguments = [ "--create-frame" "--alternate-editor=${config.programs.emacs.package}/bin/emacs" ];
+      };
     };
   };
 }
