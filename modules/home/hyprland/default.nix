@@ -43,6 +43,18 @@ in
   };
 
   config = lib.mkIf config.chimera.hyprland.enable {
+    programs.bash.profileExtra = lib.mkIf config.chimera.shell.bash.enable (lib.mkBefore ''
+      if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+        exec systemd-cat -t hyprland Hyprland
+      fi
+    '');
+
+    programs.zsh.profileExtra = lib.mkIf config.chimera.shell.zsh.enable (lib.mkBefore ''
+      if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+        exec systemd-cat -t hyprland Hyprland
+      fi
+    '');
+
     home.packages = [ pkgs.hyprpicker ];
 
     services.fusuma.settings.swipe = lib.mkIf config.chimera.touchpad.enable (
