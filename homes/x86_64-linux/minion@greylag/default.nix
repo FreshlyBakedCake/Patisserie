@@ -23,25 +23,6 @@
     greylag
   '';
 
-  programs.firefox.profiles.chimera.search = {
-    engines = {
-      "Kagi" = {
-        urls = [
-          { template = "https://kagi.com/search?q={searchTerms}"; }
-          {
-            template = "https://kagi.com/api/autosuggest?q={searchTerms}";
-            type = "application/x-suggestions+json";
-          }
-        ];
-        iconUpdateURL = "https://assets.kagi.com/v2/favicon-32x32.png";
-        updateInterval = 24 * 60 * 60 * 1000;
-      };
-    };
-    order = [ "Kagi" ];
-    default = "Kagi";
-    force = true;
-  };
-
   programs.gpg.scdaemonSettings = {
     reader-port = "Yubico Yubi";
   };
@@ -104,9 +85,24 @@
         reactDevTools.enable = true;
         adnauseam.enable = true;
       };
+      search = {
+        enable = true;
+        extensions.enable = true;
+        bookmarks.enable = true;
+        engines = [
+          "Kagi"
+          "MDN"
+          "NixOS Options"
+          "NixOS Packages"
+          "Home-Manager Options"
+          "Noogle"
+          "GitHub"
+          "Arch Wiki"
+          "Gentoo Wiki"
+        ];
+      };
       extraExtensions = [
         config.nur.repos.rycee.firefox-addons.sidebery
-        config.nur.repos.rycee.firefox-addons.kagi-search
       ];
     };
 
