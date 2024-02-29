@@ -5,6 +5,7 @@
   ...
 }: let
   possibleEngines = [
+    "Amazon"
     "Arch Wiki"
     "Bing"
     "DuckDuckGo"
@@ -40,6 +41,7 @@ in {
         default search engine.
 
         1:
+          Amazon -> amazon
           Arch Wiki -> arch
           Bing -> bing
           DuckDuckGo -> ddg
@@ -84,6 +86,10 @@ in {
   config =
     let
       engineData = {
+        "Amazon" = {
+          homepage = "https://amazon.com";
+          metaData.alias = "amazon";
+        };
         "Arch Wiki" = {
           urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
           iconUpdateURL = "https://wiki.archlinux.org/favicon.ico";
@@ -178,13 +184,6 @@ in {
           metaData.alias = "wiki";
         };
       };
-      firefoxDefaultEngines = [
-        "Bing"
-        "Google"
-        "eBay"
-        "DuckDuckGo"
-        "Wikipedia (en)"
-      ];
       calculated = lib.pipe engineData [
         (lib.filterAttrs (engine: _: builtins.elem engine config.chimera.browser.firefox.search.engines))
         (builtins.mapAttrs (
