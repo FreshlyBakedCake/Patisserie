@@ -78,8 +78,57 @@
         reactDevTools.enable = true;
         ublockOrigin.enable = true;
       };
+      search = {
+        enable = true;
+        extensions.enable = true;
+        bookmarks.enable = true;
+        engines = [
+          "Kagi"
+          "MDN"
+          "NixOS Options"
+          "NixOS Packages"
+          "Home-Manager Options"
+          "Noogle"
+          "GitHub"
+          "Arch Wiki"
+          "Gentoo Wiki"
+        ];
+      };
       extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
     };
+
+    # browser.firefox = {
+    #   enable = true;
+    #   extensions = {
+    #     bitwarden.enable = true;
+    #     youtube = {
+    #       sponsorBlock.enable = true;
+    #       returnDislike.enable = true;
+    #       deArrow.enable = true;
+    #     };
+    #     reactDevTools.enable = true;
+    #     adnauseam.enable = true;
+    #   };
+    #   search = {
+    #     enable = true;
+    #     extensions.enable = true;
+    #     bookmarks.enable = true;
+    #     engines = [
+    #       "Kagi"
+    #       "MDN"
+    #       "NixOS Options"
+    #       "NixOS Packages"
+    #       "Home-Manager Options"
+    #       "Noogle"
+    #       "GitHub"
+    #       "Arch Wiki"
+    #       "Gentoo Wiki"
+    #     ];
+    #   };
+    #   extraExtensions = [
+    #     config.nur.repos.rycee.firefox-addons.sidebery
+    #   ];
+    # };
 
     #browser.chromium = {
     #  enable = true;
