@@ -46,7 +46,6 @@
       stgit.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "coded";
-
       gpg.enable = true;
     };
 
@@ -111,4 +110,13 @@
       color = "Blue";
     };
   };
+
+  programs.git.includes = [{
+    condition = "gitdir:~/programming/nix/frappix/";
+
+    contents = {
+      user.name = "Samuel Shuert";
+      user.email = "coded@clicks.codes";
+    };
+  }];
 }
