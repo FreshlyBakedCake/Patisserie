@@ -186,6 +186,7 @@ in {
         "Wikipedia (en)"
       ];
       calculated = lib.pipe engineData [
+        (lib.filterAttrs (engine: _: builtins.elem engine config.chimera.browser.firefox.search.engines))
         (builtins.mapAttrs (
           name: value: {
             engines.${name} =
