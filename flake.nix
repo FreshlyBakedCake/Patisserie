@@ -31,7 +31,7 @@
     nur.url = "github:nix-community/nur";
 
     snowfall-lib = {
-      url = "github:snowfallorg/lib";
+      url = "github:snowfallorg/lib/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -42,21 +42,16 @@
 
   outputs =
     { self, nixpkgs, ... }@inputs:
-    let
-      extraHomeModules = [
+    inputs.snowfall-lib.mkFlake {
+      inherit inputs;
+      src = ./.;
+
+      homes.modules = [
         inputs.anyrun.homeManagerModules.default
         inputs.hyprland.homeManagerModules.default
         inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
       ];
-    in
-    inputs.snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
-
-      homes.users."coded@shorthair".modules = extraHomeModules;
-
-      homes.users."minion@greylag".modules = extraHomeModules;
 
       systems.modules.nixos = [
         inputs.hyprland.nixosModules.default
