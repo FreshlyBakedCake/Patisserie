@@ -19,4 +19,10 @@
   ...
 }:
 {
+  home.packages = [ pkgs.home-manager ];
+  chimera.minion.enable = true;
+
+  home.shellAliases.home-manager = "${pkgs.home-manager}/bin/home-manager --flake ${config.chimera.shell.rebuildFlakePath}#skyler@canvasback";
+
+  programs.kitty.settings.shell = "${pkgs.bashInteractive}/bin/bash --login"; # nasty hack to make environment variables load on gnome
 }
