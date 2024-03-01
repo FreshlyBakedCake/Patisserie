@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   options.chimera.editor.emacs = {
     enable = lib.mkEnableOption "Enable emacs editor";
@@ -19,5 +19,19 @@
         arguments = [ "--create-frame" "--alternate-editor=${config.programs.emacs.package}/bin/emacs" ];
       };
     };
+
+    /* we already have emacsclient.desktop which starts emacs if the server is not up, so emacs.desktop only serves to get in the way */
+    home.packages = [
+      (lib.pipe {
+        "Desktop Entry" = {
+          Type = "Application";
+          NoDisplay = true;
+        };
+      } [
+        (lib.generators.toINI { })
+        (pkgs.writeTextDir "share/applications/emacs.desktop")
+        lib.hiPrio
+      ])
+    ];
   };
 }
