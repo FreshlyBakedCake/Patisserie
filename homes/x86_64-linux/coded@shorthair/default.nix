@@ -160,6 +160,10 @@
     };
   };
 
+  programs.gpg.scdaemonSettings = {
+    disable-ccid = true;
+  };
+
   programs.git.includes = [{
     condition = "gitdir:~/programming/nix/frappix/";
 
