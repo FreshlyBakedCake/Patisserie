@@ -69,6 +69,7 @@
             if config.chimera.git.gpg.push then "if-asked" else false
           );
         };
+	pull.rebase = "merges";
         url = {
           "ssh://git@github.com/".pushInsteadOf = "https://github.com/";
           "ssh://${config.chimera.git.auth.clicksUsername}@ssh.clicks.codes:29418/".pushInsteadOf = "https://git.clicks.codes/";
