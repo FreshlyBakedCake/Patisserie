@@ -8,6 +8,8 @@
     "Amazon"
     "Arch Wiki"
     "Bing"
+    "Crates.io"
+    "Docs.rs"
     "DuckDuckGo"
     "eBay"
     "Gentoo Wiki"
@@ -44,6 +46,8 @@ in {
           Amazon -> amazon
           Arch Wiki -> arch
           Bing -> bing
+          Crates.io -> crates
+          Docs.rs -> rs
           DuckDuckGo -> ddg
           eBay -> ebay
           Gentoo Wiki -> gentoo
@@ -68,6 +72,8 @@ in {
         "Home-Manager Options"
         "Noogle"
         "GitHub"
+        "Docs.rs"
+        "Crates.io"
       ];
       example = [
         "Kagi"
@@ -77,6 +83,8 @@ in {
         "Home-Manager Options"
         "Noogle"
         "GitHub"
+        "Docs.rs"
+        "Crates.io"
         "Arch Wiki"
         "Gentoo Wiki"
       ];
@@ -100,6 +108,20 @@ in {
         "Bing" = {
           homepage = "https://bing.com";
           metaData.alias = "bing";
+        };
+        "Crates.io" = {
+          urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
+          iconUpdateURL = "https://crates.io/favicon.ico";
+          updateInterval = 24 * 60 * 60 * 1000;
+          definedAliases = [ "crates" ];
+          homepage = "https://crates.io";
+        };
+        "Docs.rs" = {
+          urls = [ { template = "https://docs.rs/releases/search?query={searchTerms}"; } ];
+          iconUpdateURL = "https://docs.rs/favicon.ico";
+          updateInterval = 24 * 60 * 60 * 1000;
+          definedAliases = [ "rs" ];
+          homepage = "https://docs.rs";
         };
         "DuckDuckGo" = {
           homepage = "https://duckduckgo.com";

@@ -97,6 +97,8 @@
           "Home-Manager Options"
           "Noogle"
           "GitHub"
+          "Docs.rs"
+          "Crates.io"
           "Arch Wiki"
           "Gentoo Wiki"
         ];
