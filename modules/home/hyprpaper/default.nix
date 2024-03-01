@@ -15,16 +15,18 @@
     };
   };
 
-  config.xdg.configFile."hypr/hyprpaper.conf".source = lib.mkIf config.chimera.hyprland.enable (
-    builtins.toFile "hyprpaper.conf" ''
-      preload = ${config.chimera.theme.wallpaper}
+  config.xdg.configFile = lib.mkIf config.chimera.hyprland.enable {
+    "hypr/hyprpaper.conf".source =  (
+      builtins.toFile "hyprpaper.conf" ''
+        preload = ${config.chimera.theme.wallpaper}
 
-      wallpaper=,${config.chimera.theme.wallpaper}
+        wallpaper=,${config.chimera.theme.wallpaper}
 
-      splash = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.enable}
-      splash_offset = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.offset}
+        splash = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.enable}
+        splash_offset = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.offset}
 
-      ipc = off
-    ''
-  );
+        ipc = off
+      ''
+    );
+  };
 }
