@@ -14,6 +14,10 @@
   };
 
   config = lib.mkIf config.chimera.terminal.kitty.enable {
+    home.shellAliases = {
+      ssh = "${config.programs.kitty.package}/bin/kitten ssh";
+    };
+
     programs.kitty = {
       enable = true;
       theme =
