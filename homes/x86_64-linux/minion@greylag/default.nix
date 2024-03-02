@@ -142,6 +142,8 @@
       auth.clicksUsername = "minion";
       gpg.enable = true;
     };
+
+    shell.usefulPackages.enable = true;
   };
 
   services.nextcloud-client = {
