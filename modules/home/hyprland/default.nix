@@ -82,7 +82,7 @@ in
         let
           mod = "SUPER";
           terminal = "${pkgs.kitty}/bin/kitty";
-          menu = "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun";
+          menu = (if config.chimera.runner.anyrun.enable then "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun" else "");
         in
         {
           misc = {
@@ -148,8 +148,8 @@ in
               "${mod}, right, movefocus, r"
               "${mod}, left, movefocus, l"
               "${mod}, L, exec, ${lock}"
-              "${mod}, D, exec, ${menu}"
             ]
+            ++ (if config.chimera.runner.enable then [ "${mod}, D, exec, ${menu}" ] else [])
             ++ (builtins.concatLists (
               builtins.genList
                 (
