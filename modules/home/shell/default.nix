@@ -103,7 +103,10 @@
 
     programs.tealdeer = lib.mkIf config.chimera.shell.usefulPackages.enable {
       enable = true;
-      settings.updates.autoupdate = true;
+      settings.updates = {
+        auto_update = true;
+        auto_update_interval_hours = 72;
+      };
     };
     programs.jq = lib.mkIf config.chimera.shell.usefulPackages.enable { enable = true; };
 
