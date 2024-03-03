@@ -23,6 +23,21 @@
     greylag
   '';
 
+  programs.git.includes = [
+    {
+      condition = "gitdir:~/Code/clicks/";
+      contents.user.email = "minion@clicks.codes";
+    }
+    {
+      condition = "gitdir:~/Code/personal/";
+      contents.user.email = "skyler3665@gmail.com";
+    }
+    {
+      condition = "gitdir:~/Code/collabora/";
+      contents.user.email = "skyler.grey@collabora.com";
+    }
+  ];
+
   programs.git.extraConfig.alias = {
     recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG";
     graph = "log --graph --oneline --decorate";
