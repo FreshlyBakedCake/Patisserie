@@ -16,6 +16,16 @@
     replacements = {
       defaultEnable = lib.mkEnableOption "Enable replacing everything by default";
 
+      atuin = {
+        enable = lib.mkOption {
+          description = "Use atuin instead of bkd-i-search";
+          type = lib.types.bool;
+          default = config.chimera.shell.replacements.defaultEnable;
+          example = true;
+        };
+        enableUpArrow = lib.mkEnableOption "Pressing up arrow will enter atuin instead of scrolling back through history";
+      };
+
       eza.enable = lib.mkOption {
         description = "Use eza instead of ls";
         type = lib.types.bool;
@@ -80,6 +90,13 @@
       tree = lib.mkIf config.chimera.shell.replacements.erdtree.enable "${pkgs.erdtree}/bin/erdtree";
       du = lib.mkIf config.chimera.shell.replacements.dust.enable "${pkgs.dust}/bin/dust";
       cat = lib.mkIf config.chimera.shell.replacements.bat.enable "${pkgs.bat}/bin/bat";
+    };
+
+    programs.atuin = lib.mkIf config.chimera.shell.replacements.atuin.enable {
+      enable = true;
+      enableZshIntegration = config.chimera.shell.zsh.enable;
+      enableBashIntegration = config.chimera.shell.bash.enable;
+      flags = lib.mkIf (!config.chimera.shell.replacements.atuin.enableUpArrow) [ "--disable-up-arrow" ];
     };
 
     programs.eza = lib.mkIf config.chimera.shell.replacements.eza.enable {
