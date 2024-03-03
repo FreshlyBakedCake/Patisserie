@@ -31,13 +31,9 @@
       usefulPackages.enable = true;
 
       replacements = {
-        eza.enable = true;
-        bfs.enable = true;
-        ripgrep.enable = true;
-        htop.enable = true;
-        erdtree.enable = true;
-        dust.enable = true;
-        bat.enable = true;
+        defaultEnable = true;
+        bat.enable = false;
+        atuin.enableUpArrow = true;
       };
     };
 
@@ -96,58 +92,6 @@
       };
       extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
     };
-
-    # browser.firefox = {
-    #   enable = true;
-    #   extensions = {
-    #     bitwarden.enable = true;
-    #     youtube = {
-    #       sponsorBlock.enable = true;
-    #       returnDislike.enable = true;
-    #       deArrow.enable = true;
-    #     };
-    #     reactDevTools.enable = true;
-    #     adnauseam.enable = true;
-    #   };
-    #   search = {
-    #     enable = true;
-    #     extensions.enable = true;
-    #     bookmarks.enable = true;
-    #     engines = [
-    #       "Kagi"
-    #       "MDN"
-    #       "NixOS Options"
-    #       "NixOS Packages"
-    #       "Home-Manager Options"
-    #       "Noogle"
-    #       "GitHub"
-    #       "Arch Wiki"
-    #       "Gentoo Wiki"
-    #     ];
-    #   };
-    #   extraExtensions = [
-    #     config.nur.repos.rycee.firefox-addons.sidebery
-    #   ];
-    # };
-
-    #browser.chromium = {
-    #  enable = true;
-    #  extensions = {
-    #    bitwarden.enable = true;
-    #    youtube = {
-    #      sponsorBlock.enable = true;
-    #      returnDislike.enable = true;
-    #      deArrow.enable = true;
-    #    };
-    #    reactDevTools.enable = true;
-    #    ublockOrigin.enable = true;
-    #  };
-    #  extraExtensions = [
-    #    { id = "gmkiokemhjjdjmpnnjmnpkpfoenpnpne"; } # Lofi Girl
-    #    { id = "bmnlcjabgnpnenekpadlanbbkooimhnj"; } # PayPal Honey
-    #    { id = "kekjfbackdeiabghhcdklcdoekaanoel"; } # MAL Sync
-    #  ];
-    #};
 
     editor.neovim.enable = true;
 
