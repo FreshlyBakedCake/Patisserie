@@ -8,6 +8,7 @@
     ./cpu
     ./firmware
     ./games
+    ./keyboard
     ./networking
     ./time
     ./users
