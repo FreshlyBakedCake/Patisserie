@@ -7,6 +7,7 @@
     ./console
     ./cpu
     ./firmware
+    ./games
     ./networking
     ./time
     ./users

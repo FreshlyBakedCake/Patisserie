@@ -144,6 +144,11 @@
     };
 
     shell.usefulPackages.enable = true;
+
+    games = {
+      minecraft.enable = true;
+      itch.enable = true;
+    };
   };
 
   services.nextcloud-client = {

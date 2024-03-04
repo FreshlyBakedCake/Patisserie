@@ -1,10 +1,11 @@
 { ... }:
 {
   imports = [
-    ./hardware/boot
-    ./hardware/filesystems
-    ./hardware/cpu
     ./console
+    ./games
+    ./hardware/boot
+    ./hardware/cpu
+    ./hardware/filesystems
     ./networking
     ./openrgb
     ./users
