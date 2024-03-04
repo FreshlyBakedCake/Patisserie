@@ -93,6 +93,8 @@
       extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
     };
 
+    games.minecraft.enable = true;
+
     editor.neovim.enable = true;
 
     theme.font.nerdFontGlyphs.enable = true;
