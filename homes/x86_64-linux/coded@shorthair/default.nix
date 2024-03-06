@@ -104,9 +104,10 @@
       style = "Macchiato";
       color = "Blue";
     };
+
+    yubikey.enable = true;
   };
 
-  yubikey.enable = true;
 
   programs.git.includes = [{
     condition = "gitdir:~/programming/nix/frappix/";
