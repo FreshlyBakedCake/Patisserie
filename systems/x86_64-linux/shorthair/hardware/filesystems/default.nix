@@ -1,7 +1,12 @@
 { ... }:
 {
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/49f641f9-27c1-451e-9dff-d270879ede42";
+    device = "/dev/mapper/NIXROOT";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/bigdata" = {
+    device = "/dev/mapper/BIGDATA";
     fsType = "btrfs";
   };
 
@@ -9,10 +14,4 @@
     device = "/dev/disk/by-uuid/F1F9-C8D5";
     fsType = "vfat";
   };
-
-  #swapDevices = [
-  #  {
-  #    device = "/dev/disk/by-uuid/b0ffc786-a525-413d-97e8-24e57a39dd0b";
-  #  }
-  #];
 }
