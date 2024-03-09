@@ -83,6 +83,14 @@
       default = null;
     };
 
+    style = lib.mkOption {
+      type = lib.types.enum [
+        "Light"
+        "Dark"
+      ];
+      description = "Whether this theme prefers to match with light or dark color schemes";
+    };
+
     colors =
       let
         themeColor = lib.types.submodule {

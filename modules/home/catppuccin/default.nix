@@ -1421,6 +1421,8 @@
             catppuccinColors.${config.chimera.theme.catppuccin.style}.${config.chimera.theme.catppuccin.color};
         };
 
+        style = if config.chimera.theme.catppuccin.style == "Latte" then "Light" else "Dark";
+
         cursor = {
           package =
             pkgs.catppuccin-cursors."${lib.strings.toLower config.chimera.theme.catppuccin.style}${config.chimera.theme.catppuccin.color}";
