@@ -1,3 +1,3 @@
 { ... }: {
-  time.timeZone = "EST";
+  time.timeZone = "America/New_York";
 } 
