@@ -132,12 +132,12 @@
       defaultEditor = false;
     };
 
-    editor.neovim.enable = true;
-
-    editor.emacs = {
+    editor.neovim = {
       enable = true;
       defaultEditor = false;
     };
+
+    editor.emacs.enable = true;
 
     input.keyboard = {
       layout = "us";

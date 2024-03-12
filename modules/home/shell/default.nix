@@ -83,7 +83,7 @@
         lib.mkIf (config.chimera.shell.rebuildFlakePath != null)
           "sudo nixos-rebuild switch --flake ${config.chimera.shell.rebuildFlakePath}";
       clr = "clear";
-      edit = config.home.sessionVariables.EDITOR;
+      edit = builtins.toString config.home.sessionVariables.EDITOR;
       find = lib.mkIf config.chimera.shell.replacements.bfs.enable "${pkgs.bfs}/bin/bfs";
       grep = lib.mkIf config.chimera.shell.replacements.ripgrep.enable "${config.programs.ripgrep.package}/bin/rg";
       top = lib.mkIf config.chimera.shell.replacements.htop.enable "${config.programs.htop.package}/bin/htop";
