@@ -21,6 +21,34 @@
         "type": "github"
       }
     },
+    "collabora-gtimelog": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699275431,
+        "narHash": "sha256-u5ooKnWhkf9Eh90nyqAvHzIDgidhx05SI66L3VLwRJ0=",
+        "ref": "refs/heads/master",
+        "rev": "3faf89054bebf89fcee8640f1b1c2b2b23d1a0dc",
+        "revCount": 464,
+        "type": "git",
+        "url": "https://gitlab.collabora.com/collabora/gtimelog.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.collabora.com/collabora/gtimelog.git"
+      }
+    },
+    "collabora-icon": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-D1rWQZ7dd5IaZSiPPbQchA6nZO0QItrdMs5G2sflIu0=",
+        "type": "file",
+        "url": "https://www.collabora.com/favicon.ico"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://www.collabora.com/favicon.ico"
+      }
+    },
     "ewwsalmoomedits--eww-widgets": {
       "flake": false,
       "locked": {
@@ -351,6 +379,8 @@
     "root": {
       "inputs": {
         "anyrun": "anyrun",
+        "collabora-gtimelog": "collabora-gtimelog",
+        "collabora-icon": "collabora-icon",
         "ewwsalmoomedits--eww-widgets": "ewwsalmoomedits--eww-widgets",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

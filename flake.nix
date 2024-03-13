@@ -7,6 +7,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    collabora-gtimelog = {
+      url = "git+https://gitlab.collabora.com/collabora/gtimelog.git";
+      flake = false;
+    };
+    collabora-icon = {
+      url = "https://www.collabora.com/favicon.ico";
+      flake = false;
+    };
+
     ewwsalmoomedits--eww-widgets = {
       url = "github:saimoomedits/eww-widgets";
       flake = false;
@@ -51,6 +60,7 @@
         inputs.hyprland.homeManagerModules.default
         inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
+        inputs.sops-nix.homeManagerModules.sops
       ];
 
       systems.modules.nixos = [

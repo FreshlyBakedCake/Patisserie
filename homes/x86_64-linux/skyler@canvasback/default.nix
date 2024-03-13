@@ -19,10 +19,20 @@
   ...
 }:
 {
-  home.packages = [ pkgs.home-manager ];
+  home.packages = [
+    pkgs.home-manager
+    pkgs.chimera.gtimelog-collabora
+  ];
   chimera.minion.enable = true;
 
   home.shellAliases.home-manager = "${pkgs.home-manager}/bin/home-manager --flake ${config.chimera.shell.rebuildFlakePath}#skyler@canvasback";
+
+  sops.gnupg.home = config.programs.gpg.homedir;
+  sops.secrets."homes/x86_64-linux/skyler@canvasback/gtimelogrc.sops.minion.toml.bin" = {
+    format = "binary";
+    sopsFile = ./gtimelogrc.sops.minion.toml.bin;
+    path = "${config.home.homeDirectory}/.gtimelog/gtimelogrc";
+  };
 
   programs.kitty.settings.shell = "${pkgs.bashInteractive}/bin/bash --login"; # nasty hack to make environment variables load on gnome
 }
