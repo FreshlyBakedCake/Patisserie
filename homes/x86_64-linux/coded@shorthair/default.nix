@@ -25,7 +25,7 @@
 
       starship.enable = true;
 
-      rebuildFlakePath = "/home/coded/programming/nix/personal";
+      rebuildFlakePath = "/home/coded/programming/Chimera/NixFiles";
 
       defaultAliases.enable = true;
       usefulPackages.enable = true;
