@@ -1,7 +1,0 @@
-CPU=$(sed -n 's/^cpu\s//p' /proc/stat);
-TOTAL=$(($(T=0; for VAL in $CPU; do T=($((T))+$((VAL))); done; echo $T)));
-IDLE=${CPU[4]};
-IDLE_FRAC=$(echo $(($IDLE.00/$TOTAL)));
-IN_USE=$(echo $(( 1.00 - $IDLE_FRAC )));
-NUM=$(( $IN_USE * 100 ));
-echo $NUM
