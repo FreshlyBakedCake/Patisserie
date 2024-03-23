@@ -120,4 +120,9 @@
       user.email = "coded@clicks.codes";
     };
   }];
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 }
