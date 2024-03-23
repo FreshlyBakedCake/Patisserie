@@ -58,6 +58,11 @@
   };
 
   chimera = {
+    waybar = {
+      modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
+      modules.laptop.enable = true;
+    };
+
     hyprland.enable = true;
     hyprland.hyprpaper.splash.enable = true;
 

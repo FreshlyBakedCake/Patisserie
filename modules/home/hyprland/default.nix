@@ -43,6 +43,8 @@ in
   };
 
   config = lib.mkIf config.chimera.hyprland.enable {
+    chimera.waybar.enable = lib.mkDefault true;
+
     programs.bash.profileExtra = lib.mkIf config.chimera.shell.bash.enable (lib.mkBefore ''
       if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
         exec ${pkgs.systemd}/bin/systemd-cat -t hyprland ${pkgs.dbus}/bin/dbus-run-session ${config.wayland.windowManager.hyprland.package}/bin/Hyprland
@@ -93,6 +95,7 @@ in
           exec-once = [
             "${pkgs.hyprpaper}/bin/hyprpaper"
             "hyprctl setcursor ${config.chimera.theme.cursor.name} ${builtins.toString config.chimera.theme.cursor.size}"
+            "${pkgs.waybar}/bin/waybar"
           ];
 
           monitor = config.chimera.hyprland.monitors ++ [ ",preferred,auto,1" ];

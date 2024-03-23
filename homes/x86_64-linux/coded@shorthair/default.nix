@@ -20,6 +20,9 @@
 }:
 {
   chimera = {
+    waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
+    waybar.modules.backlight.enable = true;
+
     shell = {
       zsh.enable = true;
 
@@ -72,7 +75,7 @@
           deArrow.enable = true;
         };
         reactDevTools.enable = true;
-        ublockOrigin.enable = true;
+        adnauseam.enable = true;
       };
       search = {
         enable = true;
