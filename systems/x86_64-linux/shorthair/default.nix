@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./backlight
     ./console
     ./games
     ./hardware/boot
