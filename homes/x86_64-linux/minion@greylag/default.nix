@@ -63,6 +63,8 @@
       modules.laptop.enable = true;
     };
 
+    nextcloud.enable = true;
+
     hyprland.enable = true;
     hyprland.hyprpaper.splash.enable = true;
 
@@ -167,10 +169,5 @@
     };
 
     yubikey.enable = true;
-  };
-
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
   };
 }

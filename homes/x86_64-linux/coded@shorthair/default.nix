@@ -23,6 +23,8 @@
     waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
     waybar.modules.backlight.enable = true;
 
+    nextcloud.enable = true;
+
     shell = {
       zsh.enable = true;
 
@@ -120,9 +122,4 @@
       user.email = "coded@clicks.codes";
     };
   }];
-
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
-  };
 }
