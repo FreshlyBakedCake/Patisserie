@@ -101,6 +101,7 @@
     games.minecraft.enable = true;
 
     editor.neovim.enable = true;
+    editor.editorconfig.enable = true;
 
     theme.font.nerdFontGlyphs.enable = true;
     theme.wallpaper = ./wallpaper.png;

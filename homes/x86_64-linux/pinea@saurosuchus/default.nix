@@ -144,6 +144,8 @@
       defaultEditor = true;
     };
 
+    editor.editorconfig.enable = true;
+
     input.keyboard = {
       layout = "gb";
     };

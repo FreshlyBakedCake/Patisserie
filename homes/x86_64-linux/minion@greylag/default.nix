@@ -141,6 +141,7 @@
     };
 
     editor.emacs.enable = true;
+    editor.editorconfig.enable = true;
 
     input.keyboard = {
       layout = "us";
