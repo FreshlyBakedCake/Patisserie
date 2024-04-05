@@ -92,6 +92,10 @@
       cat = lib.mkIf config.chimera.shell.replacements.bat.enable "${pkgs.bat}/bin/bat";
     };
 
+    home.sessionVariables = lib.mkIf (config.chimera.shell.usefulPackages.enable && config.chimera.theme.style == "Light") {
+      BAT_THEME = "OneHalfLight";
+    };
+
     programs.atuin = lib.mkIf config.chimera.shell.replacements.atuin.enable {
       enable = true;
       enableZshIntegration = config.chimera.shell.zsh.enable;
@@ -133,6 +137,7 @@
         if config.chimera.shell.usefulPackages.enable then
           [
             pkgs.wget
+            pkgs.bat
             pkgs.curl
             pkgs.curlie
             pkgs.pv
@@ -147,7 +152,6 @@
       ++ (if config.chimera.shell.replacements.bfs.enable then [ pkgs.bfs ] else [ ])
       ++ (if config.chimera.shell.replacements.htop.enable then [ pkgs.htop ] else [ ])
       ++ (if config.chimera.shell.replacements.erdtree.enable then [ pkgs.erdtree ] else [ ])
-      ++ (if config.chimera.shell.replacements.dust.enable then [ pkgs.dust ] else [ ])
-      ++ (if config.chimera.shell.replacements.bat.enable then [ pkgs.bat ] else [ ]);
+      ++ (if config.chimera.shell.replacements.dust.enable then [ pkgs.dust ] else [ ]);
   };
 }
