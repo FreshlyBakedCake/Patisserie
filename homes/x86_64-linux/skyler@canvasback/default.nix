@@ -19,7 +19,4 @@
   ...
 }:
 {
-  home.file.".snowfall.systemname".text = ''
-    canvasback
-  '';
 }

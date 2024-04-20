@@ -19,10 +19,6 @@
   ...
 }:
 {
-  home.file.".snowfall.systemname".text = ''
-    greylag
-  '';
-
   programs.git.includes = [
     {
       condition = "gitdir:~/Code/clicks/";
