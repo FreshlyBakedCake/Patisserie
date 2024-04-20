@@ -23,6 +23,11 @@
       description = "Attrset of ~DIR's";
       default = { };
     };
+    ohMyZsh.extraPlugins = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "List of plugins as strs";
+      default = [ ];
+    };
   };
 
   config = lib.mkIf config.chimera.shell.zsh.enable {
@@ -44,7 +49,7 @@
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [ "git" ] ++ config.chimera.shell.zsh.ohMyZsh.extraPlugins;
       };
     };
   };
