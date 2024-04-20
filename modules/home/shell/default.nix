@@ -101,7 +101,8 @@
 
     programs.eza = lib.mkIf config.chimera.shell.replacements.eza.enable {
       enable = true;
-      enableAliases = true;
+      enableZshIntegration = config.chimera.shell.zsh.enable;
+      enableBashIntegration = config.chimera.shell.bash.enable;
     };
 
     programs.ripgrep = lib.mkIf config.chimera.shell.replacements.ripgrep.enable {

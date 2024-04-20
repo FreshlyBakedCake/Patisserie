@@ -33,7 +33,8 @@
   config = lib.mkIf config.chimera.shell.zsh.enable {
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
       autocd = true;
       defaultKeymap = "emacs";
