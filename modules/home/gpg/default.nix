@@ -21,7 +21,7 @@
 
     services.gpg-agent = {
       enable = true;
-      pinentryFlavor = "tty";
+      pinentryPackage = pkgs.pinentry-gtk2;
       enableZshIntegration = config.chimera.shell.zsh.enable;
       enableBashIntegration = config.chimera.shell.bash.enable;
     };
