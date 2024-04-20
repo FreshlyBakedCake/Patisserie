@@ -16,6 +16,7 @@
     extraExtensions = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       description = "Extra extensions to add to firefox";
+      default = [ ];
     };
   };
   config = lib.mkIf config.chimera.browser.firefox.enable ({
