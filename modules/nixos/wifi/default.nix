@@ -24,6 +24,8 @@
         psk = "@Orange2_5G_A@";
         priority = 100;
       };
+
+      "OurVM2.4".psk = "@OurVM2_4@";
     };
 
     environmentFile = config.sops.secrets."modules/nixos/wifi/wifi-passwords.sops.chimera.env.bin".path;
