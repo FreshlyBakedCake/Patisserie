@@ -114,12 +114,30 @@
   };
 
 
-  programs.git.includes = [{
-    condition = "gitdir:~/programming/nix/frappix/";
+  programs.git.includes = [
+  {
+    condition = "gitdir:~/programming/Chimera";
 
     contents = {
       user.name = "Samuel Shuert";
       user.email = "coded@clicks.codes";
     };
-  }];
+  }
+  {
+    condition = "gitdir:~/programming/Clicks";
+
+    contents = {
+      user.name = "Samuel Shuert";
+      user.email = "coded@clicks.codes";
+    };
+  }
+  {
+    condition = "gitdir:~/programming/Personal";
+
+    contents = {
+      user.name = "Samuel Shuert";
+      user.email = "coded@coded.codes";
+    };
+  }
+  ];
 }
