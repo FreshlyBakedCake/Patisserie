@@ -32,6 +32,33 @@ in
       };
     };
 
+    input.keybinds = {
+      alternativeSearch.enable = lib.mkEnableOption "Use alt + space or SUPER + D to open search";
+      extraBinds = let
+        binds = lib.types.submodule {
+          options = {
+            meta = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              description = "Additional modifier keys space seperated";
+              default = null;
+            };
+            key = lib.mkOption {
+              type = lib.types.str;
+              description = "Final key";
+            };
+            function = lib.mkOption {
+              type = lib.types.str;
+              description = "Hyprland bind function";
+            };
+          };
+        };
+      in lib.mkOption {
+        type = lib.types.listOf binds;
+        description = "Extra keybinds to add";
+        default = [ ];
+      };
+    };
+
     nvidia.enable = lib.mkEnableOption "Enable NVIDIA support";
 
     hyprland = {
@@ -40,6 +67,18 @@ in
         type = lib.types.listOf lib.types.str;
         description = "List of default monitors to set";
         default = [ ];
+      };
+      window = {
+        rounding = lib.mkOption {
+          type = lib.types.int;
+          description = "How round the windows should be";
+          default = 7;
+        };
+        blur = lib.mkOption {
+          type = lib.types.int;
+          description = "How blurred the wallpaper under innactive windows should be";
+          default = 8;
+        };
       };
     };
   };
@@ -87,6 +126,7 @@ in
           mod = "SUPER";
           terminal = "${pkgs.kitty}/bin/kitty";
           menu = (if config.chimera.runner.anyrun.enable then "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun" else "");
+          screenshot = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
         in
         {
           misc = {
@@ -109,8 +149,9 @@ in
           };
 
           decoration = {
-            rounding = 7;
+            rounding = config.chimera.hyprland.window.rounding;
             drop_shadow = false;
+            blur.size = config.chimera.hyprland.window.blur;
           };
 
           input = {
@@ -153,8 +194,11 @@ in
               "${mod}, right, movefocus, r"
               "${mod}, left, movefocus, l"
               "${mod}, L, exec, ${lock}"
+              "${mod}, R, exec, ${screenshot}"
+              ", Print, exec, ${screenshot}"
             ]
             ++ (if config.chimera.runner.enable then [ "${mod}, D, exec, ${menu}" ] else [])
+            ++ (if lib.and config.chimera.input.keybinds.alternativeSearch.enable config.chimera.runner.enable then [ "ALT, SPACE, exec, ${menu}" ] else [])
             ++ (builtins.concatLists (
               builtins.genList
                 (
@@ -172,7 +216,8 @@ in
                   ]
                 )
                 10
-            ));
+            ))
+            ++ (builtins.map (item: "SUPER_${item.meta}, ${item.key}, ${item.function}") config.chimera.input.keybinds.extraBinds);
 
           bindm = [
             "${mod}, mouse:272, movewindow"
@@ -185,7 +230,7 @@ in
             "GBM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
             "WLR_NO_HARDWARE_CURSORS,1"
-          ]
+          ];
         };
     };
   };
