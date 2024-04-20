@@ -31,9 +31,11 @@ in
         default = null;
       };
     };
+
+    nvidia.enable = lib.mkEnableOption "Enable NVIDIA support";
+
     hyprland = {
       enable = lib.mkEnableOption "Use hyprland as your window manager";
-
       monitors = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         description = "List of default monitors to set";
@@ -176,6 +178,14 @@ in
             "${mod}, mouse:272, movewindow"
             "${mod}, mouse:273, resizewindow"
           ];
+
+          env = lib.mkIf config.chimera.nvidia.enable [
+            "LIBVA_DRIVER_NAME,nvidia"
+            "XDG_SESSION_TYPE,wayland"
+            "GBM_BACKEND,nvidia-drm"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            "WLR_NO_HARDWARE_CURSORS,1"
+          ]
         };
     };
   };
