@@ -20,6 +20,16 @@
             "audio.posistion" = "MONO";
           };
         }
+        {
+          factory = "adapter";
+          args = {
+            "factory.name" = "support.null-audio-sink";
+            "node.name" = "Speaker-Proxy";
+            "node.description" = "Monitors";
+            "media.class" = "Audio/Sink";
+            "audio.posistion" = "STEREO";
+          };
+        }
       ];
     };
   };
