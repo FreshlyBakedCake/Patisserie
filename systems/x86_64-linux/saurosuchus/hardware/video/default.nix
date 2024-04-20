@@ -1,0 +1,3 @@
+{ ... }: {
+    chimera.nvidia.enable = true;
+}
