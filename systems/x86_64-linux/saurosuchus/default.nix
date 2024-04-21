@@ -6,7 +6,6 @@
     ./hardware/boot
     ./hardware/cpu
     ./hardware/filesystems
-    ./hardware/video
     ./networking
     ./openrgb
     ./users

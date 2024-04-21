@@ -13,7 +13,6 @@
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.kernelModules = [
-    "nvidia"
     "v4l2loopback"
   ];
   boot.kernel.sysctl."kernel.sysrq" = 1;

@@ -50,8 +50,6 @@
   chimera = {
     nextcloud.enable = true;
 
-    nvidia.enable = true;
-
     theme.catppuccin = {
       enable = true;
       style = "Macchiato";
@@ -95,9 +93,9 @@
       hyprpaper.splash.enable = false;
       enable = true;
       monitors = [
-        "HDMI-A-1,1920x1080@75,1920x0,1"
-        "DVI-D-1,1920x1080@60,-1920x0,1"
-        "DP-1,1920x1080@60,0x0,1"
+        "DP-1,1920x1080@60,-1920x0,1"
+        "HDMI-A-1,1920x1080@75,0x0,1"
+        "DP-2,1920x1080@60,1920x0,1"
       ];
       window = {
         blur = 12;
@@ -143,7 +141,7 @@
       gitReview.enable = true;
       auth.clicksUsername = "pineafan";
       gpg.enable = true;
-      # stgit.enable = true;
+      stgit.enable = true;
     };
 
     games = {
