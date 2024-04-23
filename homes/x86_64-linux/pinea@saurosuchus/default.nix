@@ -85,8 +85,20 @@
           key = "2";
           function = "exec, ${pkgs.pulseaudio}/bin/pactl set-default-sink $(${pkgs.pamixer}/bin/pamixer --list-sinks | grep \"Razer Kraken V3\" | awk '{print $1}')";
         }
+        {
+          key = "F1";
+          function = "exec, ~/Pictures/Wallpapers/change.sh light";
+        }
+        {
+          key = "F2";
+          function = "exec, ~/Pictures/Wallpapers/change.sh dark";
+        }
       ];
     };
+
+    startupApplications = [
+      "cd ~/Code/keyboard && python main.py"
+    ];
 
     # input.mouse.scrolling.speedFactor = 0.45;
     hyprland = {
