@@ -25,7 +25,7 @@
         splash = ${if config.chimera.hyprland.hyprpaper.splash.enable then "true" else "false"}
         splash_offset = ${builtins.toString config.chimera.hyprland.hyprpaper.splash.offset}
 
-        ipc = off
+        ipc = on
       ''
     );
   };
