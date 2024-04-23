@@ -64,6 +64,11 @@ in
         default = [ ];
       };
     };
+    startupApplications = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      description = "List of commands to run on hyprland start";
+      default = [ ];
+    };
 
     nvidia.enable = lib.mkEnableOption "Enable NVIDIA support";
 
@@ -144,7 +149,7 @@ in
             "${pkgs.hyprpaper}/bin/hyprpaper"
             "hyprctl setcursor ${config.chimera.theme.cursor.name} ${builtins.toString config.chimera.theme.cursor.size}"
             "${pkgs.waybar}/bin/waybar"
-          ];
+          ] ++ config.chimera.startupApplications;
 
           monitor = config.chimera.hyprland.monitors ++ [ ",preferred,auto,1" ];
 
