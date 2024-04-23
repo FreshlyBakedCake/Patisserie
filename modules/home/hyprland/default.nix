@@ -34,6 +34,12 @@ in
 
     input.keybinds = {
       alternativeSearch.enable = lib.mkEnableOption "Use alt + space or SUPER + D to open search";
+      volumeStep = lib.mkOption {
+        type = lib.types.int;
+        description = "Amount to increase volume by when media keys are pressed in %";
+        example = "5";
+        default = 5;
+      };
       extraBinds = let
         binds = lib.types.submodule {
           options = {
@@ -217,7 +223,18 @@ in
                 )
                 10
             ))
-            ++ (builtins.map (item: "SUPER_${item.meta}, ${item.key}, ${item.function}") config.chimera.input.keybinds.extraBinds);
+            ++ (builtins.map (item: "SUPER${if isNull item.meta then "" else "_${item.meta}"}, ${item.key}, ${item.function}") config.chimera.input.keybinds.extraBinds)
+            ++ [
+              # Volume controls
+              ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i ${toString config.chimera.input.keybinds.volumeStep}"
+              ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d ${toString config.chimera.input.keybinds.volumeStep}"
+              ", XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer -t"
+              # Pause and play
+              ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+              # Next and previous
+              ", XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
+              ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+            ];
 
           bindm = [
             "${mod}, mouse:272, movewindow"
