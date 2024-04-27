@@ -30,7 +30,7 @@
 
       starship.enable = true;
 
-      rebuildFlakePath = "/home/coded/programming/Chimera/NixFiles";
+      rebuildFlakePath = "/home/coded/Programming/Chimera/NixFiles";
 
       defaultAliases.enable = true;
       usefulPackages.enable = true;
