@@ -84,7 +84,7 @@ SOFTWARE.
           layer = "top";
           position = "top";
           margin = "9 13 -10 18";
-          modules-left = [ "hyprland/workspaces" "keyboard-state" ];
+          modules-left = (if config.chimera.hyprland.enable then ["hyprland/workspaces"] else []);
           modules-center = ["clock"];
           modules-right = ["pulseaudio" "custom/mem" "cpu"]
             ++ (if config.chimera.waybar.modules.temperature.enable then [ "temperature" ] else [])
@@ -92,7 +92,7 @@ SOFTWARE.
             ++ (if config.chimera.waybar.modules.battery.enable then [ "battery" ] else [])
             ++ [ "tray" ];
 
-          "hyprland/workspaces" = {
+          "hyprland/workspaces" = lib.mkIf config.chimera.hyprland.enable {
             "disable-scroll" = true;
           };
           clock = {

@@ -41,6 +41,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+      inputs = {
+        niri-unstable.follows = "niri-flake/niri-stable";
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,11 +77,16 @@
       inherit inputs;
       src = ./.;
 
+      overlays = [
+        inputs.niri-flake.overlays.niri
+      ];
+
       homes.modules = [
         inputs.anyrun.homeManagerModules.default
         inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
         inputs.sops-nix.homeManagerModules.sops
+        inputs.niri-flake.homeModules.niri
       ];
 
       systems.modules.nixos = [

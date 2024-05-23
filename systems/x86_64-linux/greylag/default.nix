@@ -4,6 +4,7 @@
     ./boot/filesystems
     ./boot/initrd
     ./boot/logs
+    ./compositor
     ./console
     ./cpu
     ./credentials/gnome-keyring

@@ -2,6 +2,7 @@
 {
   imports = [
     ./console
+    ./compositor
     ./games
     ./hardware/boot
     ./hardware/cpu

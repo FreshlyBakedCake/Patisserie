@@ -1,10 +1,11 @@
 { ... }:
 {
   imports = [
+    ./boot
     ./backlight
+    ./compositor
     ./console
     ./games
-    ./hardware/boot
     ./hardware/cpu
     ./hardware/filesystems
     ./networking

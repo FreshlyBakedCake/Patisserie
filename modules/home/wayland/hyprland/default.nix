@@ -6,72 +6,8 @@
   lib,
   ...
 }:
-let
-  lock = "${pkgs.waylock}/bin/waylock";
-in
 {
   options.chimera = {
-    input.mouse.scrolling.natural = lib.mkEnableOption "Enable natural scrolling";
-    input.touchpad.scrolling.natural = lib.mkOption {
-      type = lib.types.bool;
-      description = "Enable natural scrolling";
-      default = config.chimera.input.mouse.scrolling.natural;
-    };
-    input.keyboard = {
-      layout = lib.mkOption {
-        type = lib.types.str;
-        description = "Keyboard layouts, comma seperated";
-        example = "us,de";
-        default = "us";
-      };
-      variant = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        description = "Keyboard layout variants, comma seperated";
-        example = "dvorak";
-        default = null;
-      };
-    };
-
-    input.keybinds = {
-      alternativeSearch.enable = lib.mkEnableOption "Use alt + space or SUPER + D to open search";
-      volumeStep = lib.mkOption {
-        type = lib.types.int;
-        description = "Amount to increase volume by when media keys are pressed in %";
-        example = "5";
-        default = 5;
-      };
-      extraBinds = let
-        binds = lib.types.submodule {
-          options = {
-            meta = lib.mkOption {
-              type = lib.types.nullOr lib.types.str;
-              description = "Additional modifier keys space seperated";
-              default = null;
-            };
-            key = lib.mkOption {
-              type = lib.types.str;
-              description = "Final key";
-            };
-            function = lib.mkOption {
-              type = lib.types.str;
-              description = "Hyprland bind function";
-            };
-          };
-        };
-      in lib.mkOption {
-        type = lib.types.listOf binds;
-        description = "Extra keybinds to add";
-        default = [ ];
-      };
-    };
-    startupApplications = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "List of commands to run on hyprland start";
-      default = [ ];
-    };
-
-    nvidia.enable = lib.mkEnableOption "Enable NVIDIA support";
-
     hyprland = {
       enable = lib.mkEnableOption "Use hyprland as your window manager";
       monitors = lib.mkOption {
@@ -91,11 +27,48 @@ in
           default = 8;
         };
       };
+      startupApplications = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        description = "List of commands to run on hyprland start";
+        default = [ ];
+      };
+      keybinds = {
+        volumeStep = lib.mkOption {
+          type = lib.types.int;
+          description = "Amount to increase volume by when media keys are pressed in %";
+          example = "5";
+          default = 5;
+        };
+        extraBinds = let
+          binds = lib.types.submodule {
+            options = {
+              meta = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                description = "Additional modifier keys space seperated";
+                default = null;
+              };
+              key = lib.mkOption {
+                type = lib.types.str;
+                description = "Final key";
+              };
+              function = lib.mkOption {
+                type = lib.types.str;
+                description = "Hyprland bind function";
+              };
+            };
+          };
+        in lib.mkOption {
+          type = lib.types.listOf binds;
+          description = "Extra keybinds to add";
+          default = [ ];
+        };
+      };
     };
   };
-
-  config = lib.mkIf config.chimera.hyprland.enable {
-    chimera.waybar.enable = lib.mkDefault true;
+  config = lib.mkIf config.chimera.hyprland.enable (let
+    lock = "${pkgs.waylock}/bin/waylock";
+  in {
+    chimera.wayland.enable = true;
 
     programs.bash.profileExtra = lib.mkIf config.chimera.shell.bash.enable (lib.mkBefore ''
       if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
@@ -149,7 +122,7 @@ in
             "${pkgs.hyprpaper}/bin/hyprpaper"
             "hyprctl setcursor ${config.chimera.theme.cursor.name} ${builtins.toString config.chimera.theme.cursor.size}"
             "${pkgs.waybar}/bin/waybar"
-          ] ++ config.chimera.startupApplications;
+          ] ++ config.chimera.hyprland.startupApplications;
 
           monitor = config.chimera.hyprland.monitors ++ [ ",preferred,auto,1" ];
 
@@ -228,11 +201,11 @@ in
                 )
                 10
             ))
-            ++ (builtins.map (item: "SUPER${if isNull item.meta then "" else "_${item.meta}"}, ${item.key}, ${item.function}") config.chimera.input.keybinds.extraBinds)
+            ++ (builtins.map (item: "SUPER_${item.meta}, ${item.key}, ${item.function}") config.chimera.hyprland.keybinds.extraBinds)
             ++ [
               # Volume controls
-              ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i ${toString config.chimera.input.keybinds.volumeStep}"
-              ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d ${toString config.chimera.input.keybinds.volumeStep}"
+              ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i ${toString config.chimera.hyprland.keybinds.volumeStep}"
+              ", XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d ${toString config.chimera.hyprland.keybinds.volumeStep}"
               ", XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer -t"
               # Pause and play
               ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
@@ -255,5 +228,5 @@ in
           ];
         };
     };
-  };
+  });
 }

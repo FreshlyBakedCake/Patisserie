@@ -37,5 +37,8 @@
     ];
   };
 
+   # TODO: can we determine these from what home-manager says our users are using?
+  security.pam.services.swaylock = { };
   security.pam.services.waylock = { };
+  security.pam.services.gtklock = { };
 }

@@ -29,15 +29,31 @@
     modules.laptop.enable = true;
   };
 
-  chimera.hyprland.enable = true;
-  chimera.hyprland.hyprpaper.splash.enable = true;
   chimera.touchpad.enable = true;
 
-  chimera.hyprland.monitors = [
-    "eDP-1,preferred,0x0,1"
-    "desc:Dell Inc. DELL P2715Q V7WP95AV914L,preferred,2256x-1956,1,transform,1"
-    "desc:AOC 2460G5 0x00023C3F,preferred,336x-1080,1"
-  ];
+  chimera.hyprland.enable = false;
+  chimera.niri.enable = true;
+  chimera.niri.monitors = {
+    "eDP-1" = {
+      position = {
+        x = 0;
+        y = 0;
+      };
+    };
+    "DP-5" = {
+      position = {
+        x = 2256;
+        y = -1956;
+      };
+      transform.rotation = 90;
+    };
+    "DP-7" = {
+      position = {
+        x = 336;
+        y = -1080;
+      };
+    };
+  };
 
   chimera.theme.wallpaper = ./wallpaper.png;
 
