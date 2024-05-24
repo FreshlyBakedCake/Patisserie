@@ -85,7 +85,7 @@
       clr = "clear";
       edit = builtins.toString config.home.sessionVariables.EDITOR;
       find = lib.mkIf config.chimera.shell.replacements.bfs.enable "${pkgs.bfs}/bin/bfs";
-      grep = lib.mkIf config.chimera.shell.replacements.ripgrep.enable "${config.programs.ripgrep.package}/bin/rg";
+      grep = lib.mkIf config.chimera.shell.replacements.ripgrep.enable "${config.programs.ripgrep.package}/bin/rg --include-zero";
       top = lib.mkIf config.chimera.shell.replacements.htop.enable "${config.programs.htop.package}/bin/htop";
       tree = lib.mkIf config.chimera.shell.replacements.erdtree.enable "${pkgs.erdtree}/bin/erdtree";
       du = lib.mkIf config.chimera.shell.replacements.dust.enable "${pkgs.dust}/bin/dust";
