@@ -98,6 +98,8 @@
       };
       extraExtensions = [
         config.nur.repos.rycee.firefox-addons.sidebery
+        config.nur.repos.rycee.firefox-addons.gitpod
+        config.nur.repos.rycee.firefox-addons.refined-github
       ];
     };
 
