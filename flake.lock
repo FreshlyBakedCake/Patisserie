@@ -65,6 +65,22 @@
         "type": "github"
       }
     },
+    "firefox-sidebery-gnome": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711290399,
+        "narHash": "sha256-e1xuHAHgeC8EU7cAIa3XfvzgI4Y7rzyTkAt9sBsgrfc=",
+        "owner": "rafaelmardojai",
+        "repo": "firefox-gnome-theme",
+        "rev": "33015314c12190230295cff61ced148e0f7ffe1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rafaelmardojai",
+        "repo": "firefox-gnome-theme",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -382,6 +398,7 @@
         "collabora-gtimelog": "collabora-gtimelog",
         "collabora-icon": "collabora-icon",
         "ewwsalmoomedits--eww-widgets": "ewwsalmoomedits--eww-widgets",
+        "firefox-sidebery-gnome": "firefox-sidebery-gnome",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-index-database": "nix-index-database",

@@ -21,6 +21,11 @@
       flake = false;
     };
 
+    firefox-sidebery-gnome = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

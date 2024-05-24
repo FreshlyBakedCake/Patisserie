@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 {
   options.chimera.minion.enable = lib.mkEnableOption "Enable Chimera options for minion";
 
@@ -101,6 +101,39 @@
         config.nur.repos.rycee.firefox-addons.gitpod
         config.nur.repos.rycee.firefox-addons.refined-github
       ];
+    };
+    programs.firefox.profiles.chimera.userChrome = ''
+      @import "${inputs.firefox-sidebery-gnome}/userChrome.css";
+
+      #TabsToolbar {
+        display: none;
+      }
+      #sidebar-header {
+        display: none;
+      }
+
+      /* Hide "Sign in to sync" */
+      #PanelUI-fxa-status {
+        display: none !important;
+      }
+      #appMenu-fxa-status2, #appMenu-fxa-separator {
+        display: none !important;
+      }
+    '';
+    programs.firefox.profiles.chimera.userContent = ''
+      @import "${inputs.firefox-sidebery-gnome}/userContent.css";
+
+      @-moz-document url("about:preferences") {
+        #category-sync { display:none!important; }
+        #category-more-from-mozilla { display:none!important; }
+      }
+    '';
+    programs.firefox.profiles.chimera.settings = {
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      "svg.context-properties.content.enabled" = true;
+      "browser.uidensity" = 0;
+      "browser.theme.dark-private-windows" = false;
+      "widget.gtk.rounded-bottom-corners.enabled" = true;
     };
 
     chimera.shell = {
