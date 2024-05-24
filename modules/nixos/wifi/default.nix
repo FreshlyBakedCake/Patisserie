@@ -5,13 +5,13 @@
     userControlled.enable = true;
 
     networks = {
-      newadelie24 = {
+      # Mini's house
+      adelie24 = {
         psk = "@newadelie24@";
         priority = 25;
       };
-      newadelie50.psk = "@newadelie50@";
-      adelie10 = {
-        psk = "@adelie10@";
+      adelie50 = {
+        psk = "@newadelie50@";
         priority = 50;
       };
 
@@ -25,7 +25,11 @@
         priority = 100;
       };
 
+      # Pinea's house
       "OurVM2.4".psk = "@OurVM2_4@";
+
+      # Moller institute
+      "Moller" = {};
     };
 
     environmentFile = config.sops.secrets."modules/nixos/wifi/wifi-passwords.sops.chimera.env.bin".path;
