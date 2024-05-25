@@ -19,6 +19,10 @@
   in {
     chimera.shell.rebuildFlakePath = "/home/skyler/Code/nix/configs/personal";
 
+    home.packages = [
+      pkgs.logseq
+    ];
+
     programs.git.includes =
       lib.mapAttrsToList
         git_email_to_include_option

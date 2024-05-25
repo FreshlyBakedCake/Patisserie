@@ -20,6 +20,9 @@
 }:
 {
   chimera.minion.enable = true;
+  home.packages = [
+    pkgs.wl-clipboard
+  ];
 
   chimera.waybar = {
     modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
