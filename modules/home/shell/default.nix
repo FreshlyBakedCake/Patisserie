@@ -90,6 +90,8 @@
       tree = lib.mkIf config.chimera.shell.replacements.erdtree.enable "${pkgs.erdtree}/bin/erdtree";
       du = lib.mkIf config.chimera.shell.replacements.dust.enable "${pkgs.dust}/bin/dust";
       cat = lib.mkIf config.chimera.shell.replacements.bat.enable "${pkgs.bat}/bin/bat";
+
+      lix = "${config.nix.package}/bin/nix"; # Lix, like nix
     };
 
     home.sessionVariables = lib.mkIf (config.chimera.shell.usefulPackages.enable && config.chimera.theme.style == "Light") {
