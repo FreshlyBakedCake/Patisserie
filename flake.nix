@@ -69,6 +69,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     templates.url = "git+https://git.clicks.codes/Templates";
+
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs =
@@ -78,6 +80,7 @@
       src = ./.;
 
       overlays = [
+        inputs.emacs-overlay.overlays.default
         inputs.niri-flake.overlays.niri
       ];
 

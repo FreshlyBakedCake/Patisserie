@@ -61,4 +61,6 @@
     minecraft.enable = true;
     itch.enable = true;
   };
+
+  programs.emacs.package = pkgs.emacs-pgtk;
 }
