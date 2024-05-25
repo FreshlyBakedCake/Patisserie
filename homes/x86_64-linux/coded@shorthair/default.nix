@@ -19,6 +19,9 @@
   ...
 }:
 {
+
+  home.packages = [ pkgs.foliate ];
+
   chimera = {
     waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
     waybar.modules.backlight.enable = true;
@@ -49,6 +52,9 @@
       auth.clicksUsername = "coded";
       gpg.enable = true;
     };
+
+    touchpad.enable = true;
+    input.touchpad.scrolling.natural = true;
 
     hyprland = {
       enable = true;
