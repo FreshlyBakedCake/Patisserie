@@ -31,7 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
     lix = {
       url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
       flake = false;
@@ -71,14 +70,12 @@
 
       homes.modules = [
         inputs.anyrun.homeManagerModules.default
-        inputs.hyprland.homeManagerModules.default
         inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
         inputs.sops-nix.homeManagerModules.sops
       ];
 
       systems.modules.nixos = [
-        inputs.hyprland.nixosModules.default
         inputs.nur.nixosModules.nur
         inputs.sops-nix.nixosModules.sops
         inputs.lix-module.nixosModules.default
