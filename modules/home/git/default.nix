@@ -30,7 +30,64 @@
     };
   };
 
-  config = {
+  config = let
+    urlReplacements = {
+      aur = {
+        http = "https://aur.archlinux.org/";
+        ssh = "ssh://aur@aur.archlinux.org/";
+      };
+      aux = {
+        http = "https://github.com/auxolotl/";
+        ssh = "ssh://git@github.com/auxolotl/";
+      };
+      cb = {
+        http = "https://codeberg.org/";
+        ssh = "ssh://git@codeberg.org/";
+      };
+      clicks = {
+        http = "https://git.clicks.codes/";
+        ssh = "ssh://${config.chimera.git.auth.clicksUsername}@ssh.clicks.codes:29418/";
+      };
+      fdo = {
+        http = "https://gitlab.freedesktop.org/";
+        ssh = "ssh://git@gitlab.freedesktop.org/";
+      };
+      gh = {
+        http = "https://github.com/";
+        ssh = "ssh://git@github.com/";
+      };
+      gl = {
+        http = "https://gitlab.com/";
+        ssh = "ssh://git@gitlab.com/";
+      };
+      kde = {
+        http = "https://invent.kde.org/";
+        ssh = "ssh://git@invent.kde.org/";
+      };
+      lix = {
+        http = "https://git.lix.systems/";
+        ssh = "ssh://git@git.lix.systems/";
+      };
+    };
+
+    replacementToHTTPInsteadOf = name: urls: {
+      name = urls.http;
+      value.insteadOf = "${name}:";
+    };
+    replacementToSSHInsteadOf = name: urls: {
+      name = urls.ssh;
+      value = {
+        insteadOf = "p:${name}:";
+        pushInsteadOf = [ urls.http "${name}:" ];
+      };
+    };
+
+    replacementURLList =
+      (lib.mapAttrsToList replacementToHTTPInsteadOf urlReplacements)
+      ++ (lib.mapAttrsToList replacementToSSHInsteadOf urlReplacements);
+
+    replacementURLs = builtins.listToAttrs replacementURLList;
+  in {
     chimera.gpg.enable = lib.mkIf config.chimera.git.gpg.enable true;
 
     home.packages =
@@ -71,123 +128,10 @@
         };
         pull.rebase = "merges";
         rebase.updateRefs = true;
-        url = {
-          "ssh://git@github.com/".pushInsteadOf = "https://github.com/";
-          "ssh://${config.chimera.git.auth.clicksUsername}@ssh.clicks.codes:29418/".pushInsteadOf = "https://git.clicks.codes/";
-        };
+        url = replacementURLs;
         merge.conflictstyle = "diff3";
         trailer.ifexists = "addIfDifferent";
       };
     };
   };
 }
-
-/* [alias]
-   	recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG"
-   	stash-working = "!f() { \
-   		git commit --quiet --no-verify -m \"temp for stash-working\" && \
-           	git stash push \"$@\" && \
-           	git reset --quiet --soft HEAD~1; \
-   	}; f"
-   	checkout-soft = "!f() { \
-   	   hash=$(git hash); \
-   	   git checkout \"$@\"; \
-   	   git reset --soft $hash; \
-   	}; f" # basically the opposite of a soft reset: change all the files but do not change the HEAD reference
-   	graph = "log --graph --oneline --decorate"
-   	fmt = "clang-format"
-   	hash = "rev-parse HEAD"
-   	fmt-last = "!f() { \
-   		hash=$(git hash); \
-   		git reset --soft HEAD^ && \
-   		git fmt; \
-   		git reset --soft $hash; \
-   	}; f"
-   	personal = "config user.email skyler3665@gmail.com"
-   	clicks = "config user.email minion@clicks.codes"
-   	collabora = "config user.email skyler.grey@collabora.com"
-   	# review = "!git-review -T": cannot be set here, set in .zshrc instead
-
-   [credential]
-   	helper = "store"
-
-   /*
-   [user]
-   	name = "Skyler Grey"
-   	signingkey = "7C868112B5390C5C"
-     useConfigOnly = true # avoid auto-setting user.email by hostname
-
-   [alias]
-   	recommit = "!git commit --verbose -eF $(git rev-parse --git-dir)/COMMIT_EDITMSG"
-   	stash-working = "!f() { \
-   		git commit --quiet --no-verify -m \"temp for stash-working\" && \
-           	git stash push \"$@\" && \
-           	git reset --quiet --soft HEAD~1; \
-   	}; f"
-   	checkout-soft = "!f() { \
-   	   hash=$(git hash); \
-   	   git checkout \"$@\"; \
-   	   git reset --soft $hash; \
-   	}; f" # basically the opposite of a soft reset: change all the files but do not change the HEAD reference
-   	graph = "log --graph --oneline --decorate"
-   	fmt = "clang-format"
-   	hash = "rev-parse HEAD"
-   	fmt-last = "!f() { \
-   		hash=$(git hash); \
-   		git reset --soft HEAD^ && \
-   		git fmt; \
-   		git reset --soft $hash; \
-   	}; f"
-   	personal = "config user.email skyler3665@gmail.com"
-   	clicks = "config user.email minion@clicks.codes"
-   	collabora = "config user.email skyler.grey@collabora.com"
-   	# review = "!git-review -T": cannot be set here, set in .zshrc instead
-
-   [init]
-   	defaultBranch = "main"
-
-   [color]
-   	ui = "auto"
-
-   [core]
-   	autocrlf = "input"
-   	splitIndex = true
-   	untrackedCache = true
-   	fsmonitor = true
-   	pager = "delta"
-
-   [pull]
-   	rebase = merges
-
-   [push]
-   	autoSetupRemote = true
-   	useForceIfIncludes = true
-   	gpgSign = if-asked
-
-   [credential]
-   	helper = "store"
-
-   [commit]
-   	gpgsign = true
-
-   [url "ssh://git@github.com/"]
-   	pushInsteadOf = "https://github.com/"
-
-   [interactive]
-   	diffFilter = "delta --color-only"
-
-   [delta]
-   	navigate = true
-   	light = false
-   	line-numbers = true
-   	features = "my-dark-theme zebra-dark"
-
-   [merge]
-   	conflictstyle = "diff3"
-
-   [diff]
-   	colorMoved = "default"
-
-   [trailer]
-   	ifexists = "addIfDifferent"
-*/
