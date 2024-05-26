@@ -5,65 +5,74 @@
   system,
   lib,
   ...
-}: {
+}:
+{
 
   options.chimera.niri = {
     enable = lib.mkEnableOption "Use Niri as your window manager";
+    xwayland.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable xwayland-satellite to run X apps in niri";
+    };
     monitors = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule {
-        options = {
-          enable = lib.mkOption {
-            type = lib.types.bool;
-            default = true;
-            description = "Enable this monitor";
-          };
-          mode = lib.mkOption {
-            type = lib.types.nullOr (lib.types.submodule {
-              options = {
-                width = lib.mkOption {
-                  type = lib.types.int;
-                };
-                height = lib.mkOption {
-                  type = lib.types.int;
-                };
-                refresh = lib.mkOption {
-                  type = lib.types.nullOr lib.types.float;
-                  default = null;
-                };
-              };
-            });
-            default = null;
-          };
-          position = lib.mkOption {
-            type = lib.types.nullOr (lib.types.submodule {
-              options = {
-                x = lib.mkOption {
-                  type = lib.types.int;
-                };
-                y = lib.mkOption {
-                  type = lib.types.int;
-                };
-              };
-            });
-            default = null;
-          };
-          scale = lib.mkOption {
-            type = lib.types.float;
-            default = 1.;
-          };
-          transform = {
-            flipped = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          options = {
+            enable = lib.mkOption {
               type = lib.types.bool;
-              default = false;
+              default = true;
+              description = "Enable this monitor";
             };
-            rotation = lib.mkOption {
-              type = lib.types.enum [ 0 90 180 270 ];
-              default = 0;
+            mode = lib.mkOption {
+              type = lib.types.nullOr (
+                lib.types.submodule {
+                  options = {
+                    width = lib.mkOption { type = lib.types.int; };
+                    height = lib.mkOption { type = lib.types.int; };
+                    refresh = lib.mkOption {
+                      type = lib.types.nullOr lib.types.float;
+                      default = null;
+                    };
+                  };
+                }
+              );
+              default = null;
             };
+            position = lib.mkOption {
+              type = lib.types.nullOr (
+                lib.types.submodule {
+                  options = {
+                    x = lib.mkOption { type = lib.types.int; };
+                    y = lib.mkOption { type = lib.types.int; };
+                  };
+                }
+              );
+              default = null;
+            };
+            scale = lib.mkOption {
+              type = lib.types.float;
+              default = 1.0;
+            };
+            transform = {
+              flipped = lib.mkOption {
+                type = lib.types.bool;
+                default = false;
+              };
+              rotation = lib.mkOption {
+                type = lib.types.enum [
+                  0
+                  90
+                  180
+                  270
+                ];
+                default = 0;
+              };
+            };
+            variable-refresh-rate = lib.mkEnableOption "Enable Variable Refresh Rate (AMD FreeSync / Nvidia G-Sync)";
           };
-          variable-refresh-rate = lib.mkEnableOption "Enable Variable Refresh Rate (AMD FreeSync / Nvidia G-Sync)";
-        };
-      });
+        }
+      );
       description = "Atribute set of monitors";
       default = { };
     };
@@ -84,46 +93,63 @@
   config = lib.mkIf config.chimera.niri.enable {
     chimera.wayland.enable = true;
 
-    programs.bash.profileExtra = lib.mkIf config.chimera.shell.bash.enable (lib.mkBefore ''
-      if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec ${pkgs.systemd}/bin/systemd-cat -t niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
-      fi
-    '');
+    programs.bash.profileExtra = lib.mkIf config.chimera.shell.bash.enable (
+      lib.mkBefore ''
+        if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+          exec ${pkgs.systemd}/bin/systemd-cat -t niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
+        fi
+      ''
+    );
 
-    programs.zsh.profileExtra = lib.mkIf config.chimera.shell.zsh.enable (lib.mkBefore ''
-      if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec ${pkgs.systemd}/bin/systemd-cat -t niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
-      fi
-    '');
+    programs.zsh.profileExtra = lib.mkIf config.chimera.shell.zsh.enable (
+      lib.mkBefore ''
+        if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+          exec ${pkgs.systemd}/bin/systemd-cat -t niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
+        fi
+      ''
+    );
 
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
+    programs.niri =
+      let
+        mod = "Super";
+        mod1 = "Alt";
+        terminal = "${pkgs.kitty}/bin/kitty";
+        menu = (
+          if config.chimera.runner.anyrun.enable then
+            "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun"
+          else
+            ""
+        );
 
-    programs.niri = let
-      mod = "Super";
-      mod1 = "Alt";
-      terminal = "${pkgs.kitty}/bin/kitty";
-      menu = (if config.chimera.runner.anyrun.enable then "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun" else "");
-
-      lock = ''${pkgs.swaylock}/bin/swaylock -i ${config.chimera.theme.wallpaper} -s fill'';
-    in {
-      enable = true;
-      package = pkgs.niri-stable;
-      settings = {
-        input.keyboard = {
-          track-layout = "window";
-          repeat-delay = 200;
-          repeat-rate = 25;
-          xkb = {
-            layout = config.chimera.input.keyboard.layout;
-            variant = config.chimera.input.keyboard.variant;
+        lock = ''${pkgs.swaylock}/bin/swaylock -i ${config.chimera.theme.wallpaper} -s fill'';
+      in
+      {
+        enable = true;
+        package = pkgs.niri-stable;
+        settings = {
+          environment = {
+            NIXOS_OZONE_WL = "1";
+            DISPLAY = lib.mkIf config.chimera.niri.xwayland.enable ":0";
           };
-        };
+
+          input.keyboard = {
+            track-layout = "window";
+            repeat-delay = 200;
+            repeat-rate = 25;
+            xkb = {
+              layout = config.chimera.input.keyboard.layout;
+              variant = config.chimera.input.keyboard.variant;
+            };
+          };
 
         input.mouse.natural-scroll = config.chimera.input.mouse.scrolling.natural;
         input.touchpad.natural-scroll = config.chimera.input.touchpad.scrolling.natural;
 
         input.warp-mouse-to-focus = true;
-        input.focus-follows-mouse = true;
+        input.focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "0%";
+        };
 
         input.power-key-handling.enable = false;
 
@@ -282,6 +308,9 @@
           }
           {
             command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.chimera.theme.wallpaper}" "-m" "fill" ];
+          }
+          {
+            command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ];
           }
         ] ++ config.chimera.niri.startupCommands;
       };

@@ -20,7 +20,6 @@
     chimera.shell.rebuildFlakePath = "/home/${config.home.username}/Code/chimera/config";
 
     home.packages = [
-      pkgs.logseq
     ];
 
     programs.git.includes =
