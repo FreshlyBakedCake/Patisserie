@@ -32,7 +32,7 @@
     };
 
     jujutsu = {
-      url = "github:martinvonz/jj?rev=e71a4eefe1d3be84fa80ab4f5d762cad2b8d948f";
+      url = "github:martinvonz/jj?rev=a43b0cde97e14b92dace47ead9f0e968310cab4e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
