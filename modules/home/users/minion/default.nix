@@ -4,7 +4,7 @@
 
   config = lib.mkIf config.chimera.minion.enable (let
     git_emails = {
-      personal = "skyler3665@gmail.com";
+      personal = "sky@a.starrysky.fyi";
       collabora = "skyler.grey@collabora.com";
       transplace = "minion@trans.gg";
       clicks = "minion@clicks.codes";
