@@ -17,7 +17,7 @@
 
     git_email_to_alias_value = email: "config user.email ${email}";
   in {
-    chimera.shell.rebuildFlakePath = "/home/skyler/Code/nix/configs/personal";
+    chimera.shell.rebuildFlakePath = "/home/${config.home.username}/Code/chimera/config";
 
     home.packages = [
       pkgs.logseq
