@@ -68,6 +68,10 @@
         http = "https://git.lix.systems/";
         ssh = "ssh://git@git.lix.systems/";
       };
+      srht = {
+        http = "https://git.sr.ht/";
+        ssh = "git@git.sr.ht:";
+      };
     };
 
     replacementToHTTPInsteadOf = name: urls: {
