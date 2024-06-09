@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./assistant
     ./boot
     ./backlight
     ./compositor
