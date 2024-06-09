@@ -1,18 +1,6 @@
 { ... }:
 {
   services = {
-    dnsmasq = {
-      enable = true;
-      settings = {
-        server = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-        local = "/local/";
-        domain = "local";
-        expand-hosts = true;
-      };
-    };
     avahi = {
       enable = true;
       nssmdns4 = true;
