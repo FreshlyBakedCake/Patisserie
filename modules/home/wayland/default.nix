@@ -24,10 +24,10 @@
         default = "us";
       };
       variant = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
+        type = lib.types.str;
         description = "Keyboard layout variants, comma seperated";
         example = "dvorak";
-        default = null;
+        default = "";
       };
     };
 

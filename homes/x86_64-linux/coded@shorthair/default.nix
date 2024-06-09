@@ -56,22 +56,64 @@
     touchpad.enable = true;
     input.touchpad.scrolling.natural = true;
 
-    hyprland = {
+    niri = {
       enable = true;
 
-      monitors = [
-        "DP-1,1920x1080@165,0x0,1"
-        "DP-2,1920x1080@165,1920x0,1"
-        "HDMI-A-1,3840x2160@60,0x-2160,1"
-      ];
-    };
-
-    hyprland.hyprpaper = {
-      splash = {
-        enable = true;
-        offset = -0.6;
+      monitors = {
+        "DP-1" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 165.;
+          };
+          position = {
+            x = 0;
+            y = 0;
+          };
+          variable-refresh-rate = true;
+        };
+        "DP-2" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 165.;
+          };
+          position = {
+            x = 1920;
+            y = 0;
+          };
+          variable-refresh-rate = true;
+        };
+        "HDMI-A-1" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 60.;
+          };
+          position = {
+            x = 0;
+            y = -2160;
+          };
+        };
       };
     };
+
+    # hyprland = {
+    #   enable = true;
+
+    #   monitors = [
+    #     "DP-1,1920x1080@165,0x0,1"
+    #     "DP-2,1920x1080@165,1920x0,1"
+    #     "HDMI-A-1,3840x2160@60,0x-2160,1"
+    #   ];
+    # };
+
+    # hyprland.hyprpaper = {
+    #   splash = {
+    #     enable = true;
+    #     offset = -0.6;
+    #   };
+    # };
 
     browser.firefox = {
       enable = true;
