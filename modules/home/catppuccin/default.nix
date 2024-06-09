@@ -1426,7 +1426,7 @@
         cursor = {
           package =
             pkgs.catppuccin-cursors."${lib.strings.toLower config.chimera.theme.catppuccin.style}${config.chimera.theme.catppuccin.color}";
-          name = "Catppuccin-${config.chimera.theme.catppuccin.style}-${config.chimera.theme.catppuccin.color}-Cursors";
+          name = "catppuccin-${lib.strings.toLower config.chimera.theme.catppuccin.style}-${lib.strings.toLower config.chimera.theme.catppuccin.color}-cursors";
           size = 32;
         };
       };
