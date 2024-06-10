@@ -47,5 +47,9 @@ in
         );
       authKeyFile = lib.mkIf (cfg.authKeyFile != null) cfg.authKeyFile;
     };
+
+    systemd.services.tailscaled.environment.TS_NO_LOGS_NO_SUPPORT = lib.mkIf (
+      cfg.server != "https://controlplane.tailscale.com"
+    ) "true";
   };
 }
