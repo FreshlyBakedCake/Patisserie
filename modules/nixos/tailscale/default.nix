@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.chimera.networking.tailscale;
-in {
+in
+{
   options.chimera.networking.tailscale = {
     enable = lib.mkOption {
       description = "Enable tailscale for this system";
@@ -28,15 +30,21 @@ in {
   config = lib.mkIf cfg.enable {
     services.tailscale = {
       enable = true;
-      useRoutingFeatures = if cfg.runExitNode.enable then "server" else "client";
-      extraUpFlags = [
-        "--login-server=${cfg.server}"
-        "--accept-routes"
-        "--ssh"
-      ] ++ (if cfg.runExitNode.enable then [
-        "--advertise-exit-node"
-        "--exit-node-allow-lan-access"
-      ] else []);
+      useRoutingFeatures = if cfg.runExitNode.enable then "both" else "client";
+      extraUpFlags =
+        [
+          "--login-server=${cfg.server}"
+          "--accept-routes"
+        ]
+        ++ (
+          if cfg.runExitNode.enable then
+            [
+              "--advertise-exit-node"
+              "--exit-node-allow-lan-access"
+            ]
+          else
+            [ ]
+        );
       authKeyFile = lib.mkIf (cfg.authKeyFile != null) cfg.authKeyFile;
     };
   };
