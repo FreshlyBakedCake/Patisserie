@@ -21,7 +21,7 @@
 
     services.gpg-agent = {
       enable = true;
-      pinentryPackage = pkgs.pinentry-gtk2;
+      pinentryPackage = pkgs.pinentry-gnome3;
       enableZshIntegration = config.chimera.shell.zsh.enable;
       enableBashIntegration = config.chimera.shell.bash.enable;
     };
