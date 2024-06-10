@@ -40,7 +40,6 @@ in
           if cfg.runExitNode.enable then
             [
               "--advertise-exit-node"
-              "--exit-node-allow-lan-access"
             ]
           else
             [ ]
