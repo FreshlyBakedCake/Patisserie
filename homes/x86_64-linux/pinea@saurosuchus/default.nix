@@ -76,7 +76,22 @@
 
     input.keybinds = {
       alternativeSearch.enable = true;
-      extraBinds = [
+    };
+
+    # input.mouse.scrolling.speedFactor = 0.45;
+    hyprland = {
+      hyprpaper.splash.enable = false;
+      enable = true;
+      monitors = [
+        "DP-1,1920x1080@60,-1920x0,1"
+        "HDMI-A-1,1920x1080@75,0x0,1"
+        "DP-2,1920x1080@60,1920x0,1"
+      ];
+      window = {
+        blur = 12;
+        rounding = 16;
+      };
+      keybinds.extraBinds = [
         {
           meta = "CTRL";
           key = "1";
@@ -96,25 +111,9 @@
           function = "exec, ~/Pictures/Wallpapers/change.sh dark";
         }
       ];
-    };
-
-    startupApplications = [
-      "cd ~/Code/keyboard && python main.py"
-    ];
-
-    # input.mouse.scrolling.speedFactor = 0.45;
-    hyprland = {
-      hyprpaper.splash.enable = false;
-      enable = true;
-      monitors = [
-        "DP-1,1920x1080@60,-1920x0,1"
-        "HDMI-A-1,1920x1080@75,0x0,1"
-        "DP-2,1920x1080@60,1920x0,1"
+      startupApplications = [
+        "cd ~/Code/keyboard && python main.py"
       ];
-      window = {
-        blur = 12;
-        rounding = 16;
-      };
     };
 
     shell = {
