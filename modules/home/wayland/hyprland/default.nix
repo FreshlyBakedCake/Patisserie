@@ -201,7 +201,7 @@
                 )
                 10
             ))
-            ++ (builtins.map (item: "SUPER_${item.meta}, ${item.key}, ${item.function}") config.chimera.hyprland.keybinds.extraBinds)
+            ++ (builtins.map (item: (if item.meta != null then "SUPER_${item.meta}" else "SUPER") + ", ${item.key}, ${item.function}") config.chimera.hyprland.keybinds.extraBinds)
             ++ [
               # Volume controls
               ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i ${toString config.chimera.hyprland.keybinds.volumeStep}"
