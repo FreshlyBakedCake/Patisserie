@@ -31,6 +31,7 @@
 
   programs.git.extraConfig.user = {
     name = "PineaFan";
+    email = "ash@pinea.dev";
     signingkey = "8F50789F12AC6E6206EA870CE5E1C2D43B0E4AB3";
   };
 
@@ -41,6 +42,7 @@
     pkgs.obs-studio
     pkgs.python312
     pkgs.playerctl
+    pkgs.nodePackages.pnpm
   ];
 
   programs.firefox.profiles.chimera.settings = {
