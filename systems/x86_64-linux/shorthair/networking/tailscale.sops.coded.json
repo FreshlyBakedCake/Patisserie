@@ -1,0 +1,26 @@
+{
+	"authkey": "ENC[AES256_GCM,data:pdISR92BiPU2SaalJnM+QIcnNhj6vw9ZHYGrMKTV5ccpDtB1rjfjQZTgc81oTAnJ,iv:awSuqbtDoGrASpCbPLW7OiKZLaOyzxq5k9qrVQ+6uSY=,tag:Ly49U1Ks+GNhzCoB23HI6Q==,type:str]",
+	"sops": {
+		"kms": null,
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": null,
+		"lastmodified": "2024-06-14T20:51:21Z",
+		"mac": "ENC[AES256_GCM,data:KUwMrBj3rJ2fNCpnxlFyblCCp/YIP0k3Sdm8qPeMQV8UVFP6UtH4sg9K0SKgixYxI3oMKUTK+zxqkE3r9CMErXwAIFPsQkNeWsKhK7oKYfnCSBwoNg1fcq8KtcowaY+eWNbuUGWUL/NLqgEx7/oC/rz47fRXQLmqfBab287aXr8=,iv:DuC32E0LW/lG1lStEKJudgqd6O0HHGB7UWv5kpEbiT8=,tag:D4GGipVdr9USuWirPE6Mjg==,type:str]",
+		"pgp": [
+			{
+				"created_at": "2024-06-14T20:51:04Z",
+				"enc": "-----BEGIN PGP MESSAGE-----\n\nhF4D6MHlIv4I/7ASAQdAL7Nn329TRVQ2IJTAMPJWoZblOUIbf+hi0V6GLfb/z0ow\no3559SY4INHcO9RTslj0r7vt8Qy+qFAwxovTTov4+nyFM1ybyOUb2CU5cbh8BB6+\n0l4BEySBdUwiIYOmAePGU34AEirxfQGEkNhIFFXY++yqci4q/aVChcS8HnTLdepm\n5ZJZL19MR2WGDp/ra1NU38NPZP2LA1/137Q3+lF9l63xCp1+d50877py9OCFDTmj\n=PKFG\n-----END PGP MESSAGE-----",
+				"fp": "BC82DF237610AE9113EB075900E944BFBE99ADB5"
+			},
+			{
+				"created_at": "2024-06-14T20:51:04Z",
+				"enc": "-----BEGIN PGP MESSAGE-----\n\nhQIMA+Wu2Xdd0hVDAQ//UUzQJSQacE8a/eig55sTrTkEx9WgH9bZCluHRjeatLoN\nYLIVyffYY4ncm1uJ3GAXBUYBFunFNX0ksMvLFd2GbAytkbhYX7bdd1nXQFZiWz5p\n5TSwP9zI/DgKWPIrPfRgxBtU2lsLxJQjIl4PsGioo5WG2lUL3vNAJNS0iwxKislu\nt1euBqJQ6JpjXrz914N3J66PV1wPQ+83LIYgdmJ0mJJ1U8mw97XvfMEWCI6Ytqcp\n/BcQIn7fky1TjJKSF4zK7vtl4ed72pqo9TL3o/jVmjrcRt2MRisi7g7aJdh1PmPk\neo8abSyJE2KK/vuxWxMWXq99wumPnG3kdy024fdwDsJpO4Tr6u4fCptn3U5id+HW\n2G4iu0fZ/rLtJuVgpiuqzZ2S+oL9+GLyALOENT/+z9RXrrAVvVOAgtgnUs04rMmr\nR9lFdytkFf121VDQDVRvHRuDDCroV5ov4ycRL79vpyAqhhK/4EqOP5KnQfKmarVz\nWnpv+sA3kU7DdOmEUnCOtUsejdNFUHMPkq/xkKW3Igsg/wiDcsbxoDJPMx7qohHY\nL7SXQuj4upkRAapIF04JOHbopcaml9i06Z81n/k5cUAls5/95Xv6kuhQijfdKnYJ\njIV+xr2GBg60bqlq7kbWbbH2CiXiFDnArVlsjg7xafkL1IpfXxVydgY9phVSP0/S\nWAG8RADi8wR7exfXTPB6WCa+LEJgt31/QlABr4pwrdxLYfDQGmWVCWbf0aP06UN/\nShOUnnh7s2ivWq7vYrnT3RTN0PGQmaDu8ZSNYuNCQn5o9F3c27Bp+1A=\n=VomR\n-----END PGP MESSAGE-----",
+				"fp": "B5237D6B63AB2E13FDA07170E5AED9775DD21543"
+			}
+		],
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.8.1"
+	}
+}
