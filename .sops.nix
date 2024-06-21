@@ -8,9 +8,10 @@ let
     };
     hosts = {
       # nix run github:Mic92/ssh-to-pgp -- -i /etc/ssh/ssh_host_rsa_key
-      shorthair = "B5237D6B63AB2E13FDA07170E5AED9775DD21543";
-      greylag = "047bf8897df877fe86133e98522c6d280d545c00";
+      shorthair =   "B5237D6B63AB2E13FDA07170E5AED9775DD21543";
+      greylag =     "047bf8897df877fe86133e98522c6d280d545c00";
       saurosuchus = "12f47c96d9066c52897cdf9ddf581f86799fb07c";
+      ocicat =      "58BF6324CE6D45E156490D0F4579865C9D4CE67E";
     };
   };
 in
@@ -26,6 +27,7 @@ in
         keys.hosts.shorthair
         keys.hosts.greylag
         keys.hosts.saurosuchus
+        keys.hosts.ocicat
       ];
     }
     {
@@ -33,6 +35,7 @@ in
       pgp = nixpkgs.lib.concatStringsSep "," [
         keys.users.coded
         keys.hosts.shorthair
+        keys.hosts.ocicat
       ];
     }
     {
