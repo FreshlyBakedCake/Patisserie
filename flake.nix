@@ -106,7 +106,7 @@
         namespace = "chimera";
 
         meta.name = "chimera";
-        meta.title = "Coded and Minion's Nix Configurations";
+        meta.title = "A Well Opinionated Nix Configurations";
       };
 
       outputs-builder = channels: {
