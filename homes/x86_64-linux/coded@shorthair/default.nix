@@ -19,174 +19,67 @@
   ...
 }:
 {
+  chimera.users.coded.enable = true;
 
-  home.packages = [ pkgs.foliate ];
+  chimera.waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
 
-  chimera = {
-    waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
-    waybar.modules.backlight.enable = true;
+  chimera.niri = {
+    enable = true;
 
-    nextcloud.enable = true;
-
-    shell = {
-      zsh.enable = true;
-
-      starship.enable = true;
-
-      rebuildFlakePath = "/home/coded/Programming/Chimera/Nix/NixFiles";
-
-      defaultAliases.enable = true;
-      usefulPackages.enable = true;
-
-      replacements = {
-        defaultEnable = true;
-        bat.enable = false;
-        atuin.enableUpArrow = true;
+    monitors = {
+      "DP-1" = {
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 165.;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
       };
-    };
-
-    git = {
-      delta.enable = true;
-      stgit.enable = true;
-      gitReview.enable = true;
-      auth.clicksUsername = "coded";
-      gpg.enable = true;
-    };
-
-    touchpad.enable = true;
-    input.touchpad.scrolling.natural = true;
-
-    niri = {
-      enable = true;
-
-      monitors = {
-        "DP-1" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 165.;
-          };
-          position = {
-            x = 0;
-            y = 0;
-          };
-          variable-refresh-rate = true;
+      "DP-2" = {
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 165.;
         };
-        "DP-2" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 165.;
-          };
-          position = {
-            x = 1920;
-            y = 0;
-          };
-          variable-refresh-rate = true;
+        position = {
+          x = 1920;
+          y = 0;
         };
-        "HDMI-A-1" = {
-          mode = {
-            width = 3840;
-            height = 2160;
-            refresh = 60.;
-          };
-          position = {
-            x = 0;
-            y = -2160;
-          };
+      };
+      "HDMI-A-1" = {
+        mode = {
+          width = 3840;
+          height = 2160;
+          refresh = 60.;
+        };
+        position = {
+          x = 0;
+          y = -2160;
         };
       };
     };
-
-    # hyprland = {
-    #   enable = true;
-
-    #   monitors = [
-    #     "DP-1,1920x1080@165,0x0,1"
-    #     "DP-2,1920x1080@165,1920x0,1"
-    #     "HDMI-A-1,3840x2160@60,0x-2160,1"
-    #   ];
-    # };
-
-    # hyprland.hyprpaper = {
-    #   splash = {
-    #     enable = true;
-    #     offset = -0.6;
-    #   };
-    # };
-
-    browser.firefox = {
-      enable = true;
-      extensions = {
-        bitwarden.enable = true;
-        youtube = {
-          sponsorBlock.enable = true;
-          returnDislike.enable = true;
-          deArrow.enable = true;
-        };
-        reactDevTools.enable = true;
-        adnauseam.enable = true;
-      };
-      search = {
-        enable = true;
-        extensions.enable = true;
-        bookmarks.enable = true;
-        engines = [
-          "Kagi"
-          "MDN"
-          "NixOS Options"
-          "NixOS Packages"
-          "Home-Manager Options"
-          "Noogle"
-          "GitHub"
-          "Arch Wiki"
-          "Gentoo Wiki"
-        ];
-      };
-      extraExtensions = [ config.nur.repos.rycee.firefox-addons.simple-tab-groups ];
-    };
-
-    games.minecraft.enable = true;
-
-    editor.neovim.enable = true;
-    editor.editorconfig.enable = true;
-
-    theme.font.nerdFontGlyphs.enable = true;
-    theme.wallpaper = ./wallpaper.png;
-    theme.catppuccin = {
-      enable = true;
-      style = "Macchiato";
-      color = "Blue";
-    };
-
-    yubikey.enable = true;
   };
 
+  chimera.theme.wallpaper = ./wallpaper.png;
 
-  programs.git.includes = [
-  {
-    condition = "gitdir:~/programming/Chimera";
+  # SSH Config
+  programs.ssh = {
+    enable = true;
 
-    contents = {
-      user.name = "Samuel Shuert";
-      user.email = "coded@clicks.codes";
+    includes = [ "~/.ssh/config.d/*" ];
+
+    matchBlocks = {
+      "ssh.clicks.codes" = {
+        port = 29418;
+        identityFile = "~/.ssh/id_clicks_git";
+      };
+      "github.com" = {
+        user = "git";
+        identityFile = [ "~/.ssh/github_sk_nano" ];
+      };
     };
-  }
-  {
-    condition = "gitdir:~/programming/Clicks";
-
-    contents = {
-      user.name = "Samuel Shuert";
-      user.email = "coded@clicks.codes";
-    };
-  }
-  {
-    condition = "gitdir:~/programming/Personal";
-
-    contents = {
-      user.name = "Samuel Shuert";
-      user.email = "coded@coded.codes";
-    };
-  }
-  ];
+  };
 }
