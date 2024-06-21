@@ -84,7 +84,7 @@
 
     home.packages = [ pkgs.hyprpicker ];
 
-    services.fusuma.settings.swipe = lib.mkIf config.chimera.touchpad.enable (
+    services.fusuma.settings.swipe = lib.mkIf config.chimera.input.touchpad.enable (
       let
         hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
         jq = "${pkgs.jq}/bin/jq";

@@ -23,7 +23,7 @@
     pkgs.home-manager
     pkgs.chimera.gtimelog-collabora
   ];
-  chimera.minion.enable = true;
+  chimera.users.minion.enable = true;
 
   home.shellAliases.home-manager = "${pkgs.home-manager}/bin/home-manager --flake ${config.chimera.shell.rebuildFlakePath}#skyler@canvasback";
 

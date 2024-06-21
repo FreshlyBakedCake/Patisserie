@@ -19,7 +19,7 @@
   ...
 }:
 {
-  chimera.minion.enable = true;
+  chimera.users.minion.enable = true;
   home.packages = [
     pkgs.wl-clipboard
   ];

@@ -1,8 +1,8 @@
 { inputs, config, lib, pkgs, ... }:
 {
-  options.chimera.minion.enable = lib.mkEnableOption "Enable Chimera options for minion";
+  options.chimera.users.minion.enable = lib.mkEnableOption "Enable Chimera options for minion";
 
-  config = lib.mkIf config.chimera.minion.enable (let
+  config = lib.mkIf config.chimera.users.minion.enable (let
     git_emails = {
       personal = "sky@a.starrysky.fyi";
       collabora = "skyler.grey@collabora.com";
