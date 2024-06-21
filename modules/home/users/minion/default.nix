@@ -145,6 +145,7 @@
       defaultAliases.enable = true;
       replacements.defaultEnable = true;
       replacements.bat.enable = false;
+      replacements.glow.enable = false;
       usefulPackages.enable = true;
     };
 

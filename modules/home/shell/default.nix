@@ -74,11 +74,30 @@
         default = config.chimera.shell.replacements.defaultEnable;
         example = true;
       };
+      glow.enable = lib.mkOption {
+        description = "Use glow for cat-ing .md files";
+        type = lib.types.bool;
+        default = config.chimera.shell.replacements.defaultEnable;
+        example = true;
+      };
     };
   };
 
   config = {
-    home.shellAliases = lib.mkIf config.chimera.shell.defaultAliases.enable {
+    home.shellAliases = lib.mkIf config.chimera.shell.defaultAliases.enable (
+      let
+        any_cat_replacement = config.chimera.shell.replacements.glow.enable || config.chimera.shell.replacements.bat.enable;
+        cat_or_bat = if config.chimera.shell.replacements.bat.enable then "${pkgs.bat}/bin/bat" else "${pkgs.coreutils}/bin/cat";
+        glow_or_cat_or_bat = if config.chimera.shell.replacements.glow.enable
+          then builtins.toString (pkgs.writeScript "glow_or_cat_or_bat" ''
+              if [[ "$1" == *.md ]]; then
+                ${pkgs.glow}/bin/glow "$@"
+              else
+                ${cat_or_bat} "$@"
+              fi
+            '')
+          else cat_or_bat;
+      in {
       rebuild =
         lib.mkIf (config.chimera.shell.rebuildFlakePath != null)
           "sudo nixos-rebuild switch --flake ${config.chimera.shell.rebuildFlakePath}";
@@ -89,10 +108,9 @@
       top = lib.mkIf config.chimera.shell.replacements.htop.enable "${config.programs.htop.package}/bin/htop";
       tree = lib.mkIf config.chimera.shell.replacements.erdtree.enable "${pkgs.erdtree}/bin/erdtree";
       du = lib.mkIf config.chimera.shell.replacements.dust.enable "${pkgs.dust}/bin/dust";
-      cat = lib.mkIf config.chimera.shell.replacements.bat.enable "${pkgs.bat}/bin/bat";
-
+      cat = lib.mkIf any_cat_replacement glow_or_cat_or_bat;
       lix = "${config.nix.package}/bin/nix"; # Lix, like nix
-    };
+    });
 
     home.sessionVariables = lib.mkIf (config.chimera.shell.usefulPackages.enable && config.chimera.theme.style == "Light") {
       BAT_THEME = "OneHalfLight";
@@ -147,6 +165,7 @@
             pkgs.tokei
             pkgs.hyperfine
             pkgs.tmux
+            pkgs.glow
           ]
         else
           [ ]
