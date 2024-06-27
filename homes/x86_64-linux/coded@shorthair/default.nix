@@ -80,6 +80,9 @@
         user = "git";
         identityFile = [ "~/.ssh/github_sk_nano" ];
       };
+      "greylag.minion.clicks.domains" = {
+        identityFile = [ "~/.ssh/5cNanoResident" ];
+      };
     };
   };
 }
