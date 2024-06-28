@@ -24,6 +24,7 @@
     ];
     openssh.authorizedKeys.keys = [
       "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAILrwKN4dJQ0BiLmjsA/66QHhu06+JyokWtHkLcjhWU79AAAABHNzaDo= coded-yk5c-resident"
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOMSUqXuH1bQZJc9rLV0H7/UY0c2BlkzAKWkwrXFWbQ7AAAABHNzaDo= coded@5CNano"
     ];
   };
 
