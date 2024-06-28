@@ -44,5 +44,24 @@
     };
   };
 
+  programs.ssh = {
+    enable = true;
+
+    includes = [ "~/.ssh/config.d/*" ];
+
+    matchBlocks = {
+      "ssh.clicks.codes" = {
+        port = 29418;
+        identityFile = "~/.ssh/ClicksGerrit";
+      };
+      "greylag.minion" = {
+        identityFile = [ "~/.ssh/OnTheGo5cResident" ];
+      };
+      "shorthair" = {
+        identityFile = [ "~/.ssh/OnTheGo5cResident" ];
+      };
+    };
+  };
+
   chimera.theme.wallpaper = ./wallpaper.png;
 }
