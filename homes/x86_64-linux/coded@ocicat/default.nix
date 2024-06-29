@@ -50,14 +50,18 @@
     includes = [ "~/.ssh/config.d/*" ];
 
     matchBlocks = {
-      "ssh.clicks.codes" = {
-        port = 29418;
-        identityFile = "~/.ssh/ClicksGerrit";
+      "github.com" = {
+        user = "git";
+        identityFile = [ "~/.ssh/OnTheGo5cResident" ];
       };
       "greylag.minion" = {
         identityFile = [ "~/.ssh/OnTheGo5cResident" ];
       };
       "shorthair" = {
+        identityFile = [ "~/.ssh/OnTheGo5cResident" ];
+      };
+      "git.auxolotl.org" = {
+        user = "forgejo";
         identityFile = [ "~/.ssh/OnTheGo5cResident" ];
       };
     };

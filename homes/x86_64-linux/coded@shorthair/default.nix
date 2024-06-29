@@ -72,16 +72,19 @@
     includes = [ "~/.ssh/config.d/*" ];
 
     matchBlocks = {
-      "ssh.clicks.codes" = {
-        port = 29418;
-        identityFile = "~/.ssh/id_clicks_git";
-      };
       "github.com" = {
         user = "git";
-        identityFile = [ "~/.ssh/github_sk_nano" ];
+        identityFile = [ "~/.ssh/ShorthairNanoResident" "~/.ssh/OnTheGo5cResident" ];
       };
-      "greylag.minion.clicks.domains" = {
-        identityFile = [ "~/.ssh/5cNanoResident" ];
+      "greylag.minion" = {
+        identityFile = [ "~/.ssh/ShorthairNanoResident" "~/.ssh/OnTheGo5cResident" ];
+      };
+      "ocicat" = {
+        identityFile = [ "~/.ssh/ShorthairNanoResident" "~/.ssh/OnTheGo5cResident" ];
+      };
+      "git.auxolotl.org" = {
+        user = "forgejo";
+        identityFile = [ "~/.ssh/ShorthairNanoResident" "~/.ssh/OnTheGo5cResident" ];
       };
     };
   };
