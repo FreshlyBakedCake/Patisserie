@@ -142,6 +142,7 @@
     };
 
     chimera.shell = {
+      tsStatus.enable = true;
       bash.enable = true;
       defaultAliases.enable = true;
       replacements.defaultEnable = true;

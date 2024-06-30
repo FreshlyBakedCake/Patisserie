@@ -13,6 +13,9 @@
     };
     defaultAliases.enable = lib.mkEnableOption "Use sensible custom aliases";
     usefulPackages.enable = lib.mkEnableOption "Enable useful shell packages (ripgrep, wget, etc)";
+
+    tsStatus.enable = lib.mkEnableOption "Enable ts-status alias for better viewing of tailscale status.";
+
     replacements = {
       defaultEnable = lib.mkEnableOption "Enable replacing everything by default";
 
@@ -110,6 +113,8 @@
       du = lib.mkIf config.chimera.shell.replacements.dust.enable "${pkgs.dust}/bin/dust";
       cat = lib.mkIf any_cat_replacement glow_or_cat_or_bat;
       lix = "${config.nix.package}/bin/nix"; # Lix, like nix
+
+      ts-status = lib.mkIf config.chimera.shell.tsStatus.enable ''${pkgs.tailscale}/bin/tailscale status | column -t -N "ADDRESS,DOMAIN,USER,OS,STATUS,CONNECTION" -l 6 -o "  |  "'';
     });
 
     home.sessionVariables = lib.mkIf (config.chimera.shell.usefulPackages.enable && config.chimera.theme.style == "Light") {
