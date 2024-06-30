@@ -78,6 +78,8 @@ in {
       ];
     };
 
+    chimera.browser.chromium.enable = true;
+
     chimera.games.minecraft.enable = true;
 
     chimera.editor = {
