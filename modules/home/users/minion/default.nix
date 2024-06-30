@@ -48,6 +48,7 @@
     chimera.git = {
       delta.enable = true;
       stgit.enable = true;
+      jj.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "minion";
       gpg.enable = true;
