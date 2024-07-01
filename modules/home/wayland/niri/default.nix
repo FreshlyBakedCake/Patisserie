@@ -67,6 +67,18 @@
       description = "Atribute set of monitors";
       default = { };
     };
+    startupCommands = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          command = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            description = "Command to run";
+          };
+        };
+      });
+      description = "List of commands to run at startup";
+      default = [ ];
+    };
   };
 
   config = lib.mkIf config.chimera.niri.enable {
@@ -271,7 +283,7 @@
           {
             command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.chimera.theme.wallpaper}" "-m" "fill" ];
           }
-        ];
+        ] ++ config.chimera.niri.startupCommands;
       };
     };
   };

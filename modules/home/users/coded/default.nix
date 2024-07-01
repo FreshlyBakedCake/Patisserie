@@ -98,6 +98,12 @@ in {
 
     chimera.yubikey.enable = true;
 
+    chimera.niri.startupCommands = [
+      {
+        command = [ "nextcloud" ];
+      }
+    ];
+
     # Programming Folder Creation
     home.file = {
       "Programming/README.md" = {
