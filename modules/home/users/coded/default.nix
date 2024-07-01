@@ -33,6 +33,7 @@ in {
     chimera.git = {
       delta.enable = true;
       stgit.enable = true;
+      jj.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "coded";
       gpg.enable = true;
@@ -191,6 +192,11 @@ in {
         };
       }
     ];
+
+    programs.git.extraConfig.user = {
+      name = "Samuel Shuert";
+      signingkey = "00E944BFBE99ADB5";
+    };
 
     # Additional Kitty Config
     programs.kitty.extraConfig = ''
