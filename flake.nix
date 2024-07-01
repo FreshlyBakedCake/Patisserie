@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    jujutsu = {
+      url = "github:martinvonz/jj?rev=e71a4eefe1d3be84fa80ab4f5d762cad2b8d948f";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lix = {
       url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
       flake = false;

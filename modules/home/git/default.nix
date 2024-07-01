@@ -1,4 +1,6 @@
 {
+  inputs,
+  system,
   config,
   lib,
   pkgs,
@@ -98,7 +100,7 @@
     home.packages =
       (if config.chimera.git.gitReview.enable then [ pkgs.git-review ] else [ ])
       ++ (if config.chimera.git.stgit.enable then [ pkgs.stgit ] else [ ])
-      ++ (if config.chimera.git.jj.enable then [ pkgs.jujutsu ] else [ ]);
+      ++ (if config.chimera.git.jj.enable then [ inputs.jujutsu.packages.${system}.jujutsu ] else [ ]);
 
     programs.zsh.shellAliases =
       if config.chimera.git.gitReview.enable then { "gr!" = "git review"; } else { };
