@@ -88,6 +88,7 @@ in {
         defaultEditor = false;
       };
     };
+    chimera.code.zed.enable = true;
 
     chimera.theme.font.nerdFontGlyphs.enable = true;
 
