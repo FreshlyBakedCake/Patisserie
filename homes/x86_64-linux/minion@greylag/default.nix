@@ -29,7 +29,7 @@
     modules.laptop.enable = true;
   };
 
-  chimera.touchpad.enable = true;
+  chimera.input.touchpad.enable = true;
 
   chimera.hyprland.enable = false;
   chimera.niri.enable = true;
