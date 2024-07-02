@@ -35,13 +35,17 @@
 
   config = let
     urlReplacements = {
+      af = {
+        http = "https://git.auxolotl.org/";
+        ssh = "ssh://forgejo@git.auxolotl.org/";
+      };
       aur = {
         http = "https://aur.archlinux.org/";
         ssh = "ssh://aur@aur.archlinux.org/";
       };
       aux = {
-        http = "https://github.com/auxolotl/";
-        ssh = "ssh://git@github.com/auxolotl/";
+        http = "https://git.auxolotl.org/auxolotl/";
+        ssh = "ssh://forgejo@git.auxolotl.org/auxolotl/";
       };
       cb = {
         http = "https://codeberg.org/";
