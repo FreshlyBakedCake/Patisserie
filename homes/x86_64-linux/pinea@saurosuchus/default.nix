@@ -43,6 +43,7 @@
     pkgs.python312
     pkgs.playerctl
     pkgs.nodePackages.pnpm
+    pkgs.blender-hip
   ];
 
   programs.firefox.profiles.chimera.settings = {
@@ -83,9 +84,9 @@
       hyprpaper.splash.enable = false;
       enable = true;
       monitors = [
-        "DP-1,1920x1080@60,-1920x0,1"
-        "HDMI-A-1,1920x1080@75,0x0,1"
-        "DP-2,1920x1080@60,1920x0,1"
+        "DP-1,     1920x1080@60, -1920x0, 1"
+        "HDMI-A-1, 1920x1080@75, 0x0    , 1"
+        "DP-3,     1920x1080@60, 1920x0 , 1"
       ];
       window = {
         blur = 12;
@@ -110,8 +111,45 @@
           key = "F2";
           function = "exec, ~/Pictures/Wallpapers/change.sh dark";
         }
+        {
+          key = "KP_End";
+          function = "exec, openrgb --device 0 -z 0 --color FF0000 -m \"static\"";
+        }
+        {
+          key = "KP_Down";
+          function = "exec, openrgb --device 0 -z 0 --color 00FF00 -m \"static\"";
+        }
+        {
+          key = "KP_Next";
+          function = "exec, openrgb --device 0 -z 0 --color 0000FF -m \"static\"";
+        }
+        {
+          key = "KP_Left";
+          function = "exec, openrgb --device 0 -z 0 --color 00FFFF -m \"static\"";
+        }
+        {
+          key = "KP_Begin";
+          function = "exec, openrgb --device 0 -z 0 --color FF00FF -m \"static\"";
+        }
+        {
+          key = "KP_Right";
+          function = "exec, openrgb --device 0 -z 0 --color FFFF00 -m \"static\"";
+        }
+        {
+          key = "KP_Home";
+          function = "exec, openrgb --device 0 -z 0 --color FFFFFF -m \"static\"";
+        }
+        {
+          key = "KP_Up";
+          function = "exec, openrgb --device 0 -z 0 -m \"spectrum cycle\"";
+        }
+        {
+          key = "KP_Prior";
+          function = "exec, openrgb --device 0 -z 0 --color 000000 -m \"static\"";
+        }
       ];
       startupApplications = [
+        "openrgb --server --startminimized"
         "cd ~/Code/keyboard && python main.py"
       ];
     };
