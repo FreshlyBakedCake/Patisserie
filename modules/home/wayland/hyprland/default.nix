@@ -163,7 +163,6 @@
 
           master = {
             allow_small_split = true;
-            new_is_master = true;
           };
 
           windowrulev2 = [ "opacity 1.0 0.85,title:(.*)" ];
