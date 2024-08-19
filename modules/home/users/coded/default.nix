@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  system,
   ...
 }:
 let
@@ -208,6 +209,6 @@ in {
     '';
 
     # Additional Packages
-    home.packages = [ pkgs.foliate pkgs.openrgb ];
+    home.packages = [ pkgs.foliate pkgs.openrgb inputs.zen-browser.packages."${system}".specific ];
   };
 }

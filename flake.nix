@@ -71,6 +71,8 @@
     templates.url = "git+https://git.clicks.codes/Templates";
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =

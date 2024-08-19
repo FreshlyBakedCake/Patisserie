@@ -852,41 +852,37 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1714955862,
-        "narHash": "sha256-REWlo2RYHfJkxnmZTEJu3Cd/2VM+wjjpPy7Xi4BdDTQ=",
-        "ref": "refs/tags/2.90-beta.1",
-        "rev": "b6799ab0374a8e1907a48915d3187e07da41d88c",
-        "revCount": 15501,
-        "type": "git",
-        "url": "https://git@git.lix.systems/lix-project/lix"
+        "lastModified": 1723503926,
+        "narHash": "sha256-Rosl9iA9MybF5Bud4BTAQ9adbY81aGmPfV8dDBGl34s=",
+        "rev": "bcaeb6388b8916ac6d1736e3aa2b13313e6a6bd2",
+        "type": "tarball",
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/bcaeb6388b8916ac6d1736e3aa2b13313e6a6bd2.tar.gz"
       },
       "original": {
-        "ref": "refs/tags/2.90-beta.1",
-        "type": "git",
-        "url": "https://git@git.lix.systems/lix-project/lix"
+        "type": "tarball",
+        "url": "https://git.lix.systems/lix-project/lix/archive/2.91.0.tar.gz"
       }
     },
     "lix-module": {
       "inputs": {
         "flake-utils": "flake-utils_3",
         "flakey-profile": "flakey-profile",
-        "lix": [
-          "lix"
-        ],
+        "lix": "lix",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1723511483,
-        "narHash": "sha256-rT/OkVXKkns2YvyF1nFvl+8Gc3sld1c1sXPtGkbqaDY=",
-        "ref": "refs/heads/main",
-        "rev": "cecf70b77539c1a593f60ec9d0305b5e537ab6a9",
-        "revCount": 106,
+        "lastModified": 1723510904,
+        "narHash": "sha256-zNW/rqNJwhq2lYmQf19wJerRuNimjhxHKmzrWWFJYts=",
+        "ref": "refs/tags/2.91.0",
+        "rev": "622a2253a071a1fb97a4d3c8103a91114acc1140",
+        "revCount": 104,
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       },
       "original": {
+        "ref": "refs/tags/2.91.0",
         "type": "git",
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
@@ -1083,19 +1079,19 @@
         "type": "github"
       }
     },
-    "nixpkgs-xwayland-23": {
+    "nixpkgs_10": {
       "locked": {
-        "lastModified": 1716361217,
-        "narHash": "sha256-mzZDr00WUiUXVm1ujBVv6A0qRd8okaITyUp4ezYRgc4=",
+        "lastModified": 1724224976,
+        "narHash": "sha256-Z/ELQhrSd7bMzTO8r7NZgi9g5emh+aRKoCdaAv5fiO0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "46397778ef1f73414b03ed553a3368f0e7e33c2f",
+        "rev": "c374d94f1536013ca8e92341b540eba4c22f9c62",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "rev": "46397778ef1f73414b03ed553a3368f0e7e33c2f",
         "type": "github"
       }
     },
@@ -1353,18 +1349,16 @@
         "firefox-sidebery-gnome": "firefox-sidebery-gnome",
         "home-manager": "home-manager",
         "jujutsu": "jujutsu",
-        "lix": "lix",
         "lix-module": "lix-module",
         "niri-flake": "niri-flake",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_8",
-        "nixpkgs-xwayland-23": "nixpkgs-xwayland-23",
         "nur": "nur",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",
         "templates": "templates",
-        "xwayland-satellite": "xwayland-satellite_2"
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1615,19 +1609,21 @@
         "type": "github"
       }
     },
-    "xwayland-satellite_2": {
-      "flake": false,
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_10"
+      },
       "locked": {
-        "lastModified": 1723095288,
-        "narHash": "sha256-cUlTHg/F0tUpjS/uAIYKwrIRaKwuzdyFo3IiST6E7Fc=",
-        "owner": "Supreeeme",
-        "repo": "xwayland-satellite",
-        "rev": "95afa163a60167cd97bf6afa870bc117a1be3d03",
+        "lastModified": 1724347856,
+        "narHash": "sha256-OQxWHztlw5hSJYCRWoJ98+bgqWinRSTR0KZos7aq2h8=",
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
+        "rev": "96dffb45b36141261e97a8f83438e4c88911fefa",
         "type": "github"
       },
       "original": {
-        "owner": "Supreeeme",
-        "repo": "xwayland-satellite",
+        "owner": "MarceColl",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
