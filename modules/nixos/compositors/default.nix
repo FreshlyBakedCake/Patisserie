@@ -7,7 +7,7 @@
 
   config = {
     fonts.enableDefaultPackages = lib.mkDefault true;
-    hardware.opengl.enable = lib.mkDefault true;
+    hardware.graphics.enable = lib.mkDefault true;
 
     programs.hyprland.enable = config.chimera.compositors.hyprland.enable;
 

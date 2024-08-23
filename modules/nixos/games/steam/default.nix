@@ -11,7 +11,7 @@
 
       package = pkgs.steam.override
         {
-          extraLibraries = pkgs: [ config.hardware.opengl.package ] ++ config.hardware.opengl.extraPackages;
+          extraLibraries = pkgs: [ config.hardware.graphics.package ] ++ config.hardware.graphics.extraPackages;
         };
     };
     hardware.steam-hardware.enable = true;
