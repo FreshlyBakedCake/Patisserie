@@ -81,8 +81,10 @@ in {
 
     chimera.browser.chromium.enable = true;
 
-    chimera.games.minecraft.enable = true;
-
+    chimera.games = {
+        minecraft.enable = true;
+        itch.enable = true;
+    };
     chimera.editor = {
       neovim.enable = true;
       editorconfig.enable = true;
