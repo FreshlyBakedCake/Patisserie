@@ -7,6 +7,7 @@
     ./compositor
     ./console
     ./games
+    ./hardware/cooling
     ./hardware/cpu
     ./hardware/filesystems
     ./networking
