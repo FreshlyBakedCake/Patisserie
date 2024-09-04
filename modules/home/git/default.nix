@@ -115,13 +115,12 @@
     programs.git = {
       enable = true;
 
-      delta = lib.mkIf config.chimera.git.delta.enable (lib.warn "Delta is currently disabled due to the build being broken in upstream nixpkgs" {});
-      # {
-      #   enable = config.chimera.git.delta.enable;
-      #   options.light = lib.mkIf config.chimera.theme.catppuccin.enable (
-      #     config.chimera.theme.catppuccin.style == "Latte"
-      #   );
-      # };
+      delta = {
+        enable = config.chimera.git.delta.enable;
+        options.light = lib.mkIf config.chimera.theme.catppuccin.enable (
+          config.chimera.theme.catppuccin.style == "Latte"
+        );
+      };
 
       extraConfig = {
         init.defaultBranch = "main";
