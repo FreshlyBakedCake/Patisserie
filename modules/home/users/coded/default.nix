@@ -32,8 +32,7 @@ in {
     };
 
     chimera.git = {
-      delta.enable = true;
-      stgit.enable = true;
+      radicle.enable = true;
       jj.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "coded";
