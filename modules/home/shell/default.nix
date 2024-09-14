@@ -171,6 +171,8 @@
             pkgs.hyperfine
             pkgs.tmux
             pkgs.glow
+            pkgs.difftastic
+            pkgs.meld
           ]
         else
           [ ]
