@@ -104,7 +104,7 @@
     programs.zsh.profileExtra = lib.mkIf config.chimera.shell.zsh.enable (
       lib.mkBefore ''
         if [ -z $WAYLAND_DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-          exec ${pkgs.systemd}/bin/systemd-run --user -u niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
+          exec ${pkgs.systemd}/bin/systemd-cat -t niri ${pkgs.dbus}/bin/dbus-run-session ${config.programs.niri.package}/bin/niri --session
         fi
       ''
     );
