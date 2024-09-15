@@ -2,6 +2,7 @@
 {
   imports = [
     ./assistant
+    ./audio
     ./boot
     ./backlight
     ./compositor
