@@ -29,7 +29,7 @@
       push = lib.mkOption {
         type = lib.types.bool;
         description = "Enable gpg signing for pushes by when asked by the server";
-        default = true;
+        default = !config.chimera.git.radicle.enable; # Radicle is not able to understand signed pushes, even with if-asked
       };
     };
   };
