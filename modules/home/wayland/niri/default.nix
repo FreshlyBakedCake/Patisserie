@@ -310,7 +310,7 @@
             command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.chimera.theme.wallpaper}" "-m" "fill" ];
           }
           {
-            command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ];
+            command = [ "${pkgs.xwayland-satellite-unstable}/bin/xwayland-satellite" ]; # todo: use xwayland-satellite-nixpkgs in the future...
           }
         ] ++ config.chimera.niri.startupCommands;
       };
