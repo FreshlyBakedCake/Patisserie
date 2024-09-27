@@ -20,6 +20,8 @@
 }:
 {
   chimera.users.minion.enable = true;
+  chimera.nextcloud.enable = true;
+
   home.packages = [
     pkgs.wl-clipboard
   ];
