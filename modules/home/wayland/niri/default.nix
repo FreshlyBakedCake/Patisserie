@@ -174,6 +174,9 @@
           "Ctrl+Print".action = actions.screenshot-screen;
           "Shift+Print".action = actions.screenshot-window;
 
+          "${mod}+Alt+R".action = actions.spawn "sh" "-c" ''([ -d Videos ] || mkdir Videos) && ${pkgs.wl-screenrec}/bin/wl-screenrec --geometry "$(${pkgs.slurp}/bin/slurp)" --filename "Videos/$(date +'%Y-%m-%d-%H-%M-%S').mp4"'';
+          "${mod}+Alt+Shift+R".action = actions.spawn "sh" "-c" "pkill wl-screenrec && cat \"$(${pkgs.coreutils}/bin/ls -t Videos/*.mp4 | ${pkgs.coreutils}/bin/head -n 1)\" | ${pkgs.wl-clipboard}/bin/wl-copy";
+
           "${mod}+Space".action = actions."switch-layout" "next";
           "${mod}+Shift+Space".action = actions."switch-layout" "prev";
 
