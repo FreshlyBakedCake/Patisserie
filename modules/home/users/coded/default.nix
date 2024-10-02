@@ -113,6 +113,9 @@ in {
       }
     ];
 
+    # Shell Aliases
+    home.shellAliases.chat = "iamb";
+
     # Programming Folder Creation
     home.file = {
       "Programming/README.md" = {
@@ -213,6 +216,7 @@ in {
     '';
 
     # Additional Packages
-    home.packages = [ pkgs.foliate pkgs.openrgb inputs.zen-browser.packages."${system}".specific ];
+    home.packages = [ pkgs.foliate pkgs.openrgb inputs.zen-browser.packages."${system}".specific pkgs.iamb pkgs.scarab ];
   };
 }
+>>>>>>> Conflict 1 of 1 ends
