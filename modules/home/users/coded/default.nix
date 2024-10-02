@@ -32,7 +32,10 @@ in {
     };
 
     chimera.git = {
-      radicle.enable = true;
+      radicle = {
+        enable = true;
+        unstable = true;
+      };
       jj.enable = true;
       gitReview.enable = true;
       auth.clicksUsername = "coded";

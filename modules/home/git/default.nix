@@ -13,6 +13,7 @@
     stgit.enable = lib.mkEnableOption "Install StGit, a tool that makes working with stacked patches easier";
     jj.enable = lib.mkEnableOption "Install jj, a git-compatible VCS, allowing powerful features, performance and stability improvements ontop of git";
     radicle.enable = lib.mkEnableOption "Install Radicle, a peer-to-peer git forge";
+    radicle.unstable = lib.mkEnableOption "Install Radicle from their main branch";
     auth = {
       clicksUsername = lib.mkOption {
         type = lib.types.str;
@@ -106,7 +107,9 @@
       (if config.chimera.git.gitReview.enable then [ pkgs.git-review ] else [ ])
       ++ (if config.chimera.git.stgit.enable then [ pkgs.stgit ] else [ ])
       ++ (if config.chimera.git.jj.enable then [ inputs.jujutsu.packages.${system}.jujutsu ] else [ ])
-      ++ (if config.chimera.git.radicle.enable then [ pkgs.radicle-node ] else [ ]);
+      ++ (if !config.chimera.git.radicle.enable then [ ]
+          else if config.chimera.git.radicle.unstable then [ inputs.radicle.packages.${system}.default ]
+          else [ pkgs.radicle-node ]);
 
     programs.zsh.shellAliases =
       if config.chimera.git.gitReview.enable then { "gr!" = "git review"; } else { };

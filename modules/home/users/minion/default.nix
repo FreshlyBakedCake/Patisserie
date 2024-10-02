@@ -48,7 +48,10 @@
       delta.enable = true;
       stgit.enable = true;
       jj.enable = true;
-      radicle.enable = true;
+      radicle = {
+        enable = true;
+        unstable = true;
+      };
       gitReview.enable = true;
       auth.clicksUsername = "minion";
       gpg.enable = true;
