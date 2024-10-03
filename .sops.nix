@@ -12,6 +12,7 @@ let
       greylag =     "047bf8897df877fe86133e98522c6d280d545c00";
       saurosuchus = "12f47c96d9066c52897cdf9ddf581f86799fb07c";
       ocicat =      "58BF6324CE6D45E156490D0F4579865C9D4CE67E";
+      emden =       "885f4e98f4af60985337992e13c8703177858a87";
     };
   };
 in
@@ -28,6 +29,7 @@ in
         keys.hosts.greylag
         keys.hosts.saurosuchus
         keys.hosts.ocicat
+        keys.hosts.emden
       ];
     }
     {
@@ -43,6 +45,7 @@ in
       pgp = nixpkgs.lib.concatStringsSep "," [
         keys.users.minion
         keys.hosts.greylag
+        keys.hosts.emden
       ];
     }
     {
