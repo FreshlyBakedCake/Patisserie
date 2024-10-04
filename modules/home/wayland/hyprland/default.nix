@@ -149,9 +149,18 @@
 
             numlock_by_default = true;
 
+            sensitivity = config.chimera.input.mouse.sensitivity;
+
             touchpad = {
               natural_scroll = config.chimera.input.touchpad.scrolling.natural;
+              scroll_factor = config.chimera.input.touchpad.scrolling.factor;
+              clickfinger_behavior = true;
+              tap-to-click = config.chimera.input.touchpad.tapToClick;
             };
+          };
+
+          gestures = lib.mkIf config.chimera.input.touchpad.enable {
+            workspace_swipe = true;
           };
 
           xwayland = {

@@ -36,14 +36,15 @@
   };
 
   home.packages = [
-    pkgs.kate
-    pkgs.libsForQt5.kfind
     pkgs.vlc
     pkgs.obs-studio
     pkgs.python312
     pkgs.playerctl
     pkgs.nodePackages.pnpm
+    pkgs.yarn
     pkgs.blender-hip
+    pkgs.nodejs_22
+    pkgs.pgadmin4-desktopmode
   ];
 
   programs.firefox.profiles.chimera.settings = {
@@ -79,7 +80,14 @@
       alternativeSearch.enable = true;
     };
 
-    # input.mouse.scrolling.speedFactor = 0.45;
+    input.touchpad = {
+      enable = true;
+      scrolling.natural = true;
+      scrolling.factor = 0.2;
+      tapToClick = true;
+    };
+    input.mouse.sensitivity = 0.5;
+
     hyprland = {
       hyprpaper.splash.enable = false;
       enable = true;
@@ -92,6 +100,7 @@
         blur = 12;
         rounding = 16;
       };
+      keybinds.appleMagic = true;
       keybinds.extraBinds = [
         {
           meta = "CTRL";
@@ -110,6 +119,11 @@
         {
           key = "F2";
           function = "exec, ~/Pictures/Wallpapers/change.sh dark";
+        }
+        {
+          meta = "CTRL";
+          key = "XF86Eject";
+          function = "exec, systemctl suspend";
         }
         {
           key = "KP_End";
@@ -187,6 +201,7 @@
 
     input.keyboard = {
       layout = "gb";
+      variant = "mac";
     };
 
     git = {
@@ -207,7 +222,7 @@
     yubikey.pam.key = "pinea:ZY1C32oFgQxsKlJEccxdI6rcdC8cZU8gWnBHMRgwb+MVvbRRqdYVHkIlXokscurAi5s/iQ5jnngDXUwG103ajQ==,m9X/BEHiXM1CrXu1u2zvItbd/Qa/tQGAxhIuD2NB2ohwo5d+vODwYl2faUnLhxcJexOWYBHOAzyWwwoeVRQFJw==,es256,+presence";
 
     waybar.modules.temperature.enable = true;
-    waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon1/temp1_input";
+    waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon3/temp1_input";
   };
 
   services.kdeconnect.enable = true;

@@ -16,6 +16,21 @@
       description = "Enable natural scrolling";
       default = config.chimera.input.mouse.scrolling.natural;
     };
+    input.touchpad.scrolling.factor = lib.mkOption {
+      type = lib.types.float;
+      description = "Scrolling factor";
+      default = 1;
+    };
+    input.touchpad.tapToClick = lib.mkOption {
+      type = lib.types.bool;
+      description = "Enable tap to click";
+      default = true;
+    };
+    input.mouse.sensitivity = lib.mkOption {
+      type = lib.types.float;
+      description = "Mouse sensitivity";
+      default = 1;
+    };
     input.keyboard = {
       layout = lib.mkOption {
         type = lib.types.str;
