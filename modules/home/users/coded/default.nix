@@ -219,4 +219,3 @@ in {
     home.packages = [ pkgs.foliate pkgs.openrgb inputs.zen-browser.packages."${system}".specific pkgs.iamb pkgs.scarab ];
   };
 }
->>>>>>> Conflict 1 of 1 ends
