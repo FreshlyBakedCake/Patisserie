@@ -27,25 +27,25 @@
     enable = true;
 
     monitors = {
-      "Dell Inc. DELL S2422HG 6309K83" = {
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 165.;
-        };
-        position = {
-          x = 3840;
-          y = 0;
-        };
-      };
-      "Shenzhen KTC Technology Group  M27P20P  0000000000001" = {
+      "DP-1" = {
         mode = {
           width = 3840;
           height = 2160;
-          refresh = 160.;
+          refresh = 144.;
         };
         position = {
           x = 0;
+          y = 0;
+        };
+      };
+      "DP-2" = {
+        mode = {
+          width = 3840;
+          height = 2160;
+          refresh = 144.;
+        };
+        position = {
+          x = 3840;
           y = 0;
         };
       };
@@ -53,11 +53,11 @@
         mode = {
           width = 1920;
           height = 1080;
-          refresh = 165.;
+          refresh = 164.997;
         };
         position = {
-          x = 3840;
-          y = 1080;
+          x = -1920;
+          y = 540;
         };
       };
       "LG Electronics LG TV SSCR2 0x01010101" = {
