@@ -166,6 +166,16 @@ in {
         user.email = "coded@clicks.codes"
         '';
       };
+      "Programming/FreshlyBaked/README.md" = {
+        text = ''
+        # What is this directory for?
+        This directory stores all FreshlyBaked related programming projects
+
+        # Git config modifications
+        user.name = "Samuel Shuert"
+        user.email = "coded@freshlybakedca.ke"
+        '';
+      };
     };
 
     # Git Config
@@ -200,6 +210,14 @@ in {
         contents = {
           user.name = "Samuel Shuert";
           user.email = "me@thecoded.prof";
+        };
+      }
+      {
+        condition = "gitdir:~/Programming/FreshlyBaked/**";
+
+        contents = {
+          user.name = "Samuel Shuert";
+          user.email = "coded@freshlybakedca.ke";
         };
       }
     ];

@@ -21,7 +21,7 @@
 {
   chimera.users.coded.enable = true;
 
-  chimera.waybar.modules.temperature.hwmonPath = "/sys/class/hwmon/hwmon4/temp1_input";
+  chimera.waybar.enable = lib.mkForce false;
 
   chimera.niri = {
     enable = true;
@@ -99,4 +99,6 @@
       };
     };
   };
+
+  home.packages = [ pkgs.amdgpu_top pkgs.bottles ];
 }
