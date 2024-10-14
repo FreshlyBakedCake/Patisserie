@@ -20,7 +20,7 @@
 
     programs.kitty = {
       enable = true;
-      theme =
+      themeFile =
         if config.chimera.theme.catppuccin.enable then
           "Catppuccin-${config.chimera.theme.catppuccin.style}"
         else

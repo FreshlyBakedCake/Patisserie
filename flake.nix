@@ -33,7 +33,7 @@
 
     jujutsu = {
       url = "github:martinvonz/jj?rev=a43b0cde97e14b92dace47ead9f0e968310cab4e";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lix-module = {
@@ -58,6 +58,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     nur.url = "github:nix-community/nur";
 

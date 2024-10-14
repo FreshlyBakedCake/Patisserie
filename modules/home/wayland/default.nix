@@ -44,6 +44,7 @@
         example = "dvorak";
         default = "";
       };
+      appleMagic = lib.mkEnableOption "Emulate PC keys on Apple Magic Keyboard";
     };
 
     input.keybinds.alternativeSearch.enable = lib.mkEnableOption "Use alt + space or SUPER + D to open search";

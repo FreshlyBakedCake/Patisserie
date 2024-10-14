@@ -33,7 +33,6 @@
         default = [ ];
       };
       keybinds = {
-        appleMagic = lib.mkEnableOption "Emulate PC keys on Apple Magic Keyboard";
         volumeStep = lib.mkOption {
           type = lib.types.int;
           description = "Amount to increase volume by when media keys are pressed in %";
@@ -144,7 +143,7 @@
             kb_variant =
               lib.mkIf (config.chimera.input.keyboard.variant != null)
                 config.chimera.input.keyboard.variant;
-            kb_options = lib.mkIf (config.chimera.hyprland.keybinds.appleMagic) "apple:alupckeys";
+            kb_options = lib.mkIf (config.chimera.input.keyboard.appleMagic) "apple:alupckeys";
             natural_scroll = config.chimera.input.mouse.scrolling.natural;
 
             numlock_by_default = true;

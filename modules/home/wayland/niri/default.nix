@@ -6,7 +6,9 @@
   lib,
   ...
 }:
-{
+let
+inherit (inputs) nixpkgs-stable;
+in {
 
   options.chimera.niri = {
     enable = lib.mkEnableOption "Use Niri as your window manager";
@@ -139,6 +141,7 @@
             xkb = {
               layout = config.chimera.input.keyboard.layout;
               variant = config.chimera.input.keyboard.variant;
+              options = lib.mkIf (config.chimera.input.keyboard.appleMagic) "apple:alupckeys";
             };
           };
 
@@ -157,35 +160,36 @@
           inherit (config.lib.niri) actions;
 
           generateWorkspaceBindings = workspaceNumber: {
-            "${mod}+${builtins.toString (lib.mod workspaceNumber 10)}".action = actions.focus-workspace workspaceNumber;
-            "${mod}+Shift+${builtins.toString (lib.mod workspaceNumber 10)}".action = actions.move-column-to-workspace workspaceNumber;
+            "${mod}+${builtins.toString (lib.mod workspaceNumber 10)}".action.focus-workspace = [workspaceNumber];
+            "${mod}+Shift+${builtins.toString (lib.mod workspaceNumber 10)}".action.move-column-to-workspace = [workspaceNumber];
           };
           joinAttrsetList = listOfAttrsets: lib.fold (a: b: a // b) {} listOfAttrsets;
         in { # General Keybinds
-          "${mod}+Q".action = actions.close-window;
-          "${mod}+Return".action = actions.spawn "${terminal}";
-          "${mod}+L".action = actions.spawn ["sh" "-c" "${config.programs.niri.package}/bin/niri msg action do-screen-transition && ${lock}"];
-          "${mod}+P".action = actions.power-off-monitors;
+          "${mod}+Q".action.close-window = [];
+          "${mod}+Shift+Q".action.quit = [];
+          "${mod}+Return".action.spawn = "${terminal}";
+          "${mod}+L".action.spawn = ["sh" "-c" "${config.programs.niri.package}/bin/niri msg action do-screen-transition && ${lock}"];
+          "${mod}+P".action.power-off-monitors = [];
 
-          "${mod}+R".action = actions.screenshot;
-          "${mod}+Ctrl+R".action = actions.screenshot-screen;
-          "${mod}+Shift+R".action = actions.screenshot-window;
-          "Print".action = actions.screenshot;
-          "Ctrl+Print".action = actions.screenshot-screen;
-          "Shift+Print".action = actions.screenshot-window;
+          "${mod}+R".action.screenshot = [];
+          "${mod}+Ctrl+R".action.screenshot-screen = [];
+          "${mod}+Shift+R".action.screenshot-window = [];
+          "Print".action.screenshot = [];
+          "Ctrl+Print".action.screenshot-screen = [];
+          "Shift+Print".action.screenshot-window = [];
 
-          "${mod}+Alt+R".action = actions.spawn "sh" "-c" ''([ -d Videos ] || mkdir Videos) && ${pkgs.wl-screenrec}/bin/wl-screenrec --geometry "$(${pkgs.slurp}/bin/slurp)" --filename "Videos/$(date +'%Y-%m-%d-%H-%M-%S').mp4"'';
-          "${mod}+Alt+Shift+R".action = actions.spawn "sh" "-c" "pkill wl-screenrec && cat \"$(${pkgs.coreutils}/bin/ls -t Videos/*.mp4 | ${pkgs.coreutils}/bin/head -n 1)\" | ${pkgs.wl-clipboard}/bin/wl-copy";
+          "${mod}+Alt+R".action.spawn = ["sh" "-c" ''([ -d Videos ] || mkdir Videos) && ${nixpkgs-stable.legacyPackages.${system}.wl-screenrec}/bin/wl-screenrec --geometry "$(${pkgs.slurp}/bin/slurp)" --filename "Videos/$(date +'%Y-%m-%d-%H-%M-%S').mp4"''];
+          "${mod}+Alt+Shift+R".action.spawn = ["sh" "-c" "pkill wl-screenrec && cat \"$(${pkgs.coreutils}/bin/ls -t Videos/*.mp4 | ${pkgs.coreutils}/bin/head -n 1)\" | ${pkgs.wl-clipboard}/bin/wl-copy"];
 
-          "${mod}+Space".action = actions."switch-layout" "next";
-          "${mod}+Shift+Space".action = actions."switch-layout" "prev";
+          "${mod}+Space".action.switch-layout = ["next"];
+          "${mod}+Shift+Space".action.switch-layout = ["prev"];
 
-          "${mod}+D" = lib.mkIf config.chimera.runner.enable { action = actions.spawn "${menu}"; };
+          "${mod}+D" = lib.mkIf config.chimera.runner.enable { action.spawn = "${menu}"; };
           "Alt+Space" = lib.mkIf (
               config.chimera.runner.enable
               && config.chimera.input.keybinds.alternativeSearch.enable
-            ) { action = actions.spawn "${menu}"; };
-          "${mod}+Shift+Slash".action = actions.show-hotkey-overlay;
+            ) { action.spawn = "${menu}"; };
+          "${mod}+Shift+Slash".action.show-hotkey-overlay = [];
         } // ( # Workspace Keybinds
           lib.pipe (lib.range 1 10) [
             (map generateWorkspaceBindings)
@@ -193,90 +197,90 @@
           ]
         ) // ( # Window Manipulation Bindings
         {
-          "${mod}+BracketLeft".action = actions."consume-or-expel-window-left";
-          "${mod}+BracketRight".action = actions."consume-or-expel-window-right";
-          "${mod}+Shift+BracketLeft".action = actions."consume-window-into-column";
-          "${mod}+Shift+BracketRight".action = actions."expel-window-from-column";
-          "${mod}+Slash".action = actions."switch-preset-column-width";
-          "${mod}+${mod1}+F".action = actions."fullscreen-window";
+          "${mod}+BracketLeft".action.consume-or-expel-window-left = [];
+          "${mod}+BracketRight".action.consume-or-expel-window-right = [];
+          "${mod}+Shift+BracketLeft".action.consume-window-into-column = [];
+          "${mod}+Shift+BracketRight".action.expel-window-from-column = [];
+          "${mod}+Slash".action.switch-preset-column-width = [];
+          "${mod}+${mod1}+F".action.fullscreen-window = [];
 
           # Focus
-          "${mod}+Up".action = actions."focus-window-or-workspace-up";
-          "${mod}+Down".action = actions."focus-window-or-workspace-down";
+          "${mod}+Up".action.focus-window-or-workspace-up = [];
+          "${mod}+Down".action.focus-window-or-workspace-down = [];
 
           # Non Jump Movement
-          "${mod}+Shift+Up".action = actions."move-window-up-or-to-workspace-up";
-          "${mod}+Shift+Down".action = actions."move-window-down-or-to-workspace-down";
-          "${mod}+Shift+Left".action = actions."consume-or-expel-window-left";
-          "${mod}+Shift+Right".action = actions."consume-or-expel-window-right";
+          "${mod}+Shift+Up".action.move-window-up-or-to-workspace-up = [];
+          "${mod}+Shift+Down".action.move-window-down-or-to-workspace-down = [];
+          "${mod}+Shift+Left".action.consume-or-expel-window-left = [];
+          "${mod}+Shift+Right".action.consume-or-expel-window-right = [];
 
           # To Monitor
-          "${mod}+Shift+Ctrl+Up".action = actions."move-window-to-monitor-up";
-          "${mod}+Shift+Ctrl+Down".action = actions."move-window-to-monitor-down";
-          "${mod}+Shift+Ctrl+Left".action = actions."move-window-to-monitor-left";
-          "${mod}+Shift+Ctrl+Right".action = actions."move-window-to-monitor-right";
+          "${mod}+Shift+Ctrl+Up".action.move-window-to-monitor-up = [];
+          "${mod}+Shift+Ctrl+Down".action.move-window-to-monitor-down = [];
+          "${mod}+Shift+Ctrl+Left".action.move-window-to-monitor-left = [];
+          "${mod}+Shift+Ctrl+Right".action.move-window-to-monitor-right = [];
 
           # To Workspace
-          "${mod}+Ctrl+Up".action = actions."move-window-to-workspace-up";
-          "${mod}+Ctrl+Down".action = actions."move-window-to-workspace-down";
+          "${mod}+Ctrl+Up".action.move-window-to-workspace-up = [];
+          "${mod}+Ctrl+Down".action.move-window-to-workspace-down = [];
 
           # Sizing
-          "${mod}+Equal".action = actions."set-window-height" "+5%";
-          "${mod}+Minus".action = actions."set-window-height" "-5%";
+          "${mod}+Equal".action.set-window-height = ["+5%"];
+          "${mod}+Minus".action.set-window-height = ["-5%"];
         }) // ( # Column Manipulation Bindings
         {
           # Focus
-          "${mod}+Left".action = actions."focus-column-left";
-          "${mod}+Right".action = actions."focus-column-right";
-          "${mod}+${mod1}+C".action = actions."center-column";
-          "${mod}+F".action = actions."maximize-column";
+          "${mod}+Left".action.focus-column-left = [];
+          "${mod}+Right".action.focus-column-right = [];
+          "${mod}+${mod1}+C".action.center-column = [];
+          "${mod}+F".action.maximize-column = [];
 
           # Non Monitor Movement
-          "${mod}+${mod1}+Shift+Up".action = actions."move-column-to-workspace-up";
-          "${mod}+${mod1}+Shift+Down".action = actions."move-column-to-workspace-down";
-          "${mod}+${mod1}+Shift+Left".action = actions."move-column-left";
-          "${mod}+${mod1}+Shift+Right".action = actions."move-column-right";
+          "${mod}+${mod1}+Shift+Up".action.move-column-to-workspace-up = [];
+          "${mod}+${mod1}+Shift+Down".action.move-column-to-workspace-down = [];
+          "${mod}+${mod1}+Shift+Left".action.move-column-left = [];
+          "${mod}+${mod1}+Shift+Right".action.move-column-right = [];
 
           # To Monitor
-          "${mod}+${mod1}+Shift+Ctrl+Up".action = actions."move-column-to-monitor-up";
-          "${mod}+${mod1}+Shift+Ctrl+Down".action = actions."move-column-to-monitor-down";
-          "${mod}+${mod1}+Shift+Ctrl+Left".action = actions."move-column-to-monitor-left";
-          "${mod}+${mod1}+Shift+Ctrl+Right".action = actions."move-column-to-monitor-right";
+          "${mod}+${mod1}+Shift+Ctrl+Up".action.move-column-to-monitor-up = [];
+          "${mod}+${mod1}+Shift+Ctrl+Down".action.move-column-to-monitor-down = [];
+          "${mod}+${mod1}+Shift+Ctrl+Left".action.move-column-to-monitor-left = [];
+          "${mod}+${mod1}+Shift+Ctrl+Right".action.move-column-to-monitor-right = [];
 
           # Sizing
-          "${mod}+${mod1}+Equal".action = actions."set-column-width" "+5%";
-          "${mod}+${mod1}+Minus".action = actions."set-column-width" "-5%";
+          "${mod}+${mod1}+Equal".action.set-column-width = ["+5%"];
+          "${mod}+${mod1}+Minus".action.set-column-width = ["-5%"];
         }) // ( # Workspace Manipulation Bindings
         {
           # Focus
-          "${mod}+Page_Up".action = actions."focus-workspace-up";
-          "${mod}+Page_Down".action = actions."focus-workspace-down";
+          "${mod}+Page_Up".action.focus-workspace-up = [];
+          "${mod}+Page_Down".action.focus-workspace-down = [];
 
           # Within Itself
-          "${mod}+Shift+Page_Up".action = actions."move-workspace-up";
-          "${mod}+Shift+Page_Down".action = actions."move-workspace-down";
+          "${mod}+Shift+Page_Up".action.move-workspace-up = [];
+          "${mod}+Shift+Page_Down".action.move-workspace-down = [];
 
           # To Monitor
-          "${mod}+Shift+Ctrl+Page_Up".action = actions."move-workspace-to-monitor-up";
-          "${mod}+Shift+Ctrl+Page_Down".action = actions."move-workspace-to-monitor-down";
-          "${mod}+Shift+Ctrl+Home".action = actions."move-workspace-to-monitor-left";
-          "${mod}+Shift+Ctrl+End".action = actions."move-workspace-to-monitor-right";
+          "${mod}+Shift+Ctrl+Page_Up".action.move-workspace-to-monitor-up = [];
+          "${mod}+Shift+Ctrl+Page_Down".action.move-workspace-to-monitor-down = [];
+          "${mod}+Shift+Ctrl+Home".action.move-workspace-to-monitor-left = [];
+          "${mod}+Shift+Ctrl+End".action.move-workspace-to-monitor-right = [];
         }) // { # Audio
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
-            action = actions.spawn "${pkgs.wireplumber}/bin/wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+";
+            action.spawn = ["${pkgs.wireplumber}/bin/wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"];
           };
           "XF86AudioLowerVolume" = {
             allow-when-locked = true;
-            action = actions.spawn "${pkgs.wireplumber}/bin/wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-";
+            action.spawn = ["${pkgs.wireplumber}/bin/wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"];
           };
           "XF86AudioMute" = {
             allow-when-locked = true;
-            action = actions.spawn "${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+            action.spawn = ["${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
           };
           "XF86AudioMicMute" = {
             allow-when-locked = true;
-            action = actions.spawn "${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+            action.spawn = ["${pkgs.wireplumber}/bin/wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
           };
         };
 
@@ -305,10 +309,9 @@
         hotkey-overlay.skip-at-startup = true;
         screenshot-path = null;
 
-        spawn-at-startup = [
-          {
+        spawn-at-startup = if config.chimera.waybar.enable then [{
             command = [ "${pkgs.waybar}/bin/waybar" ];
-          }
+          }] else [] ++ [
           {
             command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.chimera.theme.wallpaper}" "-m" "fill" ];
           }
