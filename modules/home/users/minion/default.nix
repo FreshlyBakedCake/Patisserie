@@ -163,10 +163,8 @@
 
       neovim = {
         enable = true;
-        defaultEditor = false;
+        defaultEditor = true;
       };
-
-      emacs.enable = true;
 
       editorconfig.enable = true;
     };
