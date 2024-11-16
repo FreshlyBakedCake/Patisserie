@@ -309,9 +309,9 @@ in {
         hotkey-overlay.skip-at-startup = true;
         screenshot-path = null;
 
-        spawn-at-startup = if config.chimera.waybar.enable then [{
+        spawn-at-startup = (if config.chimera.waybar.enable then [{
             command = [ "${pkgs.waybar}/bin/waybar" ];
-          }] else [] ++ [
+          }] else []) ++ [
           {
             command = [ "${pkgs.swaybg}/bin/swaybg" "-i" "${config.chimera.theme.wallpaper}" "-m" "fill" ];
           }
