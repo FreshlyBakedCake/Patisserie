@@ -41,6 +41,9 @@ in {
         mkdir -p ${path}/database/profiles
         mkdir -p /run/udev/rules.d
 
+        mkdir -p ${path}/database/keyboard
+        cp -r -n ${cfg.package}/var/lib/OpenLinkHub/database/keyboard ${path}/database/keyboard
+
         cp ${cfg.config} ${path}/config.json
 
         [ -L ${path}/static ] || ln -s ${cfg.package}/var/lib/OpenLinkHub/static ${path}/static
@@ -63,8 +66,10 @@ in {
       '';
 
       postStop = ''
-        ${pkgs.coreutils}/bin/rm /run/udev/rules.d/99-corsair-openlinkhub-*.rules
+        ${pkgs.coreutils}/bin/rm /var/lib/OpenLinkHub/web
+        ${pkgs.coreutils}/bin/rm /var/lib/OpenLinkHub/static
 
+        ${pkgs.coreutils}/bin/rm /run/udev/rules.d/99-corsair-openlinkhub-*.rules
         ${pkgs.systemd}/bin/udevadm control --reload
         ${pkgs.systemd}/bin/udevadm trigger
       '';

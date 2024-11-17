@@ -5,12 +5,12 @@
 , systemd
 }:
 let
-  version = "0.2.1";
+  version = "0.3.2";
   OpenLinkHub = fetchFromGitHub {
     owner = "jurkovic-nikola";
     repo = "OpenLinkHub";
     rev = version;
-    hash = "sha256-2naNOGRPKy8H9I4e6X+uX3muT20M9YX2BGrPmY7RVAo=";
+    hash = "sha256-ecsteDXnQl2QJ0sKNGSJqKZJF5JbM9Y3ht/H9Uu1CcA=";
   };
 in
 buildGoModule {
@@ -27,7 +27,9 @@ buildGoModule {
     cp -r ${OpenLinkHub}/{static,web} $out/var/lib/OpenLinkHub
     cp ${OpenLinkHub}/config.json $out/var/lib/OpenLinkHub
     cp ${OpenLinkHub}/database/rgb.json $out/var/lib/OpenLinkHub
+    mkdir -p $out/var/lib/OpenLinkHub/database/keyboard
+    cp -r ${OpenLinkHub}/database/keyboard $out/var/lib/OpenLinkHub/database/keyboard
   '';
 
-  vendorHash = "sha256-Sv2gGnI3mJvOl866idKC1q+6jh4ysEot0eLLBKPb0T0=";
+  vendorHash = "sha256-57ms+wmwXIKBupsYkwuNqeWVwx8nTnu9NX3/VZ0in68=";
 }
