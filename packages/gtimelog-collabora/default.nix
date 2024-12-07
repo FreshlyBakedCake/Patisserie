@@ -4,7 +4,7 @@
   gtimelog,
   glib-networking,
   gtk3,
-  libsoup,
+  libsoup_2_4,
   glib,
   pango,
   harfbuzz,
@@ -21,7 +21,7 @@ gtimelog.overrideAttrs (oldAttrs: {
     "--set GI_TYPELIB_PATH ${
       lib.makeSearchPathOutput "out" "lib/girepository-1.0" [
         gtk3
-        libsoup
+        libsoup_2_4
         glib
         pango
         harfbuzz

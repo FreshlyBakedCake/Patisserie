@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   options.chimera.browser.firefox = {
     enable = lib.mkEnableOption "Use firefox browser";
@@ -25,43 +25,43 @@
       profiles.chimera.extensions =
         (
           if config.chimera.browser.firefox.extensions.bitwarden.enable then
-            [ config.nur.repos.rycee.firefox-addons.bitwarden ]
+            [ pkgs.nur.repos.rycee.firefox-addons.bitwarden ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.youtube.sponsorBlock.enable then
-            [ config.nur.repos.rycee.firefox-addons.sponsorblock ]
+            [ pkgs.nur.repos.rycee.firefox-addons.sponsorblock ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.youtube.returnDislike.enable then
-            [ config.nur.repos.rycee.firefox-addons.return-youtube-dislikes ]
+            [ pkgs.nur.repos.rycee.firefox-addons.return-youtube-dislikes ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.youtube.deArrow.enable then
-            [ config.nur.repos.rycee.firefox-addons.dearrow ]
+            [ pkgs.nur.repos.rycee.firefox-addons.dearrow ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.reactDevTools.enable then
-            [ config.nur.repos.rycee.firefox-addons.react-devtools ]
+            [ pkgs.nur.repos.rycee.firefox-addons.react-devtools ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.ublockOrigin.enable then
-            [ config.nur.repos.rycee.firefox-addons.ublock-origin ]
+            [ pkgs.nur.repos.rycee.firefox-addons.ublock-origin ]
           else
             [ ]
         )
         ++ (
           if config.chimera.browser.firefox.extensions.adnauseam.enable then
-            [ config.nur.repos.rycee.firefox-addons.adnauseam ]
+            [ pkgs.nur.repos.rycee.firefox-addons.adnauseam ]
           else
             [ ]
         )

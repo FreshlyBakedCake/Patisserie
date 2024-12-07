@@ -126,7 +126,7 @@ in {
         "DuckDuckGo" = {
           homepage = "https://duckduckgo.com";
           metaData.alias = "ddg";
-          extraExtensions = [ config.nur.repos.rycee.firefox-addons.duckduckgo-privacy-essentials ];
+          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.duckduckgo-privacy-essentials ];
         };
         "eBay" = {
           homepage = "https://ebay.com";
@@ -171,7 +171,7 @@ in {
           updateInterval = 24 * 60 * 60 * 1000;
           homepage = "https://kagi.com";
           definedAliases = [ "kagi" ];
-          extraExtensions = [ config.nur.repos.rycee.firefox-addons.kagi-search ];
+          extraExtensions = [ pkgs.nur.repos.rycee.firefox-addons.kagi-search ];
         };
         "MDN" = {
           urls = [ { template = "https://developer.mozilla.org/en-US/search?q={searchTerms}"; } ];

@@ -153,7 +153,7 @@
       ]
       ++ (
         if config.chimera.theme.font.nerdFontGlyphs.enable then
-          [ (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ]
+          [ pkgs.nerd-fonts.symbols-only ]
         else
           [ ]
       )

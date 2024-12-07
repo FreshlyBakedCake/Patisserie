@@ -76,8 +76,8 @@ in {
         ];
       };
       extraExtensions = [
-        config.nur.repos.rycee.firefox-addons.refined-github
-        config.nur.repos.rycee.firefox-addons.new-tab-override
+        pkgs.nur.repos.rycee.firefox-addons.refined-github
+        pkgs.nur.repos.rycee.firefox-addons.new-tab-override
       ];
     };
 

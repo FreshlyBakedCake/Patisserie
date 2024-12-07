@@ -88,18 +88,17 @@
       overlays = [
         inputs.emacs-overlay.overlays.default
         inputs.niri-flake.overlays.niri
+        inputs.nur.overlays.default
       ];
 
       homes.modules = [
         inputs.anyrun.homeManagerModules.default
-        inputs.nur.hmModules.nur
         inputs.nix-index-database.hmModules.nix-index
         inputs.sops-nix.homeManagerModules.sops
         inputs.niri-flake.homeModules.niri
       ];
 
       systems.modules.nixos = [
-        inputs.nur.nixosModules.nur
         inputs.sops-nix.nixosModules.sops
         inputs.lix-module.nixosModules.default
       ];
