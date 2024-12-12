@@ -162,6 +162,11 @@
       };
 
       neovim = {
+        enable = false; # Temporary, until I've unlearned the muscle memory of typing "nvim" to everything...
+        defaultEditor = false;
+      };
+
+      helix = {
         enable = true;
         defaultEditor = true;
       };
@@ -187,5 +192,14 @@
       map kitty_mod+enter launch --cwd=current --type=window
       map kitty_mod+t     launch --cwd=current --type=tab
     '';
+
+    programs.helix.extraPackages = [
+      pkgs.clang-tools
+      pkgs.typescript-language-server
+      pkgs.python3Packages.python-lsp-server
+      pkgs.nil
+      pkgs.vscode-langservers-extracted
+      pkgs.marksman
+    ];
   });
 }
