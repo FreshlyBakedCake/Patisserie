@@ -88,7 +88,11 @@ in {
         itch.enable = true;
     };
     chimera.editor = {
-      neovim.enable = true;
+      helix.enable = true;
+      neovim = {
+        enable = true;
+        defaultEditor = false;
+      };
       editorconfig.enable = true;
       emacs = {
         enable = true;
@@ -227,11 +231,21 @@ in {
       signingkey = "00E944BFBE99ADB5";
     };
 
-    # Additional Kitty Config
-    programs.kitty.extraConfig = ''
-      map kitty_mod+enter launch --cwd=current --type=window
-      map kitty_mod+t     launch --cwd=current --type=tab
-    '';
+    programs.helix.extraPackages = [
+      # Main lang
+      pkgs.clang-tools # C
+      pkgs.typescript-language-server # TS
+      pkgs.python3Packages.python-lsp-server # PY
+      pkgs.nil # Nix
+      pkgs.rust-analyzer # RS
+
+      # Web dev
+      pkgs.marksman # MD
+      pkgs.vscode-langservers-extracted # HTML CSS JS
+      pkgs.svelte-language-server # Svelte
+      pkgs.astro-language-server # Astro
+      pkgs.tailwindcss-language-server # TWCSS
+    ];
 
     # Additional Packages
     home.packages = [ pkgs.foliate pkgs.openrgb inputs.zen-browser.packages."${system}".specific pkgs.iamb pkgs.scarab ];
