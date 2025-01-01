@@ -108,7 +108,7 @@
       settings =
         let
           mod = "SUPER";
-          terminal = "${pkgs.kitty}/bin/kitty";
+          terminal = config.chimera.terminal.default;
           menu = (if config.chimera.runner.anyrun.enable then "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun" else "");
           screenshot = "${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
         in

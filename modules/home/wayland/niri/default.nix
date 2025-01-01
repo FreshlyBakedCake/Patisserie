@@ -115,7 +115,7 @@ in {
       let
         mod = "Super";
         mod1 = "Alt";
-        terminal = "${pkgs.kitty}/bin/kitty";
+        terminal = config.chimera.terminal.default;
         menu = (
           if config.chimera.runner.anyrun.enable then
             "${inputs.anyrun.packages.${system}.anyrun}/bin/anyrun"
