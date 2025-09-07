@@ -38,9 +38,51 @@ Host git.freshlybakedca.ke
 ```
 
 When you've added this section to your ssh config, you can clone over SSH.
-Pushing will work as normal for SSH clones.
+Except for when creating branches, pushing will work as-normal for SSH clones.
 
 ```bash
 git clone ssh://git@git.freshlybakedca.ke/patisserie.git:/packetmix.git
 # Swap out "packetmix" at the end of the URL for whatever project you want to clone
+```
+
+### Creating new branches
+
+When pushing to josh, creating branches won't work on a regular git push. This
+is because josh doesn't know what state you want the rest of the repository to
+be for your branch
+
+You can tell josh by providing the `base=` push option like so:
+
+```bash
+git push origin HEAD:my-new-branch -o base=main
+```
+
+If you want to always pick main by default you can set this in your
+repository-specific git config
+
+```bash
+git config push.pushOption 'base=main'
+```
+
+Setting this in your git config may also be useful if
+you're using an alternative git frontend, for example
+[Jujutsu](https://jj-vcs.github.io/jj/latest/), which does not provide the
+ability to set push-options when pushing to git remotes
+
+### Signing commits
+
+As josh rewrites commits, they will not be validly signed everywhere.
+We therefore recommend you turn off commit signing for patisserie or any
+subprojects which you clone down
+
+For example,
+
+```
+git config commit.gpgsign false
+```
+
+or
+
+```
+jj config set --repo git.sign-on-push false
 ```
