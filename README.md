@@ -77,12 +77,12 @@ subprojects which you clone down
 
 For example,
 
-```
+```bash
 git config commit.gpgsign false
 ```
 
 or
 
-```
+```bash
 jj config set --repo git.sign-on-push false
 ```
