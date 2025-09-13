@@ -32,8 +32,6 @@ authenticate your push:
 ```ssh-config
 # In ~/.ssh/config
 Host git.freshlybakedca.ke
-  Hostname teal
-  # ^ Pushing can currently only be done from inside our Tailscale network. We are considering solutions to this limitation
   User git
   ForwardAgent yes
 ```
