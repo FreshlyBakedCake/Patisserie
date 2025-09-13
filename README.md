@@ -36,13 +36,15 @@ Host git.freshlybakedca.ke
   ForwardAgent yes
 ```
 
-When you've added this section to your ssh config, you can clone over SSH.
-Except for when creating branches, pushing will work as-normal for SSH clones.
+When you've added this section to your ssh config, you can add a custom push URL
+to use SSH.
 
 ```bash
-git clone ssh://git@git.freshlybakedca.ke/patisserie.git:/packetmix.git
-# Swap out "packetmix" at the end of the URL for whatever project you want to clone
+git remote set-url --push ssh://git@git.freshlybakedca.ke/patisserie.git:/packetmix.git
+# Swap out "packetmix" at the end of the URL for whatever project you have cloned
 ```
+
+Except for when creating branches, pushing will work as-normal for SSH clones.
 
 ### Creating new branches
 
