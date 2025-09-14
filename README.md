@@ -7,9 +7,10 @@
 *Patisserie* is a [monorepo](https://en.wikipedia.org/wiki/Monorepo), which means
 there are multiple projects hosted here. Here's a list!
 
-| Project     | Description                                                                                 |
-| ----------- | ------------------------------------------------------------------------------------------- |
-| *packetmix* | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system") |
+| Project     | Description                                                                                       |
+| ----------- | ------------------------------------------------------------------------------------------------- |
+| *packetmix* | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
+| *sprinkles* | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
 
 ## Cloning a single project
 
