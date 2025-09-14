@@ -20,8 +20,8 @@ provide a public [*josh* proxy](https://josh-project.github.io/josh/) which can
 be used to filter your clone:
 
 ```bash
-git clone https://git.freshlybakedca.ke/patisserie.git:/packetmix.git
-# Swap out "packetmix" at the end of the URL for whatever project you want to clone
+git clone https://git.freshlybakedca.ke/patisserie.git:workspace=packetmix.git packetmix
+# Swap out the "packetmix"es at the end of the command for whatever project you want to clone
 ```
 
 If you need to push then, as with *tangled* normally, you are required to use
@@ -41,7 +41,7 @@ When you've added this section to your ssh config, you can add a custom push URL
 to use SSH.
 
 ```bash
-git remote set-url --push ssh://git@git.freshlybakedca.ke/patisserie.git:/packetmix.git
+git remote set-url --push ssh://git@git.freshlybakedca.ke/patisserie.git:workspace=packetmix.git
 # Swap out "packetmix" at the end of the URL for whatever project you have cloned
 ```
 
