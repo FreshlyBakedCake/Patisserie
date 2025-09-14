@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 FreshlyBakedCake
+
+SPDX-License-Identifier: MIT
+-->
+
 # Welcome to the *patisserie*
 
 *~ your one-stop-cake-shop for everything Freshly Baked has to offer ~*
