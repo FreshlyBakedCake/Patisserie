@@ -59,17 +59,22 @@ You can tell *josh* by providing the `base=` push option like so:
 git push origin HEAD:my-new-branch -o base=main
 ```
 
-If you want to always pick `main` by default you can set this in your
-repository-specific *git* config
+If you're using a git frontend (e.g. [Jujutsu](https://jj-vcs.github.io/jj))
+which does not allow you to set push options, you may find it useful to
+temporarily set them through the git configuration while performing git
+operations. In Jujutsu, you might do that through these aliases:
 
-```bash
-git config push.pushOption 'base=main'
+```toml
+[aliases]
+josh-push-base-main = [ 'util', 'exec', '--', 'sh', '-c', 'git config push.pushOption base=main && jj git push "$@"; git config --unset push.pushOption', '--' ]
+josh-push-create = [ 'util', 'exec', '--', 'sh', '-c', 'git config push.pushOption create && jj git push "$@"; git config --unset push.pushOption', '--' ]
+josh-push-force = [ 'util', 'exec', '--', 'sh', '-c', 'git config push.pushOption force && jj git push "$@"; git config --unset push.pushOption', '--' ]
+josh-push-merge = [ 'util', 'exec', '--', 'sh', '-c', 'git config push.pushOption merge && jj git push "$@"; git config --unset push.pushOption', '--' ]
 ```
 
-Setting this in your *git* config may also be useful if
-you're using an alternative *git* frontend, for example
-[*Jujutsu*](https://jj-vcs.github.io/jj/latest/), which does not provide the
-ability to set push-options when pushing to git remotes
+You must make sure you always unset the push option, even if your push failed.
+Pushing with unexpected push options can cause accidental and annoying-to-fix
+actions to be taken on your behalf
 
 ### Signing commits
 
