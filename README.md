@@ -13,10 +13,21 @@ SPDX-License-Identifier: MIT
 *Patisserie* is a [monorepo](https://en.wikipedia.org/wiki/Monorepo), which means
 there are multiple projects hosted here. Here's a list!
 
-| Project     | Description                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------- |
-| *packetmix* | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
-| *sprinkles* | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
+| Project           | Shortcode | Description                                                                                       |
+| ----------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| [*packetmix*][pm] | pm        | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
+| [*sprinkles*][s]  | s         | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
+
+[pm]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/packetmix
+[s]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/sprinkles
+
+Projects are developed in individual directories, and have a workspace file in
+`projects/${name}` to help you clone them down with everything they need.
+
+Shortcodes are used in commit messages as the first component of the area name
+in [Conventional Commit style](https://conventionalcommits.org). For example,
+feature commits to PacketMix should start with something like `feat(pm/...):`.
+For commits that affect all areas, the special shortcode `*` is used.
 
 ## Cloning a single project
 
