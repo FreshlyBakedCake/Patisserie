@@ -2,33 +2,29 @@
 #
 # SPDX-License-Identifier: MIT
 
-let
-  pins = import ./npins;
-
-  nilla = import pins.nilla;
-in
-nilla.create ({ config, lib }: {
+{
+  pins,
+  config,
+  lib,
+}:
+{
   config = {
-    inputs = {
-      fenix.src = pins.fenix;
-      quickshell.src = pins.quickshell;
-
-      nixpkgs = {
-        src = pins.nixpkgs;
-
-        settings = {
-          overlays = [
-            config.inputs.fenix.result.overlays.default
-          ];
-        };
-      };
-    };
-
     packages.default = config.packages.sprinkles;
     packages.sprinkles = {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-      package = { fenix, makeRustPlatform, lib, installShellFiles, dbus, ... }:
+      package =
+        {
+          fenix,
+          makeRustPlatform,
+          lib,
+          installShellFiles,
+          dbus,
+          ...
+        }:
         let
           toolchain = fenix.complete.toolchain;
 
@@ -55,9 +51,24 @@ nilla.create ({ config, lib }: {
 
     shells.default = config.shells.sprinkles;
     shells.sprinkles = {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-      shell = { mkShell, kdePackages, fenix, bacon, pkg-config, reuse, dbus, sqlx-cli, system, ... }:
+      shell =
+        {
+          mkShell,
+          kdePackages,
+          fenix,
+          bacon,
+          pkg-config,
+          reuse,
+          dbus,
+          sqlx-cli,
+          system,
+          ...
+        }:
         mkShell {
           QML_IMPORT_PATH =
             lib.fp.pipe
@@ -66,7 +77,9 @@ nilla.create ({ config, lib }: {
                 (builtins.concatStringsSep ":")
               ]
               [
-                (config.inputs.quickshell.result.packages.${system}.default.override { gitRev=pins.quickshell.revision; })
+                (config.inputs.quickshell.result.packages.${system}.default.override {
+                  gitRev = pins.quickshell.revision;
+                })
                 kdePackages.qtdeclarative
               ];
 
@@ -90,18 +103,30 @@ nilla.create ({ config, lib }: {
         };
     };
     shells.testing = {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-      shell = { mkShell, libnotify, sqlitebrowser, system, ... }:
+      shell =
+        {
+          mkShell,
+          libnotify,
+          sqlitebrowser,
+          system,
+          ...
+        }:
         mkShell {
           buildInputs = [ libnotify ];
           packages = [
             libnotify
             sqlitebrowser
             config.packages.default.result.${system}
-            (config.inputs.quickshell.result.packages.${system}.default.override { gitRev=pins.quickshell.revision; })
+            (config.inputs.quickshell.result.packages.${system}.default.override {
+              gitRev = pins.quickshell.revision;
+            })
           ];
         };
     };
   };
-})
+}
