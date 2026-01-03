@@ -1,0 +1,5 @@
+::LICENSES/
+::npins/
+::nilla.nix=projects/nilla.nix
+::workspace.josh.license=projects/menu/workspace.josh.license
+:/menu

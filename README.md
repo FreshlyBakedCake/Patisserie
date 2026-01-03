@@ -15,11 +15,15 @@ there are multiple projects hosted here. Here's a list!
 
 | Project           | Shortcode | Description                                                                                       |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| [*menu*][m]       | m         | Our URL shortening and [*golinks*][golinks] ("Quickly get to what you want to order")             |
 | [*packetmix*][pm] | pm        | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
 | [*sprinkles*][s]  | s         | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
 
+[m]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/menu
 [pm]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/packetmix
 [s]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/sprinkles
+
+[golinks]: https://golinks.github.io/golinks/
 
 Projects are developed in individual directories, and have a workspace file in
 `projects/${name}` to help you clone them down with everything they need.
