@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 let
-  base = import ./nilla.nix;
+  base = (import ./nilla.nix).unalias;
   project = base.extend {
     modules = [
 
