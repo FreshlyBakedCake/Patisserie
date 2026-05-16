@@ -13,15 +13,23 @@ SPDX-License-Identifier: MIT
 *Patisserie* is a [monorepo](https://en.wikipedia.org/wiki/Monorepo), which means
 there are multiple projects hosted here. Here's a list!
 
-| Project           | Shortcode | Description                                                                                       |
-| ----------------- | --------- | ------------------------------------------------------------------------------------------------- |
-| [*menu*][m]       | m         | Our URL shortening and [*golinks*][golinks] ("Quickly get to what you want to order")             |
-| [*packetmix*][pm] | pm        | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
-| [*sprinkles*][s]  | s         | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
+| Project              | Shortcode | Description                                                                                       |
+| -------------------- | --------- | ------------------------------------------------------------------------------------------------- |
+| [*menu*][m]          | m         | Our URL shortening and [*golinks*][golinks] ("Quickly get to what you want to order")             |
+| [*packetmix*][pm]    | pm        | Our [*NixOS*](https://nixos.org) configurations ("All you need to bake a delicious system")       |
+| [*sprinkles*][s]     | s         | Our [*Niri*](https://github.com/YaLTeR/niri) widgets ("Add some decoration to your Niri desktop") |
+| [*nilla*][n]         | n         | Our (soft) fork of [*nilla*](https://github.com/nilla-nix/nilla)                                  |
+| [*nilla/cli*][n/c]   | n/c       | Our (soft) fork of [*nilla-cli*](https://github.com/nilla-nix/cli)                                |
+| [*nilla/home*][n/h]  | n/h       | Our (soft) fork of [*nilla-home*](https://github.com/nilla-nix/home)                              |
+| [*nilla/nixos*][n/n] | n/n       | Our (soft) fork of [*nilla-nixos*](https://github.com/nilla-nix/nixos)                            |
 
 [m]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/menu
 [pm]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/packetmix
 [s]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/sprinkles
+[n]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/nilla
+[n/c]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/nilla/cli
+[n/h]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/nilla/home
+[n/n]: https://tangled.org/@freshlybakedca.ke/patisserie/tree/main/nilla/nixos
 
 [golinks]: https://golinks.github.io/golinks/
 
