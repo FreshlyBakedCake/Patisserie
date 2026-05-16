@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: 2025 FreshlyBakedCake
+#
+# SPDX-License-Identifier: MIT
+
+{
+  project,
+  lib,
+  ...
+}:
+let
+  inputs = {
+    # If we don't specify which inputs we want to link, we'll end up linking a lot of stuff that's functionally useless - even on systems that wouldn't otherwise download it!
+    inherit (project.inputs)
+      fenix
+      home-manager
+      home-manager-unstable
+      lix
+      nilla
+      nilla-cli
+      nilla-home
+      nilla-nixos
+      nixos-prev
+      nixos-unstable
+      nixpkgs
+      npins
+      ;
+  };
+in
+{
+  nix = {
+    channel.enable = false;
+    nixPath = [ "/etc/nix/inputs" ];
+    # Inspired by this blog post from piegamesde: https://piegames.de/dumps/pinning-nixos-with-npins-revisited/
+    # I've used /etc/nix as /etc/nixos would conflict with our packetmix.nix auto-upgrading...
+    # Also, it feels like something adjacent to nix.conf so I think it fits better
+  };
+
+  environment.etc = lib.mapAttrs' (name: value: {
+    name = "nix/inputs/${name}";
+    value.source =
+      if
+        (lib.strings.isStringLike value.result)
+        && (lib.strings.hasPrefix builtins.storeDir (builtins.toString value.result)) # We convert to a string here to force paths out of any attrsets/etc.
+      then
+        builtins.storePath value.result
+      else
+        builtins.storePath value.src;
+  }) inputs;
+}

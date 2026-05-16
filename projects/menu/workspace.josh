@@ -1,0 +1,6 @@
+::LICENSES/
+::npins/
+dependencies/packetmix = :/packetmix
+::workspace.josh.license=projects/menu/workspace.josh.license
+::nilla.nix=projects/nilla.nix
+:/menu

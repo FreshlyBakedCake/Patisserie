@@ -1,0 +1,62 @@
+# SPDX-FileCopyrightText: 2025 FreshlyBakedCake
+#
+# SPDX-License-Identifier: MIT
+
+when:
+  - event: ["push"]
+    branch: ["release"]
+
+engine: nixery
+
+dependencies:
+  nixpkgs:
+    - git
+    - openssh
+
+steps:
+  - name: Write SSH Key
+    command: |
+      echo "$KEY_SSH_GITHUB" > /tmp/key-ssh-github
+      chmod 600 /tmp/key-ssh-github
+  - name: Add base system files
+    command: |
+      # Avoid missing user with UID 0 error on ssh...
+      echo "root:x:0:0:System administrator:/root:/run/current-system/sw/bin/bash" >> /etc/passwd
+
+      # Turn off SSH host key checking
+      echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+      echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
+
+      echo "Host github.com" >> /etc/ssh/ssh_config
+      echo "    User git" >> /etc/ssh/ssh_config
+      echo "    IdentityFile /tmp/key-ssh-github" >> /etc/ssh/ssh_config
+  - name: Push * to GitHub
+    command: |
+      git remote add github git@github.com:FreshlyBakedCake/Patisserie.git
+      git fetch --unshallow origin
+      git fetch github
+      git push github HEAD:refs/heads/release
+  - name: Write SSH Key
+    command: |
+      echo "$KEY_SSH_GITHUB_PACKETMIX" > /tmp/key-ssh-github
+      chmod 600 /tmp/key-ssh-github
+  - name: Push packetmix to GitHub
+    command: |
+      cd ..
+      git clone https://git.freshlybakedca.ke/patisserie.git:workspace=projects/packetmix.git
+      cd packetmix
+      git remote add github git@github.com:FreshlyBakedCake/PacketMix.git
+      git fetch github
+      git push github origin/release:refs/heads/release
+  - name: Write SSH Key
+    command: |
+      echo "$KEY_SSH_GITHUB_SPRINKLES" > /tmp/key-ssh-github
+      chmod 600 /tmp/key-ssh-github
+  - name: Push sprinkles to GitHub
+    command: |
+      cd ..
+      git clone https://git.freshlybakedca.ke/patisserie.git:workspace=projects/sprinkles.git
+      cd sprinkles
+      git remote add github git@github.com:FreshlyBakedCake/Sprinkles.git
+      git fetch github
+      git push github origin/release:refs/heads/release

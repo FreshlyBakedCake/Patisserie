@@ -1,0 +1,103 @@
+# SPDX-FileCopyrightText: 2025 FreshlyBakedCake
+#
+# SPDX-License-Identifier: MIT
+when:
+  - event: ["push"]
+    branch: ["main"]
+
+engine: nixery
+
+dependencies:
+  nixpkgs:
+    - lix
+    - gnugrep
+    - openssh
+
+steps:
+  - name: Get remote builds SSH key
+    command: |
+      echo "$KEY_SSH_REMOTE_BUILD" > /tmp/key-ssh-remote-build
+      chmod 600 /tmp/key-ssh-remote-build
+  - name: Get release push SSH key
+    command: |
+      echo "$KEY_SSH_RELEASE_PUSH" > /tmp/key-ssh-release-push
+      chmod 600 /tmp/key-ssh-release-push
+  - name: Add base system files
+    command: |
+      # Let us SSH to midnight by name
+      echo "192.168.1.2 midnight" >> /etc/hosts
+
+      # Avoid missing user with UID 0 error on ssh...
+      echo "root:x:0:0:System administrator:/root:/run/current-system/sw/bin/bash" >> /etc/passwd
+
+      # Turn off SSH host key checking
+      echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+      echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
+
+      echo "Host midnight" >> /etc/ssh/ssh_config
+      echo "    User remoteBuilds" >> /etc/ssh/ssh_config
+      echo "    IdentityFile /tmp/key-ssh-remote-build" >> /etc/ssh/ssh_config
+      echo "Host tangled.org" >> /etc/ssh/ssh_config
+      echo "    User git" >> /etc/ssh/ssh_config
+      echo "    IdentityFile /tmp/key-ssh-release-push" >> /etc/ssh/ssh_config
+
+      echo "extra-experimental-features = nix-command" >> /etc/nix/nix.conf
+      echo "max-jobs = 0" >> /etc/nix/nix.conf
+      echo "builders = ssh-ng://remoteBuilds@midnight?ssh-key=/tmp/key-ssh-remote-build x86_64-linux" >> /etc/nix/nix.conf
+  - name: Evaluate all systems
+    command: |
+      set +e
+      set -o pipefail
+
+      mkdir -p /tmp/systems-drv-paths
+
+      systems=$(nix eval \
+        --expr 'builtins.concatStringsSep "\n" (builtins.attrNames (import ./ci.nix).systems.nixos)' \
+        --impure \
+        --show-trace --raw)
+
+      for system in $systems; do
+        echo "Evaluating system $system"
+
+        eval_out=$(nix eval \
+          -f ./ci.nix "systems.nixos.$system.result.config.system.build.toplevel.drvPath" \
+          --show-trace --raw \
+          2>&1 >"/tmp/systems-drv-paths/$system" | tee /dev/stderr)
+        eval_status=$?
+
+        if [ $eval_status -ne 0 ]; then
+          echo "Evaluating the system '$system' failed with exit code $eval_status"
+          echo "Please fix this and squash into your existing commits"
+          exit $eval_status
+        fi
+
+        eval_warns=$(echo "$eval_out" | grep "evaluation warning:" || true)
+
+        if [ -n "$eval_warns" ]; then
+          echo "There were some warnings while evaluating the system '$system':"
+          echo "$eval_warns"
+          echo "Please fix these and squash into your existing commits"
+          exit 1
+        fi
+      done
+  - name: Build all systems
+    command: |
+      set -e
+
+      for derivation_path in /tmp/systems-drv-paths/*; do
+        echo "Building system $(basename $derivation_path)"
+
+        nix-copy-closure \
+          --to 'midnight' \
+          "$(cat $derivation_path)"
+        nix build \
+          "$(cat $derivation_path)"'^*' \
+          --store 'ssh-ng://remoteBuilds@midnight?ssh-key=/tmp/key-ssh-remote-build' \
+          --eval-store auto \
+          --show-trace --print-out-paths
+      done
+  - name: Push to release
+    command: |
+      git fetch --unshallow
+      git remote set-url --push origin git@tangled.org:freshlybakedca.ke/patisserie
+      git push origin HEAD:refs/heads/release

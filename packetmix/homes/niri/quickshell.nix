@@ -1,0 +1,47 @@
+# SPDX-FileCopyrightText: 2025 FreshlyBakedCake
+#
+# SPDX-License-Identifier: MIT
+
+{
+  project,
+  system,
+  config,
+  pkgs,
+  ...
+}:
+{
+  programs.quickshell = {
+    enable = true;
+
+    package = project.inputs.nixos-unstable.result.${system}.quickshell; # Since as we have directly imported the module from home-manager, quickshell isn't in nixpkgs yet for us...
+
+    activeConfig = "sprinkles";
+    configs.sprinkles = pkgs.stdenv.mkDerivation {
+      name = "sprinkles-config";
+
+      src = ./quickshell;
+      dontUnpack = true;
+
+      buildPhase = ''
+        mkdir -p $out
+
+        cp -r $src/*.qml $out
+        cp ${config.ingredient.niri.niri.overviewBackground} $out/background.png
+      '';
+    };
+
+    systemd = {
+      enable = true;
+      target = "niri.service";
+    };
+  };
+
+  programs.niri.settings.layer-rules = [
+    {
+      matches = [
+        { namespace = "^quickshell$"; }
+      ];
+      place-within-backdrop = true;
+    }
+  ];
+}

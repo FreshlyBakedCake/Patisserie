@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2026 Freshly Baked Cake
+#
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "menu"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = { version = "0.8.8", features = ["macros"] }
+html-escape = "0.2.13"
+include_dir = "0.7.4"
+percent-encoding = "2.3.2"
+phf = { version = "0.13.1", features = ["macros"] }
+regex = "1.12.2"
+regex_static = "0.1.1"
+reqwest = "0.13.1"
+serde = { version = "1.0.228", features = ["derive"] }
+sqlx = { version = "0.8.6", features = ["runtime-tokio", "tls-rustls-ring-webpki", "postgres", "uuid", "macros"] }
+tokio = { version = "1.49.0", features = ["macros", "rt-multi-thread"] }
+tower = "0.5.2"
+tower-http = { version = "0.6.8", features = ["fs", "normalize-path"] }
+tower-layer = "0.3.3"
+tower-serve-static = "0.1.1"
+tower-sessions = "0.14.0"
+uuid = { version = "1.20.0", features = ["v4", "serde"] }
