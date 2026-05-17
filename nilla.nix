@@ -20,6 +20,7 @@ let
 
   result = (nilla.create [ ]).extend {
     modules = [
+      ./lib/project.nix
       ./menu/project.nix
       ./packetmix/project.nix
       ./sprinkles/project.nix
