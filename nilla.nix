@@ -23,6 +23,7 @@ let
       ./menu/project.nix
       ./packetmix/project.nix
       ./sprinkles/project.nix
+      ./nilla/project.nix
       (
         { config, ... }:
         {
